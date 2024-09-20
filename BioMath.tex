@@ -1,0 +1,141 @@
+ % !TeX spellcheck = en_US
+\documentclass[12pt]{article}
+\usepackage{amssymb }
+\usepackage{amsmath }
+\usepackage{graphicx}
+
+
+%opening
+\title{Basic Mathematics for Biologists}
+\author{Alberto Marin Sanguino}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+\section{Ordinary differential equations}
+
+A differential equation is an equality involving one or more unknowns ($x$,$y$,$z$,\dots) and their derivatives. Since our unknowns have derivatives, they are not just numbers like in regular -- a.k.a. algebraic -- equations. Our unknowns are functions or, more accurately, families of functions. We can make this explicit by writing our unknowns as $x(t)$,$y(t)$,$z(t)$,\dots thus sacrificing brevity for the sake of clarity. In the text that follows, very little effort will be made to mantain consistency between these two notations and we will wantonly switch between both. Live with it.
+
+Among all differential equations, we will be interested in the simpler type. Ordinary differential equations (ODEs) are those that do not involve partial derivatives. Our functions will only have one independent variable that almost always will be time.
+
+Lets start with the simplest possible case, which also happens to describe a fundamental biological process: exponential grow.
+
+\begin{equation}
+	\label{odexp}
+	\frac{dx}{dt} = \mu \, x
+\end{equation}
+
+Which can be read as: ``the rate of increase of a population $x$ is proportional to its own size.'' This equation is easy to solve because we can separate the variables:
+
+
+\begin{equation}
+	\frac{dx}{x} = \mu \, dt
+\end{equation}
+
+and integrate
+
+\begin{equation}
+	\int \frac{dx}{x} = \mu \, \int  dt
+\end{equation}
+
+\begin{equation}
+	\ln{x} = \mu \, t + C
+\end{equation}
+
+Since $C$ is an arbitrary constant, we can define it in terms of another constant $C= \ln{k}$ so:
+
+\begin{equation}
+	\ln{x} - \ln{k}  = \mu \, t 
+\end{equation}
+
+Applying the well known properties of logarithms listed in appendix \ref{logprop}
+
+\begin{equation}
+	\ln{\frac{x}{k}}   = \mu \, t 
+\end{equation}
+
+exponentiating both sides and rearranging
+
+\begin{equation}
+	x   = k \, e^{\mu \, t}
+\end{equation}
+
+This is the \emph{general solution} of the differential equation. For every possible value of $k$ there is a \emph{particular solution} of the equation.
+
+We are not normally interested in general solutions. General solutions are for mathematicians. We want the particular solution that fits some \emph{initial condition}, $x(0)$, often written $x_0$. For instance, we have a bacterial culture that starts with an optical density of 0.01. How do we find the right value for k?
+
+
+\begin{equation}
+x(0) = 0.01 \Rightarrow	 k \, e^{\mu \, 0} = 0.01 \Rightarrow	k=0.01 
+\end{equation}
+
+In general, we use this equation as:
+
+\begin{equation}
+	x   = x_0 \, e^{\mu \, t}
+\end{equation}
+
+\section{Linear equations}
+
+Linear equations are those where different unknowns and their derivatives are only combined linearly. Some examples of linear equations are:
+
+\begin{align}
+	\frac{dx}{dt} \: = \: &  a \, x	\\
+	\frac{dx}{dt} + \frac{dy}{dt}\: = \: &  0 \\
+	\frac{dx}{dt} \: = \: &  a \, x + b \, y
+\end{align}
+
+while the following equations are not linear:
+
+\begin{align}
+	\frac{dx}{dt} \: = \: &  x^2	\\
+	\frac{dx}{dt} + \frac{dy}{dt}\: = \: &  x \, y \\
+	\frac{dx}{dt} \: = \: &  \sin x 
+\end{align}
+
+Keep in mind that the linearity rrequirement only applies to the unknowns and not to the independent variable. The following equations are all linear
+
+
+\begin{align}
+	\frac{dx}{dt} \: = \: &  t^2 \, x	\\
+	\frac{dx}{dt} + \frac{dy}{dt}\: = \: &  \sin t \\
+	\frac{dx}{dt} \: = \: &  t \, x + t^2 \, y
+\end{align}
+
+In these equations, the coefficients that multiply our unknowns just happen to be functions of time. A linear equation can have coefficients that depend on time and also have time dependent independent terms. A general more general version of equation \ref{odexp} would be:
+
+
+
+
+\appendix
+\section{Some properties of logarithms}
+\label{logprop}
+\begin{equation}
+ \log{(a \, b)} =	\log{a} + \log{b} 
+\end{equation}
+
+\begin{equation}
+	\log{(a / b)} =	\log{a} - \log{b} 
+\end{equation}
+
+\begin{equation}
+	\log{x^a} =a \, \log{x} 
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
