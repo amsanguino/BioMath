@@ -21,9 +21,34 @@
 
 A differential equation is an equality involving one or more unknowns ($x$,$y$,$z$,\dots) and their derivatives. Since our unknowns have derivatives, they are not just numbers like in regular -- a.k.a. algebraic -- equations. Our unknowns are functions or, more accurately, families of functions. We can make this explicit by writing our unknowns as $x(t)$,$y(t)$,$z(t)$,\dots thus sacrificing brevity for the sake of clarity. In the text that follows, very little effort will be made to mantain consistency between these two notations and we will wantonly switch between both. Live with it.
 
-Among all differential equations, we will be interested in the simpler type. Ordinary differential equations (ODEs) are those that do not involve partial derivatives. Our functions will only have one independent variable that almost always will be time.
+Among all differential equations, we will be interested in the simpler type. Ordinary differential equations (ODEs) are those that do not involve partial derivatives. Our functions will only have one independent variable that almost always will be time. Moreover, we will start with linear equations.
 
-Lets start with the simplest possible case, which also happens to describe a fundamental biological process: exponential grow.
+Linear equations are those where different unknowns and their derivatives are only combined linearly. Some examples of linear equations are:
+
+\begin{align}
+	\frac{dx}{dt} \: = \: &  a \, x	\\
+	\frac{dx}{dt} + \frac{dy}{dt}\: = \: &  0 \\
+	\frac{dx}{dt} \: = \: &  a \, x + b \, y
+\end{align}
+
+while the following equations are not linear:
+
+\begin{align}
+	\frac{dx}{dt} \: = \: &  x^2	\\
+	\frac{dx}{dt} + \frac{dy}{dt}\: = \: &  x \, y \\
+	\frac{dx}{dt} \: = \: &  \sin x 
+\end{align}
+
+Keep in mind that the linearity rrequirement only applies to the unknowns and not to the independent variable. The following equations are all linear
+
+
+\begin{align}
+	\frac{dx}{dt} \: = \: &  t^2 \, x	\\
+	\frac{dx}{dt} + \frac{dy}{dt}\: = \: &  \sin t \\
+	\frac{dx}{dt} \: = \: &  t \, x + t^2 \, y
+\end{align}
+
+In these equations, the coefficients that multiply our unknowns just happen to be functions of time. A linear equation can have coefficients that depend on time and also have time dependent independent terms. In general, we will not concern ourselves with such systems. Lets start with the simplest possible case, which also happens to describe a fundamental biological process: exponential grow.
 
 \begin{equation}
 	\label{odexp}
@@ -80,36 +105,70 @@ In general, we use this equation as:
 	x   = x_0 \, e^{\mu \, t}
 \end{equation}
 
-\section{Linear equations}
+\section{Linear equations with more than one variable}
 
-Linear equations are those where different unknowns and their derivatives are only combined linearly. Some examples of linear equations are:
-
-\begin{align}
-	\frac{dx}{dt} \: = \: &  a \, x	\\
-	\frac{dx}{dt} + \frac{dy}{dt}\: = \: &  0 \\
-	\frac{dx}{dt} \: = \: &  a \, x + b \, y
-\end{align}
-
-while the following equations are not linear:
+The concepts above can easily be extended to more variables:
 
 \begin{align}
-	\frac{dx}{dt} \: = \: &  x^2	\\
-	\frac{dx}{dt} + \frac{dy}{dt}\: = \: &  x \, y \\
-	\frac{dx}{dt} \: = \: &  \sin x 
+	\label{odenvar}
+	\frac{dx_1}{dt} =& a_{1,1} \, x_1 + a_{1,2} \, x_2 \nonumber\\
+	\frac{dx_2}{dt} =& a_{2,1} \, x_1 + a_{2,2} \, x_2
 \end{align}
 
-Keep in mind that the linearity rrequirement only applies to the unknowns and not to the independent variable. The following equations are all linear
+when dealing with several variables, it helps a lot to use vectors and matrices.
+
+\begin{equation}
+	\label{odenvar_mat}
+	\frac{d}{dt} \begin{pmatrix} x_1\\ x_2 \end{pmatrix} = \begin{pmatrix} a_{1,1} & a_{1,2}\\ a_{2,1} & a_{2,2} \end{pmatrix} \begin{pmatrix} x_1\\ x_2 \end{pmatrix}
+\end{equation}
+
+Thus, we can write any equation with n variables as:
+
+\begin{equation}
+	\label{odenvar_mat}
+	\frac{d\mathbf{x}}{dt}  = \mathbf{A} \, \mathbf{x}
+\end{equation}
+
+Note that vectors and matrices are written in boldface.
+
+This notation is not only concise but also extremely useful, because the solution of this equation depends exclusively on the properties of the matrix of coefficients: $\mathbf{A}$.
+\section{Eigenvalues and eigenvectors}
 
 
-\begin{align}
-	\frac{dx}{dt} \: = \: &  t^2 \, x	\\
-	\frac{dx}{dt} + \frac{dy}{dt}\: = \: &  \sin t \\
-	\frac{dx}{dt} \: = \: &  t \, x + t^2 \, y
-\end{align}
+Just like the solution for a single variable was an exponential, so is the solution for more variables. The solution of a system with n variables is the sum of n exponentials, each of them multiplied by an arbitrary constant and a vector. For instance, the two variable system in equation (\ref{odenvar_mat}) is:
 
-In these equations, the coefficients that multiply our unknowns just happen to be functions of time. A linear equation can have coefficients that depend on time and also have time dependent independent terms. A general more general version of equation \ref{odexp} would be:
+\begin{equation}
+	\label{odenvar_mat_sol}
+	\mathbf{x}= c_1 \, \mathbf{v_1} \, e^{\lambda_1 \, t} + c_2 \, \mathbf{v_2} \, e^{\lambda_2 \, t}
+\end{equation}
+
+Where $c_1$ and $c_2$ are the arbitrary constants that show up on integration, the ones that can be used to adjust initial values. Each vector $\mathbf{v_i}$ and its corresponding constant $\lambda_i$ are called eigenvector and eigenvalue respectively.
+
+So solving a system of n (linear) differential equations is just a matter of finding the eigenvectors and eigenvalues of its matrix of coefficients ($\mathbf{A}$).
+
+In order to find the eigenvectors and eigenvalues, we must first define what they are. Given a matrix $\mathbf{A}$, we say $\mathbf{v}$ is an eigenvector and $\lambda$ an eigenvalue if:
+
+\begin{equation}
+	\mathbf{A} \, \mathbf{v} = \lambda \, \mathbf{v}
+\end{equation}
+	
+In order to understand the meaning of this and why eigenvector and eigenvalues are extremely important in applied mathematics, we have to think of the matrix product as an operation that transforms one vector into another. For instance, lets take the matrix
+\begin{equation}
+	\mathbf{A}  = \begin{pmatrix} -1 & 0\\ 0 & 2\end{pmatrix} 
+\end{equation}
 
 
+
+If we apply this operation to the vector (-1,1) we obtain:
+
+\begin{equation}
+	\begin{pmatrix}  5\\ 3  \end{pmatrix}  = \begin{pmatrix} -1 & 0\\ 0 & 2 \end{pmatrix} \begin{pmatrix}  1\\ 3  \end{pmatrix}
+\end{equation}
+
+So out matrix transforms vector (1,3) into vector (5,3).
+\section{Differential equations of higher order}
+
+\section{Plotting solutions}
 
 
 \appendix
