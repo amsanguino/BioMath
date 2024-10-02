@@ -105,7 +105,7 @@ In general, we use this equation as:
 	x   = x_0 \, e^{\mu \, t}
 \end{equation}
 
-\section{Linear equations with more than one variable}
+\section{Solving linear equations with more than one variable}
 
 The concepts above can easily be extended to more variables:
 
@@ -118,7 +118,6 @@ The concepts above can easily be extended to more variables:
 when dealing with several variables, it helps a lot to use vectors and matrices.
 
 \begin{equation}
-	\label{odenvar_mat}
 	\frac{d}{dt} \begin{pmatrix} x_1\\ x_2 \end{pmatrix} = \begin{pmatrix} a_{1,1} & a_{1,2}\\ a_{2,1} & a_{2,2} \end{pmatrix} \begin{pmatrix} x_1\\ x_2 \end{pmatrix}
 \end{equation}
 
@@ -132,25 +131,42 @@ Thus, we can write any equation with n variables as:
 Note that vectors and matrices are written in boldface.
 
 This notation is not only concise but also extremely useful, because the solution of this equation depends exclusively on the properties of the matrix of coefficients: $\mathbf{A}$.
+
+Since the solution of the equation for one variable was an exponential, lets make the hypothesis that an exponential can also be a solution for this case. We assume
+
+\begin{equation}
+	\mathbf{x}= \mathbf{v} \, e^{\lambda \, t}
+\end{equation}
+
+But now $\mathbf{v}$ is a vector of constants because any solution must be a vector. We can see if this is a valid solution by substituting it into the equation, which gives:
+
+\begin{equation}
+	\frac{d}{dt} \left( \mathbf{v} \, e^{\lambda \, t} \right)  = \mathbf{A} \, \mathbf{v} \, e^{\lambda \, t} 
+\end{equation}
+
+On the left hand side, the vector of  constants can be taken out of the derivative so:
+
+\begin{equation}
+	\mathbf{v} \, \frac{d}{dt} \left(  e^{\lambda \, t} \right)  = \mathbf{A} \, \mathbf{v} \, e^{\lambda \, t} 
+\end{equation}
+ 
+ and
+ 
+ \begin{equation}
+ 	\mathbf{v}   \lambda \, e^{\lambda \, t}   = \mathbf{A} \, \mathbf{v} \, e^{\lambda \, t} 
+ \end{equation}
+ 
+canceling out the exponentials:
+
+\begin{equation}
+\label{eigendefinition}
+\mathbf{A} \, \mathbf{v}  = \lambda  \,	\mathbf{v}   
+\end{equation}
+ 
+So $\mathbf{x}=\mathbf{v} \, e^{\lambda \, t}$ will be a solution of the equation as long as $\lambda$ and $\mathbf{v}$ satisfy equation (\ref{eigendefinition}).
 \section{Eigenvalues and eigenvectors}
 
-
-Just like the solution for a single variable was an exponential, so is the solution for more variables. The solution of a system with n variables is the sum of n exponentials, each of them multiplied by an arbitrary constant and a vector. For instance, the two variable system in equation (\ref{odenvar_mat}) is:
-
-\begin{equation}
-	\label{odenvar_mat_sol}
-	\mathbf{x}= c_1 \, \mathbf{v_1} \, e^{\lambda_1 \, t} + c_2 \, \mathbf{v_2} \, e^{\lambda_2 \, t}
-\end{equation}
-
-Where $c_1$ and $c_2$ are the arbitrary constants that show up on integration, the ones that can be used to adjust initial values. Each vector $\mathbf{v_i}$ and its corresponding constant $\lambda_i$ are called eigenvector and eigenvalue respectively.
-
-So solving a system of n (linear) differential equations is just a matter of finding the eigenvectors and eigenvalues of its matrix of coefficients ($\mathbf{A}$).
-
-In order to find the eigenvectors and eigenvalues, we must first define what they are. Given a matrix $\mathbf{A}$, we say $\mathbf{v}$ is an eigenvector and $\lambda$ an eigenvalue if:
-
-\begin{equation}
-	\mathbf{A} \, \mathbf{v} = \lambda \, \mathbf{v}
-\end{equation}
+A matrix $\mathbf{A}$ with size $n \times n$ has n vectors $\mathbf{v_i}$ for $i = 1 \dots n$ called eigenvectors, and each eigenvector has an eigenvalue ($\lambda_i$) such that every pair of eigenvector and eigenvalue satisfy equation (\ref{eigendefinition}).
 	
 In order to understand the meaning of this and why eigenvector and eigenvalues are extremely important in applied mathematics, we have to think of the matrix product as an operation that transforms one vector into another. For instance, lets take the matrix
 \begin{equation}
@@ -166,6 +182,23 @@ If we apply this operation to the vector (-1,1) we obtain:
 \end{equation}
 
 So out matrix transforms vector (1,3) into vector (5,3).
+
+%WORKING HERE
+
+
+\section{General solutions for linear equations}
+
+So putting together all the eigenvecotrs of the system and the corresponding eigenvalues, we get the general solution of the system of equations:
+
+
+\begin{equation}
+	\label{odenvar_mat_sol}
+	\mathbf{x}= c_1 \, \mathbf{v_1} \, e^{\lambda_1 \, t} + c_2 \, \mathbf{v_2} \, e^{\lambda_2 \, t} +  \dots + c_n \, \mathbf{v_n} \, e^{\lambda_n \, t}
+\end{equation}
+
+Where $c_1 \dots c_n$  are arbitrary constants, the ones that can be used to adjust initial values. Each vector $\mathbf{v_i}$ and its corresponding constant $\lambda_i$ are called eigenvector and eigenvalue respectively.
+
+
 \section{Differential equations of higher order}
 
 \section{Plotting solutions}
