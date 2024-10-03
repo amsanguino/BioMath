@@ -130,15 +130,13 @@ Thus, we can write any equation with n variables as:
 
 Note that vectors and matrices are written in boldface.
 
-This notation is not only concise but also extremely useful, because the solution of this equation depends exclusively on the properties of the matrix of coefficients: $\mathbf{A}$.
-
 Since the solution of the equation for one variable was an exponential, lets make the hypothesis that an exponential can also be a solution for this case. We assume
 
 \begin{equation}
 	\mathbf{x}= \mathbf{v} \, e^{\lambda \, t}
 \end{equation}
 
-But now $\mathbf{v}$ is a vector of constants because any solution must be a vector. We can see if this is a valid solution by substituting it into the equation, which gives:
+Since $\mathbf{x}$ is a vector now, we multiply our exponential times a  vector of constants $\mathbf{v}$. We can test if this is a valid solution by substituting it into the equation, which gives:
 
 \begin{equation}
 	\frac{d}{dt} \left( \mathbf{v} \, e^{\lambda \, t} \right)  = \mathbf{A} \, \mathbf{v} \, e^{\lambda \, t} 
