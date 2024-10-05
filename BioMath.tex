@@ -162,7 +162,32 @@ canceling out the exponentials:
 \end{equation}
  
 So $\mathbf{x}=\mathbf{v} \, e^{\lambda \, t}$ will be a solution of the equation as long as $\lambda$ and $\mathbf{v}$ satisfy equation (\ref{eigendefinition}).
-\section{Eigenvalues and eigenvectors}
+
+We can solve the equation and find all possible values of $\lambda$ by rearranging terms.
+
+\begin{equation}
+	\mathbf{A} \, \mathbf{v}  - \mathbf{I} \, \lambda  \,	\mathbf{v}   = 0
+\end{equation}
+
+note we have multiplied lambda by the identity matrix $\mathbf{I}$. This is a matrix of zeros everywhere except its main diagonal, which is occupied by ones. The identity matrix plays the same role as number one among scalars, it does not alter the matrices or vectors it multiplies. Now we can factor $\mathbf{v}$ out 
+
+\begin{equation}
+	\left( \mathbf{A}   - \mathbf{I} \, \lambda     \right) \, \mathbf{v} =  0
+\end{equation}
+
+This is an homogeneous system of equations with the components of $\mathbf{v}$ as unknowns. For the system to have a solution other than the trivial, $\mathbf{v}=\mathbf{0}$, the determinant of the parenthesis must satisfy:
+
+\begin{equation}
+	\left| \mathbf{A}   - \mathbf{I} \, \lambda     \right|  =  0
+\end{equation}
+
+This determinant is the Jacobian of the system and its expansion results in a $n-th$ degree equation in terms of lambda known as the characteristic equation of the system.
+
+\begin{equation}
+c_n \, \lambda^n +c_{n-1} \, \lambda^{n-1}  + \dots  + c_1 \, \lambda + c_0 = 0
+\end{equation}
+
+\section{Eigenvalues and eigenvectors} 
 
 A matrix $\mathbf{A}$ with size $n \times n$ has n vectors $\mathbf{v_i}$ for $i = 1 \dots n$ called eigenvectors, and each eigenvector has an eigenvalue ($\lambda_i$) such that every pair of eigenvector and eigenvalue satisfy equation (\ref{eigendefinition}).
 	
@@ -171,7 +196,17 @@ In order to understand the meaning of this and why eigenvector and eigenvalues a
 	\mathbf{A}  = \begin{pmatrix} -1 & 0\\ 0 & 2\end{pmatrix} 
 \end{equation}
 
+Equating the jacobian to zero:
 
+\begin{equation}
+  \left|\begin{matrix} -1  -\lambda & 0\\ 0 & 2-\lambda \end{matrix}\right| = 0
+\end{equation}
+
+we get the characteristic polynomial
+
+\begin{equation}
+	\lambda^2  -  \lambda  -2 = 0
+\end{equation}
 
 If we apply this operation to the vector (-1,1) we obtain:
 
