@@ -19,7 +19,7 @@
 
 \section{Ordinary differential equations}
 
-A differential equation is an equality involving one or more unknowns ($x$,$y$,$z$,\dots) and their derivatives. Since our unknowns have derivatives, they are not just numbers like in regular -- a.k.a. algebraic -- equations. Our unknowns are functions or, more accurately, families of functions. We can make this explicit by writing our unknowns as $x(t)$,$y(t)$,$z(t)$,\dots thus sacrificing brevity for the sake of clarity. In the text that follows, very little effort will be made to mantain consistency between these two notations and we will wantonly switch between both. Live with it.
+A differential equation is an equality involving one or more unknowns ($x$, $y$, $z$,\dots) and their derivatives. Since our unknowns have derivatives, they are not just numbers like in regular -- a.k.a. algebraic -- equations. Our unknowns are functions or, more accurately, families of functions. We can make this explicit by writing our unknowns as $x(t)$, $y(t)$, $z(t)$,\dots thus sacrificing brevity for the sake of clarity. In the text that follows, very little effort will be made to mantain consistency between these two notations and we will wantonly switch between both. Live with it.
 
 Among all differential equations, we will be interested in the simpler type. Ordinary differential equations (ODEs) are those that do not involve partial derivatives. Our functions will only have one independent variable that almost always will be time. Moreover, we will start with linear equations.
 
@@ -39,7 +39,7 @@ while the following equations are not linear:
 	\frac{dx}{dt} \: = \: &  \sin x 
 \end{align}
 
-Keep in mind that the linearity rrequirement only applies to the unknowns and not to the independent variable. The following equations are all linear
+Keep in mind that the linearity requirement only applies to the unknowns and not to the independent variable. The following equations are all linear
 
 
 \begin{align}
@@ -48,7 +48,15 @@ Keep in mind that the linearity rrequirement only applies to the unknowns and no
 	\frac{dx}{dt} \: = \: &  t \, x + t^2 \, y
 \end{align}
 
-In these equations, the coefficients that multiply our unknowns just happen to be functions of time. A linear equation can have coefficients that depend on time and also have time dependent independent terms. In general, we will not concern ourselves with such systems. Lets start with the simplest possible case, which also happens to describe a fundamental biological process: exponential grow.
+In these equations, the coefficients that multiply our unknowns just happen to be functions of time. A linear equation can have coefficients that depend on time and also have time-dependent independent terms. In general, we will not concern ourselves with such systems.
+
+\section{Linear equations}
+
+Solving differential equations is very challenging, that's why we will try to avoid it whenever possible. In fact, we are only going to solve one differential equation during the whole course. We will solve this equation in two versions: with on variable and with several variables.
+
+\subsection{Solving the linear equation with one variable}
+
+Lets start with the simplest possible case, which also happens to describe a fundamental biological process: exponential grow.
 
 \begin{equation}
 	\label{odexp}
@@ -90,7 +98,7 @@ exponentiating both sides and rearranging
 	x   = k \, e^{\mu \, t}
 \end{equation}
 
-This is the \emph{general solution} of the differential equation. For every possible value of $k$ there is a \emph{particular solution} of the equation.
+This is the \emph{general solution} of the differential equation. It is a family of functions because we can generate infinite functions assigning different values to k. For every possible value of $k$ there is a \emph{particular solution} of the equation.
 
 We are not normally interested in general solutions. General solutions are for mathematicians. We want the particular solution that fits some \emph{initial condition}, $x(0)$, often written $x_0$. For instance, we have a bacterial culture that starts with an optical density of 0.01. How do we find the right value for k?
 
@@ -99,15 +107,16 @@ We are not normally interested in general solutions. General solutions are for m
 x(0) = 0.01 \Rightarrow	 k \, e^{\mu \, 0} = 0.01 \Rightarrow	k=0.01 
 \end{equation}
 
-In general, we use this equation as:
+In general, we use the solution to the exponential equation as:
 
 \begin{equation}
 	x   = x_0 \, e^{\mu \, t}
 \end{equation}
 
-\section{Solving linear equations with more than one variable}
+\subsection{Solving the linear equation with several variables}
 
-The concepts above can easily be extended to more variables:
+
+Our simple linear equation can also have more that one variable:
 
 \begin{align}
 	\label{odenvar}
@@ -172,6 +181,7 @@ We can solve the equation and find all possible values of $\lambda$ by rearrangi
 note we have multiplied lambda by the identity matrix $\mathbf{I}$. This is a matrix of zeros everywhere except its main diagonal, which is occupied by ones. The identity matrix plays the same role as number one among scalars, it does not alter the matrices or vectors it multiplies. Now we can factor $\mathbf{v}$ out 
 
 \begin{equation}
+	\label{solve4eigenvec}
 	\left( \mathbf{A}   - \mathbf{I} \, \lambda     \right) \, \mathbf{v} =  0
 \end{equation}
 
@@ -189,39 +199,87 @@ c_n \, \lambda^n +c_{n-1} \, \lambda^{n-1}  + \dots  + c_1 \, \lambda + c_0 = 0
 
 \section{Eigenvalues and eigenvectors} 
 
+\subsection{real eigenvalues}
 A matrix $\mathbf{A}$ with size $n \times n$ has n vectors $\mathbf{v_i}$ for $i = 1 \dots n$ called eigenvectors, and each eigenvector has an eigenvalue ($\lambda_i$) such that every pair of eigenvector and eigenvalue satisfy equation (\ref{eigendefinition}).
 	
 In order to understand the meaning of this and why eigenvector and eigenvalues are extremely important in applied mathematics, we have to think of the matrix product as an operation that transforms one vector into another. For instance, lets take the matrix
 \begin{equation}
-	\mathbf{A}  = \begin{pmatrix} -1 & 0\\ 0 & 2\end{pmatrix} 
+	\mathbf{A}  = \begin{pmatrix} -1 & -4\\ -3 & -2\end{pmatrix} 
 \end{equation}
 
-Equating the jacobian to zero:
+If we multiply $(1,2)$ times the matrix we obtain another vector:
 
 \begin{equation}
-  \left|\begin{matrix} -1  -\lambda & 0\\ 0 & 2-\lambda \end{matrix}\right| = 0
+	 \begin{pmatrix} -1 & -4\\ -3 & -2\end{pmatrix} \,  \begin{pmatrix} 1\\ 2\end{pmatrix}=\begin{pmatrix} -9 \\ -7\end{pmatrix}
+\end{equation}
+
+So matrix $\mathbf{A}$ transforms  (1,2) into  (-9,-7). Now if  we transform another vector:
+
+\begin{equation}
+	\begin{pmatrix} -1 & -4\\ -3 & -2\end{pmatrix} \,  \begin{pmatrix} 4\\ -3\end{pmatrix}=\begin{pmatrix} 8 \\ -6\end{pmatrix}
+\end{equation}
+
+In the previous case, the transformation changed the direction of our vector but now, vector (4,-3) was transformed into a stretched version of itself with double length. If we now transformed $(8,-6)$ using the matrix, we would obtain $(16,-12)$, which is again the same vector multiplied by two. So (4,-3) is an eigenvector of $\mathbf{A}$ and the corresponding eigenvalue is $\lambda=2$. Note that negative eigenvalues will change the sense of the vector but not its direction, as is the case with the second eigenvector of this matrix $(1,1)$.
+
+\begin{equation}
+	\begin{pmatrix} -1 & -4\\ -3 & -2\end{pmatrix} \,  \begin{pmatrix} 1\\ 1\end{pmatrix}=- \begin{pmatrix} 5 \\ 5\end{pmatrix}
+\end{equation}
+
+Obviously, the corresponding eigenvalue is $\lambda=-5$.
+
+But how can we find out the eigenvectors and eigenvalues of a matrix other than by trial and error? First we get the eigenvalues by equating the Jacobian determinant to zero:
+
+\begin{equation}
+  \left|\begin{matrix} -1-\lambda & -4\\ -3 & -2-\lambda\end{matrix} \right| = 0
 \end{equation}
 
 we get the characteristic polynomial
 
 \begin{equation}
-	\lambda^2  -  \lambda  -2 = 0
+	\lambda^2  +3 \,  \lambda  - 10 = 0
 \end{equation}
 
-If we apply this operation to the vector (-1,1) we obtain:
+A primary school problem we can solve:
 
 \begin{equation}
-	\begin{pmatrix}  5\\ 3  \end{pmatrix}  = \begin{pmatrix} -1 & 0\\ 0 & 2 \end{pmatrix} \begin{pmatrix}  1\\ 3  \end{pmatrix}
+	\lambda= \frac{-3 \pm \sqrt{9+40}}{2}
 \end{equation}
 
-So out matrix transforms vector (1,3) into vector (5,3).
+with two solutions $\lambda_1=2$ and $\lambda_2=-5$. We have already seen that the eigenvector $\mathbf{v_1}$ for $\lambda_1$ is . Can we find the other one? We can go back to equation (\ref{eigendefinition}) or use the already factored out version in equation  (\ref{solve4eigenvec})
 
-%WORKING HERE
+\begin{equation}
+\begin{pmatrix} -1-\lambda & -4\\ -3 & -2-\lambda\end{pmatrix} \, \begin{pmatrix} v_x \\  v_y\end{pmatrix} = 0
+\end{equation}
 
+For the case $\lambda = 2$:
+
+\begin{equation}
+	\begin{pmatrix} -3 & -4\\ -3 & 0\end{pmatrix} \, \begin{pmatrix} v_x \\  v_y\end{pmatrix} = 0
+\end{equation}
+
+\begin{align*}
+	-3 \, v_x - 4 \, v_y =& 0\\
+	-3 \, v_y =& 0
+\end{align*}
+
+The second equation shows a very important property of eigenvectors, they are never unique. In this case, any value of $v_y$ will satisfy the second equation, so we can assign whatever we want. Now it is easy to see that v=(4,-3) cancels out the first equation. If we had just chosen $v_y=1$, then our eigenvector would have been $\mathbf{v}=\left( \frac{-4}{3}, 1 \right)$.
+
+Now we can do the same for  $\lambda = -5$:
+
+\begin{align*}
+	4 \, v_x - 4 \, v_y =& 0\\
+	- 3 \, v_x  + 3 \, v_y =& 0
+\end{align*}
+
+This is actually the same equation twice. It is easy to see that whenever $v_x=v_y$, both equations will be satisfied, so we can choose $\mathbf{v} = (1, 1)$.
+
+\paragraph{Exercise:} Can you use equation (\ref{eigendefinition}) to show that given an eigenvector $\mathbf{v}$ and a constant $k$, any vector $k \, \mathbf{v}$ will also be an eigenvector?
+
+\subsection{Complex eigenvalues}
 
 \section{General solutions for linear equations}
 
-So putting together all the eigenvecotrs of the system and the corresponding eigenvalues, we get the general solution of the system of equations:
+So putting together all the eigenvecotrs of the system and the corresponding eigenvalues, we get the general solution for our equation with n variables:
 
 
 \begin{equation}
