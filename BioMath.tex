@@ -56,7 +56,7 @@ Solving differential equations is very challenging, that's why we will try to av
 
 \subsection{Solving the linear equation with one variable}
 
-Lets start with the simplest possible case, which also happens to describe a fundamental biological process: exponential grow.
+Lets start with the simplest possible case, which also happens to describe a fundamental biological process: exponential growth.
 
 \begin{equation}
 	\label{odexp}
@@ -277,6 +277,23 @@ This is actually the same equation twice. It is easy to see that whenever $v_x=v
 
 \subsection{Complex eigenvalues}
 
+Now lets analyze another matrix 
+
+\begin{equation}
+	\mathbf{A}  = \begin{pmatrix} 0 & -1\\ 1 & 0\end{pmatrix} 
+\end{equation}
+
+Characteristic polynomial
+
+\begin{equation}
+	\lambda^2 + 1 = 0
+\end{equation}
+
+The solutions to this equation are imaginary $\lambda_1 = i$ and $\lambda_1 = -i$.
+
+Complex eigenvalues always come in conjugate pairs: $\lambda_1 = a + b\, i$,  $\lambda_2 = a - b\, i$. In the context of ODEs, The real parts of a complex eigenvalue determine the stability, just as real eigenvalues do, while the existence of imaginary parts involves the existence of oscillations. Note that imaginary eigenvalues can only appear for systems with two or more variables. This means that for a system to oscillate, it must have at least two variables.
+
+
 \section{General solutions for linear equations}
 
 So putting together all the eigenvecotrs of the system and the corresponding eigenvalues, we get the general solution for our equation with n variables:
@@ -308,6 +325,10 @@ Where $c_1 \dots c_n$  are arbitrary constants, the ones that can be used to adj
 
 \begin{equation}
 	\log{x^a} =a \, \log{x} 
+\end{equation}
+
+\begin{equation}
+	e^{\ln{x}} = x 
 \end{equation}
 
 
