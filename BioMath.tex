@@ -307,6 +307,49 @@ So putting together all the eigenvecotrs of the system and the corresponding eig
 Where $c_1 \dots c_n$  are arbitrary constants, the ones that can be used to adjust initial values. Each vector $\mathbf{v_i}$ and its corresponding constant $\lambda_i$ are called eigenvector and eigenvalue respectively.
 
 
+When the eigenvalues (and eigenvectors) are complex, the solutions described above will be complex. But we are not interested in complex solutions, since all our models have real variables. To see how complex eigenvalues cause oscillations in real solutions, lets see a combination of complex exponentials:
+
+\begin{equation}
+	x_1= c_1 e^{\left(  a + b\, i\right) \, t} + c_2 \,  e^{\left(  a + b\, i\right)\, t} = 
+	c_1  \, e^{a \, t} \, e^{ i \, b \, t} + c_2 \,  e^{a \, t} \, e^{-i \, b \, t}
+\end{equation}
+
+factoring out the real exponential
+
+\begin{equation}
+	\mathbf{x}= e^{a \, t} \,  \left( c_1  \, e^{ i \, b \, t} + c_2 \,  e^{-i \, b \, t}\right)
+\end{equation}
+
+Using Euler's formula:
+
+\begin{equation}
+	\label{euler}
+	e^{i \theta} = cos \theta + i \, \sin \theta
+\end{equation}
+
+\begin{equation}
+	x_1= e^{a \, t} \,  \left( c_1  \, \left(  \cos{ b \, t} + i \, \sin{ b \, t} \right)+ c_2 \, \left( \cos{- b \, t} + i \, \sin{- b \, t} \right) \right)
+\end{equation}
+
+\begin{center}
+	\includegraphics[width=\textwidth]{trigo}
+\end{center}
+
+As can be seen in the figure above, $- \sin{b \, t}=\sin{- b \, t}$ and $\cos{b \, t}=\cos{ - b \, t}$ so we can rearrange terms:
+
+\begin{equation}
+	x_1= e^{a \, t} \,  \left( c_1  \, \left(  \cos{ b \, t} + i \, \sin{ b \, t} \right)+ c_2 \, \left( \cos{ b \, t} - i \, \sin{ b \, t} \right) \right)
+\end{equation}
+
+
+\begin{equation}
+	x_1= e^{a \, t} \, \left(   \left( c_1+c_2\right) \,  \cos{ b \, t}  + i \,\left( c_1-c_2 \right) \,  \sin{ b \, t}  \right)
+\end{equation}
+
+So the real part of our solutions will be the product of an exponential having the real part of the eigenvalue and an oscillatory function based on its imaginary part. The stability of the system will therefore be deterined by the sign of $\operatorname{Re}(\lambda)$ and oscillations will appear when $\operatorname{Im}(\lambda) \neq 0$. 
+
+% Include graph with damped oscillations, unstable oscillations, etc...
+
 \section{Differential equations of higher order}
 
 \section{Plotting solutions}
