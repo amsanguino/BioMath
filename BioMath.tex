@@ -317,7 +317,7 @@ When the eigenvalues (and eigenvectors) are complex, the solutions described abo
 factoring out the real exponential
 
 \begin{equation}
-	\mathbf{x}= e^{a \, t} \,  \left( c_1  \, e^{ i \, b \, t} + c_2 \,  e^{-i \, b \, t}\right)
+x_1= e^{a \, t} \,  \left( c_1  \, e^{ i \, b \, t} + c_2 \,  e^{-i \, b \, t}\right)
 \end{equation}
 
 Using Euler's formula:
@@ -331,11 +331,15 @@ Using Euler's formula:
 	x_1= e^{a \, t} \,  \left( c_1  \, \left(  \cos{ b \, t} + i \, \sin{ b \, t} \right)+ c_2 \, \left( \cos{- b \, t} + i \, \sin{- b \, t} \right) \right)
 \end{equation}
 
+\begin{figure}
 \begin{center}
 	\includegraphics[width=\textwidth]{trigo}
 \end{center}
+\caption{Some basic trigonometric relations.}
+\label{fig:trigo}
+\end{figure}
 
-As can be seen in the figure above, $- \sin{b \, t}=\sin{- b \, t}$ and $\cos{b \, t}=\cos{ - b \, t}$ so we can rearrange terms:
+As can be seen in  figure \ref{fig:trigo}, $- \sin{b \, t}=\sin{- b \, t}$ and $\cos{b \, t}=\cos{ - b \, t}$ so we can rearrange terms:
 
 \begin{equation}
 	x_1= e^{a \, t} \,  \left( c_1  \, \left(  \cos{ b \, t} + i \, \sin{ b \, t} \right)+ c_2 \, \left( \cos{ b \, t} - i \, \sin{ b \, t} \right) \right)
@@ -343,12 +347,27 @@ As can be seen in the figure above, $- \sin{b \, t}=\sin{- b \, t}$ and $\cos{b 
 
 
 \begin{equation}
-	x_1= e^{a \, t} \, \left(   \left( c_1+c_2\right) \,  \cos{ b \, t}  + i \,\left( c_1-c_2 \right) \,  \sin{ b \, t}  \right)
+	x_1=   \left( c_1+c_2\right) \, e^{a \, t} \, \cos{ b \, t}  + i \, \,\left( c_1-c_2 \right) \,e^{a \, t} \,   \sin{ b \, t}  
 \end{equation}
 
-So the real part of our solutions will be the product of an exponential having the real part of the eigenvalue and an oscillatory function based on its imaginary part. The stability of the system will therefore be deterined by the sign of $\operatorname{Re}(\lambda)$ and oscillations will appear when $\operatorname{Im}(\lambda) \neq 0$. 
+Note that this solution has the form $x_1(t) = u(t) + i \, v(t)$ where both $u(t)$ and $v(t)$ are real functions. Moreover, these functions are linearly independent so a combination of both will be a proper general solution. By defining new arbitrary constants, we will get the general solution that includes al possible real solutions of the equation:
 
-% Include graph with damped oscillations, unstable oscillations, etc...
+\begin{equation}
+	x_1=   e^{a \, t} \,  \left(  A  \, \cos{ b \, t}  +  B  \,   \sin{ b \, t}  \right)
+\end{equation}
+
+So the real part of our solutions will be the product of an exponential and an oscillatory function. Moreover, the exponential depends only on the real part of the eigenvalue, $\operatorname{Re}(\lambda) = a$, while the oscillations depend on its imaginary part,  $\operatorname{Im}(\lambda) =b$ (see figure \ref{fig:cmplxeigen}). 
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=\textwidth]{complex_eigen}
+	\end{center}
+	\caption{Overal behavior of solutions when eigenvalues are complex. The sign of $\operatorname{Re}(\lambda)$ determines stability and$\operatorname{Re}(\lambda)$ governs oscillations}
+	\label{fig:cmplxeigen}
+\end{figure}
+
+
+
 
 \section{Differential equations of higher order}
 
