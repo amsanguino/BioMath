@@ -12,10 +12,8 @@
 \begin{document}
 
 \maketitle
+\tableofcontents
 
-\begin{abstract}
-
-\end{abstract}
 
 \section{Ordinary differential equations}
 
@@ -371,8 +369,32 @@ So the real part of our solutions will be the product of an exponential and an o
 
 \section{Differential equations of higher order}
 
+The following differential equation:
+
+\begin{equation}
+	 \frac{d^2x}{dt^2} = \frac{k}{m} \, x - g
+\end{equation}
+
+is called a second order differential equation because it contains a second derivative. This equation can lead to oscillations, even though, we just said only systems with two variables can show this behavior. The reason for that is that any  differential equation of order $n$ can be written as a first order differential equation with n variables. If we add the variable $y(t)$ to the equation above, it becomes:
+
+\begin{align}
+	\frac{dx}{dt} =& \: y \\
+	\frac{dy}{dt} =& \: \frac{k}{m} \, x - g
+\end{align}
+
+
 \section{Plotting solutions}
 
+The particular solutions of a differential equation can be plotted as each variable being a function of time as shown in figure \ref{fig:cmplxeigen}, but there are alternative representations. A frequently used plot is the phase space like the one shown in figure \ref{fig:phase_plane}. In this plot, the state variables of the system are used as axes. Since time is not explicitly included in the plot, the lines showing the evolution of the system have arrows that indicate the direction in which the system moves as time goes by. In a plot like this, several particular solutions can be shown at the same time, the line representing each solution is called an orbit. 
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.7\textwidth]{phase_plane}
+	\end{center}
+	\caption{Phase plane representation of a particular solution of a two variable oscillatory system.}
+	\label{fig:phase_plane}
+\end{figure}
+
+\section{Non-linear systems}
 
 \appendix
 \section{Some properties of logarithms}
