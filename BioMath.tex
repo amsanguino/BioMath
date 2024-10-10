@@ -1,7 +1,8 @@
  % !TeX spellcheck = en_US
 \documentclass[12pt]{article}
-\usepackage{amssymb }
-\usepackage{amsmath }
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{placeins}
 \usepackage{graphicx}
 
 
@@ -24,26 +25,26 @@ Among all differential equations, we will be interested in the simpler type. Ord
 Linear equations are those where different unknowns and their derivatives are only combined linearly. Some examples of linear equations are:
 
 \begin{align}
-	\frac{dx}{dt} \: = \: &  a \, x	\\
-	\frac{dx}{dt} + \frac{dy}{dt}\: = \: &  0 \\
-	\frac{dx}{dt} \: = \: &  a \, x + b \, y
+	\frac{dx}{dt} \: = \: &  a \, x	\nonumber\\
+	\frac{dx}{dt} + \frac{dy}{dt}\: = \: &  0 \nonumber\\
+	\frac{dx}{dt} \: = \: &  a \, x + b \, y \nonumber
 \end{align}
 
 while the following equations are not linear:
 
 \begin{align}
-	\frac{dx}{dt} \: = \: &  x^2	\\
-	\frac{dx}{dt} + \frac{dy}{dt}\: = \: &  x \, y \\
-	\frac{dx}{dt} \: = \: &  \sin x 
+	\frac{dx}{dt} \: = \: &  x^2	\nonumber\\
+	\frac{dx}{dt} + \frac{dy}{dt}\: = \: &  x \, y \nonumber\\
+	\frac{dx}{dt} \: = \: &  \sin x \nonumber
 \end{align}
 
 Keep in mind that the linearity requirement only applies to the unknowns and not to the independent variable. The following equations are all linear
 
 
 \begin{align}
-	\frac{dx}{dt} \: = \: &  t^2 \, x	\\
-	\frac{dx}{dt} + \frac{dy}{dt}\: = \: &  \sin t \\
-	\frac{dx}{dt} \: = \: &  t \, x + t^2 \, y
+	\frac{dx}{dt} \: = \: &  t^2 \, x	\nonumber\\
+	\frac{dx}{dt} + \frac{dy}{dt}\: = \: &  \sin t \nonumber\\
+	\frac{dx}{dt} \: = \: &  t \, x + t^2 \, y \nonumber
 \end{align}
 
 In these equations, the coefficients that multiply our unknowns just happen to be functions of time. A linear equation can have coefficients that depend on time and also have time-dependent independent terms. In general, we will not concern ourselves with such systems.
@@ -58,42 +59,42 @@ Lets start with the simplest possible case, which also happens to describe a fun
 
 \begin{equation}
 	\label{odexp}
-	\frac{dx}{dt} = \mu \, x
+	\frac{dx}{dt} = \mu \, x 
 \end{equation}
 
 Which can be read as: ``the rate of increase of a population $x$ is proportional to its own size.'' This equation is easy to solve because we can separate the variables:
 
 
 \begin{equation}
-	\frac{dx}{x} = \mu \, dt
+	\frac{dx}{x} = \mu \, dt \nonumber
 \end{equation}
 
 and integrate
 
 \begin{equation}
-	\int \frac{dx}{x} = \mu \, \int  dt
+	\int \frac{dx}{x} = \mu \, \int  dt \nonumber
 \end{equation}
 
 \begin{equation}
-	\ln{x} = \mu \, t + C
+	\ln{x} = \mu \, t + C \nonumber
 \end{equation}
 
 Since $C$ is an arbitrary constant, we can define it in terms of another constant $C= \ln{k}$ so:
 
 \begin{equation}
-	\ln{x} - \ln{k}  = \mu \, t 
+	\ln{x} - \ln{k}  = \mu \, t  \nonumber
 \end{equation}
 
 Applying the well known properties of logarithms listed in appendix \ref{logprop}
 
 \begin{equation}
-	\ln{\frac{x}{k}}   = \mu \, t 
+	\ln{\frac{x}{k}}   = \mu \, t \nonumber
 \end{equation}
 
 exponentiating both sides and rearranging
 
 \begin{equation}
-	x   = k \, e^{\mu \, t}
+	x   = k \, e^{\mu \, t} \nonumber
 \end{equation}
 
 This is the \emph{general solution} of the differential equation. It is a family of functions because we can generate infinite functions assigning different values to k. For every possible value of $k$ there is a \emph{particular solution} of the equation.
@@ -102,13 +103,13 @@ We are not normally interested in general solutions. General solutions are for m
 
 
 \begin{equation}
-x(0) = 0.01 \Rightarrow	 k \, e^{\mu \, 0} = 0.01 \Rightarrow	k=0.01 
+x(0) = 0.01 \Rightarrow	 k \, e^{\mu \, 0} = 0.01 \Rightarrow	k=0.01 \nonumber
 \end{equation}
 
 In general, we use the solution to the exponential equation as:
 
 \begin{equation}
-	x   = x_0 \, e^{\mu \, t}
+	x   = x_0 \, e^{\mu \, t} \nonumber
 \end{equation}
 
 \subsection{Solving the linear equation with several variables}
@@ -125,7 +126,7 @@ Our simple linear equation can also have more that one variable:
 when dealing with several variables, it helps a lot to use vectors and matrices.
 
 \begin{equation}
-	\frac{d}{dt} \begin{pmatrix} x_1\\ x_2 \end{pmatrix} = \begin{pmatrix} a_{1,1} & a_{1,2}\\ a_{2,1} & a_{2,2} \end{pmatrix} \begin{pmatrix} x_1\\ x_2 \end{pmatrix}
+	\frac{d}{dt} \begin{pmatrix} x_1\\ x_2 \end{pmatrix} = \begin{pmatrix} a_{1,1} & a_{1,2}\\ a_{2,1} & a_{2,2} \end{pmatrix} \begin{pmatrix} x_1\\ x_2 \end{pmatrix} \nonumber
 \end{equation}
 
 Thus, we can write any equation with n variables as:
@@ -140,25 +141,25 @@ Note that vectors and matrices are written in boldface.
 Since the solution of the equation for one variable was an exponential, lets make the hypothesis that an exponential can also be a solution for this case. We assume
 
 \begin{equation}
-	\mathbf{x}= \mathbf{v} \, e^{\lambda \, t}
+	\mathbf{x}= \mathbf{v} \, e^{\lambda \, t} \nonumber
 \end{equation}
 
 Since $\mathbf{x}$ is a vector now, we multiply our exponential times a  vector of constants $\mathbf{v}$. We can test if this is a valid solution by substituting it into the equation, which gives:
 
 \begin{equation}
-	\frac{d}{dt} \left( \mathbf{v} \, e^{\lambda \, t} \right)  = \mathbf{A} \, \mathbf{v} \, e^{\lambda \, t} 
+	\frac{d}{dt} \left( \mathbf{v} \, e^{\lambda \, t} \right)  = \mathbf{A} \, \mathbf{v} \, e^{\lambda \, t}  \nonumber
 \end{equation}
 
 On the left hand side, the vector of  constants can be taken out of the derivative so:
 
 \begin{equation}
-	\mathbf{v} \, \frac{d}{dt} \left(  e^{\lambda \, t} \right)  = \mathbf{A} \, \mathbf{v} \, e^{\lambda \, t} 
+	\mathbf{v} \, \frac{d}{dt} \left(  e^{\lambda \, t} \right)  = \mathbf{A} \, \mathbf{v} \, e^{\lambda \, t}  \nonumber
 \end{equation}
  
  and
  
  \begin{equation}
- 	\mathbf{v}   \lambda \, e^{\lambda \, t}   = \mathbf{A} \, \mathbf{v} \, e^{\lambda \, t} 
+ 	\mathbf{v}   \lambda \, e^{\lambda \, t}   = \mathbf{A} \, \mathbf{v} \, e^{\lambda \, t} \nonumber
  \end{equation}
  
 canceling out the exponentials:
@@ -173,26 +174,26 @@ So $\mathbf{x}=\mathbf{v} \, e^{\lambda \, t}$ will be a solution of the equatio
 We can solve the equation and find all possible values of $\lambda$ by rearranging terms.
 
 \begin{equation}
-	\mathbf{A} \, \mathbf{v}  - \mathbf{I} \, \lambda  \,	\mathbf{v}   = 0
+	\mathbf{A} \, \mathbf{v}  - \mathbf{I} \, \lambda  \,	\mathbf{v}   = 0 \nonumber
 \end{equation}
 
 note we have multiplied lambda by the identity matrix $\mathbf{I}$. This is a matrix of zeros everywhere except its main diagonal, which is occupied by ones. The identity matrix plays the same role as number one among scalars, it does not alter the matrices or vectors it multiplies. Now we can factor $\mathbf{v}$ out 
 
 \begin{equation}
 	\label{solve4eigenvec}
-	\left( \mathbf{A}   - \mathbf{I} \, \lambda     \right) \, \mathbf{v} =  0
+	\left( \mathbf{A}   - \mathbf{I} \, \lambda     \right) \, \mathbf{v} =  0 \nonumber
 \end{equation}
 
 This is an homogeneous system of equations with the components of $\mathbf{v}$ as unknowns. For the system to have a solution other than the trivial, $\mathbf{v}=\mathbf{0}$, the determinant of the parenthesis must satisfy:
 
 \begin{equation}
-	\left| \mathbf{A}   - \mathbf{I} \, \lambda     \right|  =  0
+	\left| \mathbf{A}   - \mathbf{I} \, \lambda     \right|  =  0 \nonumber
 \end{equation}
 
 This determinant is the Jacobian of the system and its expansion results in a $n-th$ degree equation in terms of lambda known as the characteristic equation of the system.
 
 \begin{equation}
-c_n \, \lambda^n +c_{n-1} \, \lambda^{n-1}  + \dots  + c_1 \, \lambda + c_0 = 0
+c_n \, \lambda^n +c_{n-1} \, \lambda^{n-1}  + \dots  + c_1 \, \lambda + c_0 = 0 \nonumber
 \end{equation}
 
 \section{Eigenvalues and eigenvectors} 
@@ -202,25 +203,25 @@ A matrix $\mathbf{A}$ with size $n \times n$ has n vectors $\mathbf{v_i}$ for $i
 	
 In order to understand the meaning of this and why eigenvector and eigenvalues are extremely important in applied mathematics, we have to think of the matrix product as an operation that transforms one vector into another. For instance, lets take the matrix
 \begin{equation}
-	\mathbf{A}  = \begin{pmatrix} -1 & -4\\ -3 & -2\end{pmatrix} 
+	\mathbf{A}  = \begin{pmatrix} -1 & -4\\ -3 & -2\end{pmatrix} \nonumber
 \end{equation}
 
 If we multiply $(1,2)$ times the matrix we obtain another vector:
 
 \begin{equation}
-	 \begin{pmatrix} -1 & -4\\ -3 & -2\end{pmatrix} \,  \begin{pmatrix} 1\\ 2\end{pmatrix}=\begin{pmatrix} -9 \\ -7\end{pmatrix}
+	 \begin{pmatrix} -1 & -4\\ -3 & -2\end{pmatrix} \,  \begin{pmatrix} 1\\ 2\end{pmatrix}=\begin{pmatrix} -9 \\ -7\end{pmatrix}\nonumber
 \end{equation}
 
 So matrix $\mathbf{A}$ transforms  (1,2) into  (-9,-7). Now if  we transform another vector:
 
 \begin{equation}
-	\begin{pmatrix} -1 & -4\\ -3 & -2\end{pmatrix} \,  \begin{pmatrix} 4\\ -3\end{pmatrix}=\begin{pmatrix} 8 \\ -6\end{pmatrix}
+	\begin{pmatrix} -1 & -4\\ -3 & -2\end{pmatrix} \,  \begin{pmatrix} 4\\ -3\end{pmatrix}=\begin{pmatrix} 8 \\ -6\end{pmatrix}\nonumber
 \end{equation}
 
 In the previous case, the transformation changed the direction of our vector but now, vector (4,-3) was transformed into a stretched version of itself with double length. If we now transformed $(8,-6)$ using the matrix, we would obtain $(16,-12)$, which is again the same vector multiplied by two. So (4,-3) is an eigenvector of $\mathbf{A}$ and the corresponding eigenvalue is $\lambda=2$. Note that negative eigenvalues will change the sense of the vector but not its direction, as is the case with the second eigenvector of this matrix $(1,1)$.
 
 \begin{equation}
-	\begin{pmatrix} -1 & -4\\ -3 & -2\end{pmatrix} \,  \begin{pmatrix} 1\\ 1\end{pmatrix}=- \begin{pmatrix} 5 \\ 5\end{pmatrix}
+	\begin{pmatrix} -1 & -4\\ -3 & -2\end{pmatrix} \,  \begin{pmatrix} 1\\ 1\end{pmatrix}=- \begin{pmatrix} 5 \\ 5\end{pmatrix}\nonumber
 \end{equation}
 
 Obviously, the corresponding eigenvalue is $\lambda=-5$.
@@ -228,36 +229,36 @@ Obviously, the corresponding eigenvalue is $\lambda=-5$.
 But how can we find out the eigenvectors and eigenvalues of a matrix other than by trial and error? First we get the eigenvalues by equating the Jacobian determinant to zero:
 
 \begin{equation}
-  \left|\begin{matrix} -1-\lambda & -4\\ -3 & -2-\lambda\end{matrix} \right| = 0
+  \left|\begin{matrix} -1-\lambda & -4\\ -3 & -2-\lambda\end{matrix} \right| = 0 \nonumber
 \end{equation}
 
 we get the characteristic polynomial
 
 \begin{equation}
-	\lambda^2  +3 \,  \lambda  - 10 = 0
+	\lambda^2  +3 \,  \lambda  - 10 = 0 \nonumber
 \end{equation}
 
 A primary school problem we can solve:
 
 \begin{equation}
-	\lambda= \frac{-3 \pm \sqrt{9+40}}{2}
+	\lambda= \frac{-3 \pm \sqrt{9+40}}{2} \nonumber
 \end{equation}
 
 with two solutions $\lambda_1=2$ and $\lambda_2=-5$. We have already seen that the eigenvector $\mathbf{v_1}$ for $\lambda_1$ is . Can we find the other one? We can go back to equation (\ref{eigendefinition}) or use the already factored out version in equation  (\ref{solve4eigenvec})
 
 \begin{equation}
-\begin{pmatrix} -1-\lambda & -4\\ -3 & -2-\lambda\end{pmatrix} \, \begin{pmatrix} v_x \\  v_y\end{pmatrix} = 0
+\begin{pmatrix} -1-\lambda & -4\\ -3 & -2-\lambda\end{pmatrix} \, \begin{pmatrix} v_x \\  v_y\end{pmatrix} = 0 \nonumber
 \end{equation}
 
 For the case $\lambda = 2$:
 
 \begin{equation}
-	\begin{pmatrix} -3 & -4\\ -3 & 0\end{pmatrix} \, \begin{pmatrix} v_x \\  v_y\end{pmatrix} = 0
+	\begin{pmatrix} -3 & -4\\ -3 & 0\end{pmatrix} \, \begin{pmatrix} v_x \\  v_y\end{pmatrix} = 0 \nonumber
 \end{equation}
 
 \begin{align*}
-	-3 \, v_x - 4 \, v_y =& 0\\
-	-3 \, v_y =& 0
+	-3 \, v_x - 4 \, v_y =& 0 \nonumber\\
+	-3 \, v_y =& 0 \nonumber
 \end{align*}
 
 The second equation shows a very important property of eigenvectors, they are never unique. In this case, any value of $v_y$ will satisfy the second equation, so we can assign whatever we want. Now it is easy to see that v=(4,-3) cancels out the first equation. If we had just chosen $v_y=1$, then our eigenvector would have been $\mathbf{v}=\left( \frac{-4}{3}, 1 \right)$.
@@ -265,8 +266,8 @@ The second equation shows a very important property of eigenvectors, they are ne
 Now we can do the same for  $\lambda = -5$:
 
 \begin{align*}
-	4 \, v_x - 4 \, v_y =& 0\\
-	- 3 \, v_x  + 3 \, v_y =& 0
+	4 \, v_x - 4 \, v_y =& 0 \nonumber\\
+	- 3 \, v_x  + 3 \, v_y =& 0 \nonumber
 \end{align*}
 
 This is actually the same equation twice. It is easy to see that whenever $v_x=v_y$, both equations will be satisfied, so we can choose $\mathbf{v} = (1, 1)$.
@@ -278,13 +279,13 @@ This is actually the same equation twice. It is easy to see that whenever $v_x=v
 Now lets analyze another matrix 
 
 \begin{equation}
-	\mathbf{A}  = \begin{pmatrix} 0 & -1\\ 1 & 0\end{pmatrix} 
+	\mathbf{A}  = \begin{pmatrix} 0 & -1\\ 1 & 0\end{pmatrix}  \nonumber
 \end{equation}
 
 Characteristic polynomial
 
 \begin{equation}
-	\lambda^2 + 1 = 0
+	\lambda^2 + 1 = 0 \nonumber
 \end{equation}
 
 The solutions to this equation are imaginary $\lambda_1 = i$ and $\lambda_1 = -i$.
@@ -299,7 +300,7 @@ So putting together all the eigenvecotrs of the system and the corresponding eig
 
 \begin{equation}
 	\label{odenvar_mat_sol}
-	\mathbf{x}= c_1 \, \mathbf{v_1} \, e^{\lambda_1 \, t} + c_2 \, \mathbf{v_2} \, e^{\lambda_2 \, t} +  \dots + c_n \, \mathbf{v_n} \, e^{\lambda_n \, t}
+	\mathbf{x}= c_1 \, \mathbf{v_1} \, e^{\lambda_1 \, t} + c_2 \, \mathbf{v_2} \, e^{\lambda_2 \, t} +  \dots + c_n \, \mathbf{v_n} \, e^{\lambda_n \, t} 
 \end{equation}
 
 Where $c_1 \dots c_n$  are arbitrary constants, the ones that can be used to adjust initial values. Each vector $\mathbf{v_i}$ and its corresponding constant $\lambda_i$ are called eigenvector and eigenvalue respectively.
@@ -309,24 +310,25 @@ When the eigenvalues (and eigenvectors) are complex, the solutions described abo
 
 \begin{equation}
 	x_1= c_1 e^{\left(  a + b\, i\right) \, t} + c_2 \,  e^{\left(  a + b\, i\right)\, t} = 
-	c_1  \, e^{a \, t} \, e^{ i \, b \, t} + c_2 \,  e^{a \, t} \, e^{-i \, b \, t}
+	c_1  \, e^{a \, t} \, e^{ i \, b \, t} + c_2 \,  e^{a \, t} \, e^{-i \, b \, t} 
+	\nonumber
 \end{equation}
 
 factoring out the real exponential
 
 \begin{equation}
-x_1= e^{a \, t} \,  \left( c_1  \, e^{ i \, b \, t} + c_2 \,  e^{-i \, b \, t}\right)
+x_1= e^{a \, t} \,  \left( c_1  \, e^{ i \, b \, t} + c_2 \,  e^{-i \, b \, t}\right) \nonumber
 \end{equation}
 
 Using Euler's formula:
 
 \begin{equation}
 	\label{euler}
-	e^{i \theta} = cos \theta + i \, \sin \theta
+	e^{i \theta} = cos \theta + i \, \sin \theta 
 \end{equation}
 
 \begin{equation}
-	x_1= e^{a \, t} \,  \left( c_1  \, \left(  \cos{ b \, t} + i \, \sin{ b \, t} \right)+ c_2 \, \left( \cos{- b \, t} + i \, \sin{- b \, t} \right) \right)
+	x_1= e^{a \, t} \,  \left( c_1  \, \left(  \cos{ b \, t} + i \, \sin{ b \, t} \right)+ c_2 \, \left( \cos{- b \, t} + i \, \sin{- b \, t} \right) \right) \nonumber
 \end{equation}
 
 \begin{figure}
@@ -340,18 +342,18 @@ Using Euler's formula:
 As can be seen in  figure \ref{fig:trigo}, $- \sin{b \, t}=\sin{- b \, t}$ and $\cos{b \, t}=\cos{ - b \, t}$ so we can rearrange terms:
 
 \begin{equation}
-	x_1= e^{a \, t} \,  \left( c_1  \, \left(  \cos{ b \, t} + i \, \sin{ b \, t} \right)+ c_2 \, \left( \cos{ b \, t} - i \, \sin{ b \, t} \right) \right)
+	x_1= e^{a \, t} \,  \left( c_1  \, \left(  \cos{ b \, t} + i \, \sin{ b \, t} \right)+ c_2 \, \left( \cos{ b \, t} - i \, \sin{ b \, t} \right) \right) \nonumber
 \end{equation}
 
 
 \begin{equation}
-	x_1=   \left( c_1+c_2\right) \, e^{a \, t} \, \cos{ b \, t}  + i \, \,\left( c_1-c_2 \right) \,e^{a \, t} \,   \sin{ b \, t}  
+	x_1=   \left( c_1+c_2\right) \, e^{a \, t} \, \cos{ b \, t}  + i \, \,\left( c_1-c_2 \right) \,e^{a \, t} \,   \sin{ b \, t}   \nonumber
 \end{equation}
 
 Note that this solution has the form $x_1(t) = u(t) + i \, v(t)$ where both $u(t)$ and $v(t)$ are real functions. Moreover, these functions are linearly independent so a combination of both will be a proper general solution. By defining new arbitrary constants, we will get the general solution that includes al possible real solutions of the equation:
 
 \begin{equation}
-	x_1=   e^{a \, t} \,  \left(  A  \, \cos{ b \, t}  +  B  \,   \sin{ b \, t}  \right)
+	x_1=   e^{a \, t} \,  \left(  A  \, \cos{ b \, t}  +  B  \,   \sin{ b \, t}  \right) \nonumber
 \end{equation}
 
 So the real part of our solutions will be the product of an exponential and an oscillatory function. Moreover, the exponential depends only on the real part of the eigenvalue, $\operatorname{Re}(\lambda) = a$, while the oscillations depend on its imaginary part,  $\operatorname{Im}(\lambda) =b$ (see figure \ref{fig:cmplxeigen}). 
@@ -372,14 +374,14 @@ So the real part of our solutions will be the product of an exponential and an o
 The following differential equation:
 
 \begin{equation}
-	 \frac{d^2x}{dt^2} = \frac{k}{m} \, x - g
+	 \frac{d^2x}{dt^2} = \frac{k}{m} \, x - g \nonumber
 \end{equation}
 
 is called a second order differential equation because it contains a second derivative. This equation can lead to oscillations, even though, we just said only systems with two variables can show this behavior. The reason for that is that any  differential equation of order $n$ can be written as a first order differential equation with n variables. If we add the variable $y(t)$ to the equation above, it becomes:
 
 \begin{align}
-	\frac{dx}{dt} =& \: y \\
-	\frac{dy}{dt} =& \: \frac{k}{m} \, x - g
+	\frac{dx}{dt} =& \: y \nonumber \\
+	\frac{dy}{dt} =& \: \frac{k}{m} \, x - g \nonumber
 \end{align}
 
 
@@ -396,7 +398,179 @@ The particular solutions of a differential equation can be plotted as each varia
 
 \section{Non-linear systems}
 
+Unlike linear equations, non-linear equations rarely have analytic solutions. fortunately, we can extract a lot of information from a differential equation without solving it. This is so because we are often not interested in every detail about its dynamics but rather on its long term behavior.
+
+\subsection{Steady states}
+
+The first step to analyze non-linear systems is to find out its steady states. for a given non-linear system:
+
+\begin{equation}
+	\label{odegeneral}
+	\frac{d\mathbf{x}}{dt} = \mathbf{f}(\mathbf{x})
+\end{equation}
+
+we can calculate its steady states as those values $\mathbf{x}= \mathbf{x_0}$ such that:
+
+\begin{equation}
+	\label{stst}
+	\mathbf{f}(\mathbf{x_0}) = 0
+\end{equation}
+
+Lets take another growth equation:
+
+\begin{equation}
+	\label{odgrowth}
+	\frac{dx}{dt} = \mu(x) \, x 
+\end{equation}
+
+Unlike exponential growth, where $\mu$ is constant, his more general form makes the growth rate dependent on the size of the population. This makes the model more realistic as resources are expected to become scarce once the population density becomes too high. A particular case is that of logistic growth, where $\mu(x) = \mu_{m} (1 - x / K)$. Our equation becomes
+
+\begin{equation}
+	\label{logistic}
+	\frac{dx}{dt} = \mu_{m} \left(1 - \frac{x}{K} \right) \, x 
+\end{equation}
+
+The steady state condition will be:
+
+\begin{equation}
+ \mu_{m} \left(1 - \frac{x}{K} \right) \, x = 0
+\end{equation}
+
+which can happen in two different ways. Either $x=0$, just like happened for exponential growth or $x=K$.
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.8\textwidth]{logisticall}
+	\end{center}
+	\caption{Logistic growth model with $K=25$, the two steady states $x=0$ and $x=25$ are marked with red dashed lines. It can clearly be seen that the system tends to move away from one steady state and towards the other.}
+	\label{fig:logisticall}
+\end{figure}
+
+\subsection{Stability}
+
+Figure \ref{fig:logisticall} shows how the behavior of the logistic equation is dictated by its two steady states. The system tends to move away from $x=0$, which is therefore called an \emph{unstable steady state} or \emph{repulsor} and towards $x=K$, which is a \emph{stable steady state} or \emph{attractor}. But how do we know whether a steady state is stable?
+
+A steady state is said to be stable when the system tends to return to it after being moved away from it. In other words, lets assume a system has a steady state at $x=x_0$ and we move the system to another, nearby state $x+\delta x$. $\delta x$ is a small number and we call it a perturbation. if we define our variable as a composition of the steady state and a time varying perturbation: $x(t) = x_0 + \delta x(t)$, the system can be said to be stable if $\delta x \rightarrow 0$ whenever $t \rightarrow \infty$. But how can we predict the behavior of $\delta x$? since we can only solve linear systems, we will have to turn this into a linear equation \dots
+
+\subsection{Linearization}
+
+Making the change of variable $x(t) = x_0 + \delta x(t)$ in equation \ref{odegeneral},
+
+\begin{equation}
+	\frac{d}{dt} \left( x_0 + \delta x(t) \right) = f(x_0 + \delta x(t)) \nonumber
+\end{equation}
+
+The left hand side is the  derivative of a sum and can be rewritten as the sum of derivatives. Moreover, since $\delta x$ is small by definition, we can approximate this as a linear system as shown in equation \ref{TaylorLin}.
+
+\begin{equation}
+	 \frac{dx_0}{dt} + \frac{d}{dt}\delta x(t)  = f(x_0) +\left|\frac{df}{dx}\right|_0 \, \delta x(t)) \nonumber
+\end{equation}
+
+$x_0$ is constant, so $\frac{dx_0}{dt}=0$ and $f(x_0)=0$ by the definition of steady state. This leaves the system 
+
+\begin{equation}
+	\label{svl}
+	\frac{d}{dt}\delta x(t)  =  \left|\frac{df}{dx}\right|_0 \,  \delta x(t)) 
+\end{equation}
+
+Equation \ref{svl} is called variational linearized system and it is easily to solve. If $\left|\frac{df}{dx}\right|_0 < 0$ then $\delta x \rightarrow 0$ and the steady state is stable. If $\left|\frac{df}{dx}\right|_0 > 0$, $\delta x \rightarrow \infty$ and the system is unstable.
+
+\clearpage
 \appendix
+\section{Taylor Polynomial}
+A polynomial can adopt practically any shape. That's why many functions can be approximated by polynomials, at least, within a certain region.
+
+\begin{figure}[htb]
+	\begin{center}
+		\includegraphics[width=0.6\textwidth]{MMapprox}
+	\end{center}
+	\caption{Polynomial approximations (dashed lines) to a Michaelis-Menten kinetics (solid blue line). Linear approximation (red) second degree (green) and third degree (orange).}
+	\label{fig:MMapprox}
+\end{figure}
+
+Figure \ref{fig:MMapprox} shows the following function
+
+\begin{equation}
+	V=\frac{S}{2+S} \nonumber
+\end{equation}
+
+If we want to approximate this function with a polynomial, we have to start choosing a reference point ($x=x_0$). Whatever approximation we choose will exactly reproduce the function at the reference point. The approximation will lose quality as we move farther from this reference point. The three examples shown in the figure are polynomials of first, second and third degree in red, green and orange respectively. The exact equations of the polynomials are:
+
+\begin{align}
+	V=& 0.115 + 0.221 \, S\nonumber\\
+	V=& -0.032 + 0.515 \, S - 0.147 S^2\nonumber\\
+	V=& -0.178 + 0.953 \, S- 0.585 S^2+ 0.146 S^3 \nonumber
+\end{align}
+
+For values in the interval $0.75 \leq x \leq 1.25$ all three approximations are very good but as we move away from the reference point, the approximations diverge. In general, higher degree polynomials are more flexible and will have better chances to approximate complicated functions, but this is not always so. In this case, for instance, we can see the second degree polynomial makes a pretty good job for $0.1 \leq x \leq 1.5$ while the third degree polynomial improves the approximation on the higher end but performs worse for $x < 1$.
+
+Since all polynomials have the same structure, finding an approximating polynomial is just a matter of finding the numerical values for each of its coefficients. The Taylor polynomial is one way of finding out the desired coefficients. The concept is very simple. Knowing the value of a function $f(x)$ at the reference point $x_0$ and all the successive derivatives evaluated at that point, the polynomial, at an arbitrary point $x$ will be:
+
+\begin{equation}
+	T(x)=f(x_0) + \left|\frac{df}{dx}\right|_0 \left( x - x_0\right)+ \left|\frac{d^2f}{dx^2}\right|_0 \left( x - x_0\right)^2+ \left|\frac{d^3f}{dx^3}\right|_0 \left( x - x_0\right)^3+ \dots
+	\nonumber
+\end{equation}
+
+where the symbols $\left| \cdot \right|_0$ around the derivatives mean that we are not using the whole derivative, which is a function, but its value at the reference point, which is a number.
+
+The concept is very simple. At the reference point, $x=x_0$ and all terms will cancel out except $f(x_0)$ so the aproximation will ve exact. As we move away from the reference point by an increment of x ($\Delta x = x - x_0$) we will first use the derivative to approximate the change in the function $\Delta f= \frac{df}{dx}\Delta x$ and we will refine the calculation by adding terms for each succesive derivative.
+
+In the context of this course, we will be interested in approximations very close to the reference state. In these cases, $\left( x - x_0\right) \ll 1$ and higher derivative terms, which are multiplied by higher powers of this number can be considered to be negligible:
+
+\begin{equation}
+	\label{TaylorLin}
+	T(x) \approx  f(x_0) + \left|\frac{df}{dx}\right|_0 \left( x - x_0\right)
+\end{equation}
+
+so we can use the Taylor polynomial to obtain  linear approximations.
+
+this can easily generalized to more than one variable as long as we remember the concept of partial derivative. when a function has more than one variable $f(x,y)$ we can calculate a partial derivative for each one
+
+\begin{equation}
+	\frac{\partial f}{\partial x} =\frac{d}{dx} \left| f(x,y) \right|_{y=const}
+\end{equation}
+
+So we just derive as if our function only had one variable, for instance:
+
+\begin{equation}
+	f(x,y) = x^2 + x \, y + y^2
+\end{equation}
+
+
+\begin{equation}
+	\frac{\partial f}{\partial x} = 2 \, x + y
+\end{equation}
+
+\begin{equation}
+	\frac{\partial f}{\partial y} =  x + 2 \,y
+\end{equation}
+
+In a system with several variables, the role of the derivative is taken by a matrix of partial derivative called the Jacobian Matrix $\mathbf{J}$.  $f(x,y)$:
+
+\begin{equation}
+	\mathbf{J} = \begin{pmatrix} \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} \end{pmatrix}
+\end{equation}
+
+and the linear approximation is:
+
+\begin{equation}
+	\label{TaylorLin_nvar}
+	\mathbf{T(x)} \approx  \mathbf{f(x_0)} + \mathbf{J} \left( \mathbf{x} - \mathbf{x_0}\right)
+\end{equation}
+
+The function in the previous example at the reference point $(x_0, y_0)=(1,2)$ would have $f(x_0, y_0)=7$, so
+
+
+\begin{equation}
+	T(x,y) = 7 + \begin{pmatrix} 4 & 5 \end{pmatrix} \, \begin{pmatrix} 1-x \\ 2-y \end{pmatrix} = 7 +  4- 4 x + 10-5 y 
+\end{equation}
+
+\begin{equation}
+	T(x,y) = 21 - 4 x - 5 y 
+\end{equation}
+
+\FloatBarrier
+
 \section{Some properties of logarithms}
 \label{logprop}
 \begin{equation}
