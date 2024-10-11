@@ -494,7 +494,7 @@ Figure \ref{fig:MMapprox} shows the following function
 	V=\frac{S}{2+S} \nonumber
 \end{equation}
 
-If we want to approximate this function with a polynomial, we have to start choosing a reference point ($x=x_0$). Whatever approximation we choose will exactly reproduce the function at the reference point. The approximation will lose quality as we move farther from this reference point. The three examples shown in the figure are polynomials of first, second and third degree in red, green and orange respectively. The exact equations of the polynomials are:
+If we want to approximate this function with a polynomial, we have to start choosing a reference point ($S_0=1$). Whatever approximation we choose will exactly reproduce the function at the reference point. The approximation will lose quality as we move farther from this reference point. The three examples shown in the figure are polynomials of first, second and third degree in red, green and orange respectively. The  equations of the polynomials are:
 
 \begin{align}
 	V=& 0.115 + 0.221 \, S\nonumber\\
@@ -502,7 +502,7 @@ If we want to approximate this function with a polynomial, we have to start choo
 	V=& -0.178 + 0.953 \, S- 0.585 S^2+ 0.146 S^3 \nonumber
 \end{align}
 
-For values in the interval $0.75 \leq x \leq 1.25$ all three approximations are very good but as we move away from the reference point, the approximations diverge. In general, higher degree polynomials are more flexible and will have better chances to approximate complicated functions, but this is not always so. In this case, for instance, we can see the second degree polynomial makes a pretty good job for $0.1 \leq x \leq 1.5$ while the third degree polynomial improves the approximation on the higher end but performs worse for $x < 1$.
+For values in the interval $0.75 \leq S \leq 1.25$ all three approximations are very good but as we move away from the reference point, the approximations diverge. In general, higher degree polynomials are more flexible and will have better chances to approximate complicated functions, but this is not always so. In this case, for instance, we can see the second degree polynomial makes a pretty good job for $0.1 \leq S \leq 1.5$ while the third degree polynomial improves the approximation on the higher end but performs worse for $S < 1$.
 
 Since all polynomials have the same structure, finding an approximating polynomial is just a matter of finding the numerical values for each of its coefficients. The Taylor polynomial is one way of finding out the desired coefficients. The concept is very simple. Knowing the value of a function $f(x)$ at the reference point $x_0$ and all the successive derivatives evaluated at that point, the polynomial, at an arbitrary point $x$ will be:
 
