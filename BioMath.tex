@@ -475,6 +475,25 @@ $x_0$ is constant, so $\frac{dx_0}{dt}=0$ and $f(x_0)=0$ by the definition of st
 
 Equation \ref{svl} is called variational linearized system and it is easily to solve. If $\left|\frac{df}{dx}\right|_0 < 0$ then $\delta x \rightarrow 0$ and the steady state is stable. If $\left|\frac{df}{dx}\right|_0 > 0$, $\delta x \rightarrow \infty$ and the system is unstable.
 
+\paragraph{example:} In the logistic equation:
+
+\begin{equation}
+ \left| 	\frac{df}{dx} \right|_0 = \mu_{m} \left( 1-\frac{2 x}{K}\right)
+\end{equation}
+
+ So for the steady state $x=0$, the l.v.s. is:
+ 
+ \begin{equation}
+ 	\frac{d}{dt}\delta x(t)  = \mu_m \,  \delta x(t)) 
+ \end{equation}
+
+and for the steady state $x=K$:
+
+ \begin{equation}
+	\frac{d}{dt}\delta x(t)  = -  \mu_m \,  \delta x(t)) 
+\end{equation}
+
+
 \clearpage
 \appendix
 \section{Taylor Polynomial}
