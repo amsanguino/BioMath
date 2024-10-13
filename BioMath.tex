@@ -470,7 +470,7 @@ $x_0$ is constant, so $\frac{dx_0}{dt}=0$ and $f(x_0)=0$ by the definition of st
 
 \begin{equation}
 	\label{svl}
-	\frac{d}{dt}\delta x(t)  =  \left|\frac{df}{dx}\right|_0 \,  \delta x(t)) 
+	\frac{d}{dt}\delta x(t)  =  \left|\frac{df}{dx}\right|_{x=x_0} \,  \delta x(t)) 
 \end{equation}
 
 Equation \ref{svl} is called variational linearized system and it is easily to solve. If $\left|\frac{df}{dx}\right|_0 < 0$ then $\delta x \rightarrow 0$ and the steady state is stable. If $\left|\frac{df}{dx}\right|_0 > 0$, $\delta x \rightarrow \infty$ and the system is unstable.
@@ -486,12 +486,129 @@ Equation \ref{svl} is called variational linearized system and it is easily to s
  \begin{equation}
  	\frac{d}{dt}\delta x(t)  = \mu_m \,  \delta x(t)) 
  \end{equation}
+The solution to this equation is a positive exponential so the perturbation $\delta x(t)$ will be amplified with time. This means the steady state is unstable.
 
 and for the steady state $x=K$:
 
  \begin{equation}
 	\frac{d}{dt}\delta x(t)  = -  \mu_m \,  \delta x(t)) 
+\end{equation}Since the solution of this equation is a negative exponential, any perturbation will fade with time and the steady state is stable.
+
+For systems with more variables:
+
+\begin{align}
+	\frac{dx}{dt}=&f_x(x,y)\\
+	\frac{dy}{dt}=&f_y(x,y)
+\end{align}
+
+the l.v.s. looks like this
+
+ \begin{equation}
+	\frac{d}{dt} \begin{pmatrix} \delta x\\ \delta y \end{pmatrix}= \begin{pmatrix} \frac{\partial f_x}{\partial x} & \frac{\partial f_x}{\partial y}\\ \frac{\partial f_y}{\partial x} & \frac{\partial f_y}{\partial y} \end{pmatrix} \, \begin{pmatrix} \delta x\\ \delta y \end{pmatrix}
 \end{equation}
+
+Again, the Jacobian matrix contains the partial derivatives evaluated at the steady state, so it is a matrix of constants.
+
+\paragraph{example 1:} The chemical signaling system in figure \ref has two components $X$ and $R$ which responds to an input signal $S$:
+
+\begin{align}
+	\frac{dR}{dt} =&\: k_1 \, S - k_2 \, X \, R \\
+	\frac{dX}{dt} =&\: k_3 \, S - k_4 \, X
+\end{align}
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.3\textwidth]{signalpathd}
+	\end{center}
+	\caption{A signaling pathway with input $S$ and output $R$. }
+	\label{fig:signalpathd}
+\end{figure}
+
+The system has a steady state at:
+
+\begin{align}
+	R =&\: \frac{k_1 k_4}{k_2 k_3} \\
+	X =&\: \frac{k_3}{k_4}S
+\end{align}
+
+and the jacobian matrix:
+
+\begin{equation}
+\mathbf{J} =	 \begin{pmatrix} - k_2 \, X &  - k_2 \, R \\   0  & -k_4 	\end{pmatrix}
+\end{equation}
+
+Since we are interested in a particular steady state, we substitute its value in the jacobian to obtain the linearized system:
+
+\begin{equation}
+\frac{d}{dt}	 \begin{pmatrix} \delta R \\ \delta S	\end{pmatrix} =	 \begin{pmatrix} - \frac{k_2 k_3}{k_4}S &  - \frac{k_1 k_4}{k_3} \\   0  & -k_4 	\end{pmatrix} \begin{pmatrix} \delta R \\ \delta S	\end{pmatrix}
+\end{equation}
+
+And we calculate eigenvalues equating the Jacobian to zero:
+
+\begin{equation}
+\left| \begin{matrix} - \frac{k_2 k_3}{k_4}S - \lambda &  - \frac{k_1 k_4}{k_3} \\   0  & -k_4-\lambda 	\end{matrix} \right|=0
+\end{equation}
+
+to obtain the characteristic polynomial
+\begin{equation}
+	\lambda^2 + \left( k_4 + \frac{k_2 k_3}{k_4}S \right) \, \lambda +k_2 k_3 S=0
+\end{equation}
+
+The solutions are $\lambda_1 = -k_4$ and $\lambda_2=-\frac{k_2 k_3}{k_4}S$. Since kinetic constants and concentrations are always positive, this system will always be stable.
+\paragraph{example 2} A chemostat is a microbial culture fed with fresh medium at a constant rate while the fermentation broth flows out of the culture at identical rate to keep constant volume. This system is described by the equations:
+
+\begin{align}
+	\frac{dx}{dt}=&\: \left( \mu_M \frac{s}{s+K_s} - D\right) \, x\\
+	\frac{ds}{dt}=&\: D\, (s_0-s)-\frac{\mu_M}{Y} \frac{s}{s+K_s}\,x
+\end{align}
+where $D$ is the dilution rate, $\mu_M$ the maximum growth rate and $Y$ the yield in grams of biomass produced per gram of substrate consumed.
+
+This system has two steady states: $x=0$, $s=s_0$ and when the growth rate is equal to the dilution rate:
+
+ \begin{equation}
+	D = \mu_M \frac{s}{s+K_s} = \mu(s)
+\end{equation}
+
+which results in 
+
+\begin{align}
+	s=& \frac{D \, K_s}{\mu_M - D}\\
+	x=& Y \, \left( s_0 - \frac{D \, K_s}{\mu_M - D} \right)
+\end{align}
+
+The partial derivavives for the Jacobian matrix are:
+
+\begin{align}
+	\frac{\partial f_x}{\partial x }=&\:   \mu(s) - D \\
+	\frac{\partial f_x}{\partial s }=&\: \mu_M \frac{K_s}{(s+K_s)^2} \, x  \\
+	\frac{\partial f_s}{\partial x }=&\: - \frac{\mu(s)}{Y} \\
+	\frac{\partial f_s}{\partial s }=&\: - D -   \frac{\mu_M}{Y} \frac{K_s}{(s+K_s)^2} \, x 
+\end{align}
+
+to analyze the stability of the first steady state, we substitute the values $x=0$, $s=s_0$ in the parrtial derivatives:
+
+\begin{align}
+	\frac{\partial f_x}{\partial x }=&\:    \mu(s_0) - D \\
+	\frac{\partial f_x}{\partial s }=&\: 0 \\
+	\frac{\partial f_s}{\partial x }=&\:  - \frac{\mu(s_0)}{Y} \\
+	\frac{\partial f_s}{\partial s }=&\: - D  
+\end{align}
+
+We can obtain the eigenvalues from:
+ \begin{equation}
+\left| \begin{matrix}  \mu(s_0) - D - \lambda  & 0\\   - \frac{\mu(s_0)
+	}{Y}  &  - D- \lambda
+\end{matrix} \right| = 0
+\end{equation}
+
+The characteristic polynomial for this case is:
+
+ \begin{equation}
+	\lambda^2 + \left( 2 D - \mu(s_0)\right) \lambda  +D^2-D \mu(s_0) = 0 
+\end{equation}
+
+Resulting in the eigenvalues $\lambda_1 = -2 D$ and $\lambda_2 = 2\,(\mu(s_0) - D)$. Remember that the condition for a steady state to be stable is that all their eigenvalues are negative. So the steady state $x=0$,$s=s_0$ is only stable if $D > \mu(s_0)$. In other words, id the dillution rate is higher than the growth rate the cells can achieve at the highest possible substrate concentration, then the cells are washed out $x=0$, and with no cells to consume it, the substrate concentration in the tank will be the same as in the feed.
+
 
 
 \clearpage
