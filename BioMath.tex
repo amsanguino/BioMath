@@ -478,7 +478,7 @@ Equation \ref{svl} is called variational linearized system and it is easily to s
 \paragraph{example:} In the logistic equation:
 
 \begin{equation}
- \left| 	\frac{df}{dx} \right|_0 = \mu_{m} \left( 1-\frac{2 x}{K}\right)
+\frac{df}{dx} = \mu_{m} \left( 1-\frac{2 x}{K}\right)
 \end{equation}
 
  So for the steady state $x=0$, the l.v.s. is:
@@ -509,7 +509,7 @@ the l.v.s. looks like this
 
 Again, the Jacobian matrix contains the partial derivatives evaluated at the steady state, so it is a matrix of constants.
 
-\paragraph{example 1:} The chemical signaling system in figure \ref has two components $X$ and $R$ which responds to an input signal $S$:
+\paragraph{example:} The chemical signaling system in figure \ref has two components $X$ and $R$ which responds to an input signal $S$:
 
 \begin{align}
 	\frac{dR}{dt} =&\: k_1 \, S - k_2 \, X \, R \\
@@ -555,7 +555,7 @@ to obtain the characteristic polynomial
 \end{equation}
 
 The solutions are $\lambda_1 = -k_4$ and $\lambda_2=-\frac{k_2 k_3}{k_4}S$. Since kinetic constants and concentrations are always positive, this system will always be stable.
-\paragraph{example 2} A chemostat is a microbial culture fed with fresh medium at a constant rate while the fermentation broth flows out of the culture at identical rate to keep constant volume. This system is described by the equations:
+\paragraph{example} A chemostat is a microbial culture fed with fresh medium at a constant rate while the fermentation broth flows out of the culture at identical rate to keep constant volume. This system is described by the equations:
 
 \begin{align}
 	\frac{dx}{dt}=&\: \left( \mu_M \frac{s}{s+K_s} - D\right) \, x\\
