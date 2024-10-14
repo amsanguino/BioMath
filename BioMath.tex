@@ -7,7 +7,7 @@
 
 
 %opening
-\title{Basic Mathematics for Biologists}
+\title{Summary of Mathematics for the life sciences}
 \author{Alberto Marin Sanguino}
 
 \begin{document}
@@ -18,7 +18,7 @@
 
 \section{Ordinary differential equations}
 
-A differential equation is an equality involving one or more unknowns ($x$, $y$, $z$,\dots) and their derivatives. Since our unknowns have derivatives, they are not just numbers like in regular -- a.k.a. algebraic -- equations. Our unknowns are functions or, more accurately, families of functions. We can make this explicit by writing our unknowns as $x(t)$, $y(t)$, $z(t)$,\dots thus sacrificing brevity for the sake of clarity. In the text that follows, very little effort will be made to mantain consistency between these two notations and we will wantonly switch between both. Live with it.
+A differential equation is an equality involving one or more unknowns ($x$, $y$, $z$,\dots) and their derivatives. Since our unknowns have derivatives, they are not just numbers like in regular -- a.k.a. algebraic -- equations. Our unknowns are functions or, more accurately, families of functions. We can make this explicit by writing our unknowns as $x(t)$, $y(t)$, $z(t)$,\dots thus sacrificing brevity for the sake of clarity. In the text that follows, very little effort will be made to maintain consistency between these two notations and we will wantonly switch between both. Live with it.
 
 Among all differential equations, we will be interested in the simpler type. Ordinary differential equations (ODEs) are those that do not involve partial derivatives. Our functions will only have one independent variable that almost always will be time. Moreover, we will start with linear equations.
 
@@ -51,7 +51,7 @@ In these equations, the coefficients that multiply our unknowns just happen to b
 
 \section{Linear equations}
 
-Solving differential equations is very challenging, that's why we will try to avoid it whenever possible. In fact, we are only going to solve one differential equation during the whole course. We will solve this equation in two versions: with on variable and with several variables.
+Solving differential equations is very challenging, that's why we will try to avoid it whenever possible. In fact, we are only going to solve one differential equation during the whole course. We will solve it in two versions: with one variable and with several variables.
 
 \subsection{Solving the linear equation with one variable}
 
@@ -181,16 +181,17 @@ note we have multiplied lambda by the identity matrix $\mathbf{I}$. This is a ma
 
 \begin{equation}
 	\label{solve4eigenvec}
-	\left( \mathbf{A}   - \mathbf{I} \, \lambda     \right) \, \mathbf{v} =  0 \nonumber
+	\left( \mathbf{A}   - \mathbf{I} \, \lambda     \right) \, \mathbf{v} =  0  
 \end{equation}
 
 This is an homogeneous system of equations with the components of $\mathbf{v}$ as unknowns. For the system to have a solution other than the trivial, $\mathbf{v}=\mathbf{0}$, the determinant of the parenthesis must satisfy:
 
 \begin{equation}
-	\left| \mathbf{A}   - \mathbf{I} \, \lambda     \right|  =  0 \nonumber
+	\label{solve4eigenval}
+	\left| \mathbf{A}   - \mathbf{I} \, \lambda     \right|  =  0  
 \end{equation}
 
-This determinant is the Jacobian of the system and its expansion results in a $n-th$ degree equation in terms of lambda known as the characteristic equation of the system.
+The expansion of this determinant results in a $n-th$ degree equation in terms of lambda known as the characteristic equation of the system.
 
 \begin{equation}
 c_n \, \lambda^n +c_{n-1} \, \lambda^{n-1}  + \dots  + c_1 \, \lambda + c_0 = 0 \nonumber
@@ -198,7 +199,7 @@ c_n \, \lambda^n +c_{n-1} \, \lambda^{n-1}  + \dots  + c_1 \, \lambda + c_0 = 0 
 
 \section{Eigenvalues and eigenvectors} 
 
-\subsection{real eigenvalues}
+\subsection{Real eigenvalues}
 A matrix $\mathbf{A}$ with size $n \times n$ has n vectors $\mathbf{v_i}$ for $i = 1 \dots n$ called eigenvectors, and each eigenvector has an eigenvalue ($\lambda_i$) such that every pair of eigenvector and eigenvalue satisfy equation (\ref{eigendefinition}).
 	
 In order to understand the meaning of this and why eigenvector and eigenvalues are extremely important in applied mathematics, we have to think of the matrix product as an operation that transforms one vector into another. For instance, lets take the matrix
@@ -226,7 +227,7 @@ In the previous case, the transformation changed the direction of our vector but
 
 Obviously, the corresponding eigenvalue is $\lambda=-5$.
 
-But how can we find out the eigenvectors and eigenvalues of a matrix other than by trial and error? First we get the eigenvalues by equating the Jacobian determinant to zero:
+But how can we find out the eigenvectors and eigenvalues of a matrix other than by trial and error? First we get the eigenvalues using equation \ref{solve4eigenval}:
 
 \begin{equation}
   \left|\begin{matrix} -1-\lambda & -4\\ -3 & -2-\lambda\end{matrix} \right| = 0 \nonumber
@@ -244,7 +245,7 @@ A primary school problem we can solve:
 	\lambda= \frac{-3 \pm \sqrt{9+40}}{2} \nonumber
 \end{equation}
 
-with two solutions $\lambda_1=2$ and $\lambda_2=-5$. We have already seen that the eigenvector $\mathbf{v_1}$ for $\lambda_1$ is . Can we find the other one? We can go back to equation (\ref{eigendefinition}) or use the already factored out version in equation  (\ref{solve4eigenvec})
+with two solutions $\lambda_1=-5$ and $\lambda_2=2$. We have already seen that the eigenvector $\mathbf{v_1}$ for $\lambda_1$ is . Can we find the other one? We can go back to equation (\ref{eigendefinition}) or use the already factored out version in equation  (\ref{solve4eigenvec})
 
 \begin{equation}
 \begin{pmatrix} -1-\lambda & -4\\ -3 & -2-\lambda\end{pmatrix} \, \begin{pmatrix} v_x \\  v_y\end{pmatrix} = 0 \nonumber
@@ -261,7 +262,7 @@ For the case $\lambda = 2$:
 	-3 \, v_y =& 0 \nonumber
 \end{align*}
 
-The second equation shows a very important property of eigenvectors, they are never unique. In this case, any value of $v_y$ will satisfy the second equation, so we can assign whatever we want. Now it is easy to see that v=(4,-3) cancels out the first equation. If we had just chosen $v_y=1$, then our eigenvector would have been $\mathbf{v}=\left( \frac{-4}{3}, 1 \right)$.
+The second equation shows a very important property of eigenvectors, they are never unique. In this case, any value of $v_x$ will satisfy the second equation, because it is not in it, so we can assign whatever we want. Now it is easy to see that v=(4,-3) cancels out the first equation. If we had just chosen $v_x=1$, then our eigenvector would have been $\mathbf{v}=\left( 1,\frac{-3}{4} \right)$.
 
 Now we can do the same for  $\lambda = -5$:
 
@@ -295,7 +296,7 @@ Complex eigenvalues always come in conjugate pairs: $\lambda_1 = a + b\, i$,  $\
 
 \section{General solutions for linear equations}
 
-So putting together all the eigenvecotrs of the system and the corresponding eigenvalues, we get the general solution for our equation with n variables:
+So putting together all the eigenvectors of the system and the corresponding eigenvalues, we get the general solution for our equation with n variables:
 
 
 \begin{equation}
@@ -362,12 +363,12 @@ So the real part of our solutions will be the product of an exponential and an o
 	\begin{center}
 		\includegraphics[width=\textwidth]{complex_eigen}
 	\end{center}
-	\caption{Overal behavior of solutions when eigenvalues are complex. The sign of $\operatorname{Re}(\lambda)$ determines stability and$\operatorname{Re}(\lambda)$ governs oscillations}
+	\caption{Overal behavior of solutions when eigenvalues are complex. The sign of $\operatorname{Re}(\lambda)$ determines stability and $\operatorname{Re}(\lambda)$ governs oscillations}
 	\label{fig:cmplxeigen}
 \end{figure}
 
 
-
+\FloatBarrier
 
 \section{Differential equations of higher order}
 
@@ -377,7 +378,7 @@ The following differential equation:
 	 \frac{d^2x}{dt^2} = \frac{k}{m} \, x - g \nonumber
 \end{equation}
 
-is called a second order differential equation because it contains a second derivative. This equation can lead to oscillations, even though, we just said only systems with two variables can show this behavior. The reason for that is that any  differential equation of order $n$ can be written as a first order differential equation with n variables. If we add the variable $y(t)$ to the equation above, it becomes:
+is called a second order differential equation because it contains a second derivative. This equation can lead to oscillations, even though, we just said only systems with two variables can show this behavior. The reason for that is that any  differential equation of order $n$ can be written as a first order differential equation with n variables. If we add the variable $y(t)$ as the derivative of $x(t)$ to the equation above, it becomes:
 
 \begin{align}
 	\frac{dx}{dt} =& \: y \nonumber \\
@@ -416,7 +417,9 @@ we can calculate its steady states as those values $\mathbf{x}= \mathbf{x_0}$ su
 	\mathbf{f}(\mathbf{x_0}) = 0
 \end{equation}
 
-Lets take another growth equation:
+Steady states are important because once the system reaches it, it will remain in it as long as it is not perturbed.
+
+\paragraph{Example:} Lets take another growth equation:
 
 \begin{equation}
 	\label{odgrowth}
@@ -436,7 +439,7 @@ The steady state condition will be:
  \mu_{m} \left(1 - \frac{x}{K} \right) \, x = 0
 \end{equation}
 
-which can happen in two different ways. Either $x=0$, just like happened for exponential growth or $x=K$.
+which can happen in two different ways. Either $x=0$, just like happened for exponential growth, or $x=K$.
 
 \begin{figure}
 	\begin{center}
@@ -450,7 +453,7 @@ which can happen in two different ways. Either $x=0$, just like happened for exp
 
 Figure \ref{fig:logisticall} shows how the behavior of the logistic equation is dictated by its two steady states. The system tends to move away from $x=0$, which is therefore called an \emph{unstable steady state} or \emph{repulsor} and towards $x=K$, which is a \emph{stable steady state} or \emph{attractor}. But how do we know whether a steady state is stable?
 
-A steady state is said to be stable when the system tends to return to it after being moved away from it. In other words, lets assume a system has a steady state at $x=x_0$ and we move the system to another, nearby state $x+\delta x$. $\delta x$ is a small number and we call it a perturbation. if we define our variable as a composition of the steady state and a time varying perturbation: $x(t) = x_0 + \delta x(t)$, the system can be said to be stable if $\delta x \rightarrow 0$ whenever $t \rightarrow \infty$. But how can we predict the behavior of $\delta x$? since we can only solve linear systems, we will have to turn this into a linear equation \dots
+A steady state is said to be stable when the system tends to return to it after being moved away from it. In other words, lets assume a system has a steady state at $x=x_0$ and we move the system to another, nearby state $x_0+\delta x$. $\delta x$ is a small number and we call it a perturbation. if we define our variable as a composition of the steady state and a time varying perturbation: $x(t) = x_0 + \delta x(t)$, the system can be said to be stable if $\delta x \rightarrow 0$ as $t \rightarrow \infty$. Conversely, we say the system is unstable if $\delta x \rightarrow \infty$ as $t \rightarrow \infty$.  But how can we predict the behavior of $\delta x$? since we can only solve linear systems, we will have to turn this into a linear equation \dots
 
 \subsection{Linearization}
 
@@ -475,45 +478,46 @@ $x_0$ is constant, so $\frac{dx_0}{dt}=0$ and $f(x_0)=0$ by the definition of st
 
 Equation \ref{svl} is called variational linearized system and it is easily to solve. If $\left|\frac{df}{dx}\right|_0 < 0$ then $\delta x \rightarrow 0$ and the steady state is stable. If $\left|\frac{df}{dx}\right|_0 > 0$, $\delta x \rightarrow \infty$ and the system is unstable.
 
-\paragraph{example:} In the logistic equation:
+\paragraph{Example:} In the logistic equation:
 
 \begin{equation}
-\frac{df}{dx} = \mu_{m} \left( 1-\frac{2 x}{K}\right)
+\frac{df}{dx} = \mu_{m} \left( 1-\frac{2 x}{K}\right) \nonumber
 \end{equation}
 
  So for the steady state $x=0$, the l.v.s. is:
  
  \begin{equation}
- 	\frac{d}{dt}\delta x(t)  = \mu_m \,  \delta x(t)) 
+ 	\frac{d}{dt}\delta x(t)  = \mu_m \,  \delta x(t))  \nonumber
  \end{equation}
 The solution to this equation is a positive exponential so the perturbation $\delta x(t)$ will be amplified with time. This means the steady state is unstable.
 
 and for the steady state $x=K$:
 
  \begin{equation}
-	\frac{d}{dt}\delta x(t)  = -  \mu_m \,  \delta x(t)) 
+	\frac{d}{dt}\delta x(t)  = -  \mu_m \,  \delta x(t))  \nonumber
 \end{equation}Since the solution of this equation is a negative exponential, any perturbation will fade with time and the steady state is stable.
 
 For systems with more variables:
 
 \begin{align}
-	\frac{dx}{dt}=&f_x(x,y)\\
-	\frac{dy}{dt}=&f_y(x,y)
+	\frac{dx}{dt}=&f_x(x,y)  \nonumber\\
+	\frac{dy}{dt}=&f_y(x,y)  \nonumber
 \end{align}
 
 the l.v.s. looks like this
 
  \begin{equation}
+ 	\label{fig:svlnvar}
 	\frac{d}{dt} \begin{pmatrix} \delta x\\ \delta y \end{pmatrix}= \begin{pmatrix} \frac{\partial f_x}{\partial x} & \frac{\partial f_x}{\partial y}\\ \frac{\partial f_y}{\partial x} & \frac{\partial f_y}{\partial y} \end{pmatrix} \, \begin{pmatrix} \delta x\\ \delta y \end{pmatrix}
 \end{equation}
 
 Again, the Jacobian matrix contains the partial derivatives evaluated at the steady state, so it is a matrix of constants.
 
-\paragraph{example:} The chemical signaling system in figure \ref has two components $X$ and $R$ which responds to an input signal $S$:
+\paragraph{Example:} The chemical signaling system in figure \ref{fig:signalpathd} has two components $X$ and $R$ which responds to an input signal $S$:
 
 \begin{align}
-	\frac{dR}{dt} =&\: k_1 \, S - k_2 \, X \, R \\
-	\frac{dX}{dt} =&\: k_3 \, S - k_4 \, X
+	\frac{dR}{dt} =&\: k_1 \, S - k_2 \, X \, R  \nonumber\\
+	\frac{dX}{dt} =&\: k_3 \, S - k_4 \, X  \nonumber
 \end{align}
 
 \begin{figure}
@@ -527,87 +531,87 @@ Again, the Jacobian matrix contains the partial derivatives evaluated at the ste
 The system has a steady state at:
 
 \begin{align}
-	R =&\: \frac{k_1 k_4}{k_2 k_3} \\
-	X =&\: \frac{k_3}{k_4}S
+	R =&\: \frac{k_1 k_4}{k_2 k_3}  \nonumber\\
+	X =&\: \frac{k_3}{k_4}S \nonumber
 \end{align}
 
 and the jacobian matrix:
 
 \begin{equation}
-\mathbf{J} =	 \begin{pmatrix} - k_2 \, X &  - k_2 \, R \\   0  & -k_4 	\end{pmatrix}
+\mathbf{J} =	 \begin{pmatrix} - k_2 \, X &  - k_2 \, R \\   0  & -k_4 	\end{pmatrix} \nonumber
 \end{equation}
 
-Since we are interested in a particular steady state, we substitute its value in the jacobian to obtain the linearized system:
+Since we are interested in a particular steady state, we substitute its value in the jacobian matrix to obtain the linearized system:
 
 \begin{equation}
-\frac{d}{dt}	 \begin{pmatrix} \delta R \\ \delta S	\end{pmatrix} =	 \begin{pmatrix} - \frac{k_2 k_3}{k_4}S &  - \frac{k_1 k_4}{k_3} \\   0  & -k_4 	\end{pmatrix} \begin{pmatrix} \delta R \\ \delta S	\end{pmatrix}
+\frac{d}{dt}	 \begin{pmatrix} \delta R \\ \delta S	\end{pmatrix} =	 \begin{pmatrix} - \frac{k_2 k_3}{k_4}S &  - \frac{k_1 k_4}{k_3} \\   0  & -k_4 	\end{pmatrix} \begin{pmatrix} \delta R \\ \delta S	\end{pmatrix} \nonumber
 \end{equation}
 
-And we calculate eigenvalues equating the Jacobian to zero:
+And we calculate eigenvalues:
 
 \begin{equation}
-\left| \begin{matrix} - \frac{k_2 k_3}{k_4}S - \lambda &  - \frac{k_1 k_4}{k_3} \\   0  & -k_4-\lambda 	\end{matrix} \right|=0
+\left| \begin{matrix} - \frac{k_2 k_3}{k_4}S - \lambda &  - \frac{k_1 k_4}{k_3} \\   0  & -k_4-\lambda 	\end{matrix} \right|=0 \nonumber
 \end{equation}
 
 to obtain the characteristic polynomial
 \begin{equation}
-	\lambda^2 + \left( k_4 + \frac{k_2 k_3}{k_4}S \right) \, \lambda +k_2 k_3 S=0
+	\lambda^2 + \left( k_4 + \frac{k_2 k_3}{k_4}S \right) \, \lambda +k_2 k_3 S=0 \nonumber
 \end{equation}
 
 The solutions are $\lambda_1 = -k_4$ and $\lambda_2=-\frac{k_2 k_3}{k_4}S$. Since kinetic constants and concentrations are always positive, this system will always be stable.
-\paragraph{example} A chemostat is a microbial culture fed with fresh medium at a constant rate while the fermentation broth flows out of the culture at identical rate to keep constant volume. This system is described by the equations:
+\paragraph{Example} A chemostat is a microbial culture fed with fresh medium at a constant rate while the fermentation broth flows out of the culture at identical rate to keep constant volume. This system is described by the equations:
 
 \begin{align}
-	\frac{dx}{dt}=&\: \left( \mu_M \frac{s}{s+K_s} - D\right) \, x\\
-	\frac{ds}{dt}=&\: D\, (s_0-s)-\frac{\mu_M}{Y} \frac{s}{s+K_s}\,x
+	\frac{dx}{dt}=&\: \left( \mu_M \frac{s}{s+K_s} - D\right) \, x  \nonumber\\
+	\frac{ds}{dt}=&\: D\, (s_0-s)-\frac{\mu_M}{Y} \frac{s}{s+K_s}\,x \nonumber
 \end{align}
 where $D$ is the dilution rate, $\mu_M$ the maximum growth rate and $Y$ the yield in grams of biomass produced per gram of substrate consumed.
 
 This system has two steady states: $x=0$, $s=s_0$ and when the growth rate is equal to the dilution rate:
 
  \begin{equation}
-	D = \mu_M \frac{s}{s+K_s} = \mu(s)
+	D = \mu_M \frac{s}{s+K_s} = \mu(s) \nonumber
 \end{equation}
 
 which results in 
 
 \begin{align}
-	s=& \frac{D \, K_s}{\mu_M - D}\\
-	x=& Y \, \left( s_0 - \frac{D \, K_s}{\mu_M - D} \right)
+	s=& \frac{D \, K_s}{\mu_M - D} \nonumber \\
+	x=& Y \, \left( s_0 - \frac{D \, K_s}{\mu_M - D} \right) \nonumber
 \end{align}
 
-The partial derivavives for the Jacobian matrix are:
+The partial derivatives for the Jacobian matrix are:
 
 \begin{align}
-	\frac{\partial f_x}{\partial x }=&\:   \mu(s) - D \\
-	\frac{\partial f_x}{\partial s }=&\: \mu_M \frac{K_s}{(s+K_s)^2} \, x  \\
-	\frac{\partial f_s}{\partial x }=&\: - \frac{\mu(s)}{Y} \\
-	\frac{\partial f_s}{\partial s }=&\: - D -   \frac{\mu_M}{Y} \frac{K_s}{(s+K_s)^2} \, x 
+	\frac{\partial f_x}{\partial x }=&\:   \mu(s) - D  \nonumber\\
+	\frac{\partial f_x}{\partial s }=&\: \mu_M \frac{K_s}{(s+K_s)^2} \, x   \nonumber\\
+	\frac{\partial f_s}{\partial x }=&\: - \frac{\mu(s)}{Y}  \nonumber\\
+	\frac{\partial f_s}{\partial s }=&\: - D -   \frac{\mu_M}{Y} \frac{K_s}{(s+K_s)^2} \, x  \nonumber
 \end{align}
 
 to analyze the stability of the first steady state, we substitute the values $x=0$, $s=s_0$ in the parrtial derivatives:
 
 \begin{align}
-	\frac{\partial f_x}{\partial x }=&\:    \mu(s_0) - D \\
-	\frac{\partial f_x}{\partial s }=&\: 0 \\
-	\frac{\partial f_s}{\partial x }=&\:  - \frac{\mu(s_0)}{Y} \\
-	\frac{\partial f_s}{\partial s }=&\: - D  
+	\frac{\partial f_x}{\partial x }=&\:    \mu(s_0) - D  \nonumber\\
+	\frac{\partial f_x}{\partial s }=&\: 0  \nonumber\\
+	\frac{\partial f_s}{\partial x }=&\:  - \frac{\mu(s_0)}{Y} \nonumber\\
+	\frac{\partial f_s}{\partial s }=&\: - D   \nonumber
 \end{align}
 
 We can obtain the eigenvalues from:
  \begin{equation}
 \left| \begin{matrix}  \mu(s_0) - D - \lambda  & 0\\   - \frac{\mu(s_0)
 	}{Y}  &  - D- \lambda
-\end{matrix} \right| = 0
+\end{matrix} \right| = 0 \nonumber
 \end{equation}
 
 The characteristic polynomial for this case is:
 
  \begin{equation}
-	\lambda^2 + \left( 2 D - \mu(s_0)\right) \lambda  +D^2-D \mu(s_0) = 0 
+	\lambda^2 + \left( 2 D - \mu(s_0)\right) \lambda  +D^2-D \mu(s_0) = 0  \nonumber
 \end{equation}
 
-Resulting in the eigenvalues $\lambda_1 = -2 D$ and $\lambda_2 = 2\,(\mu(s_0) - D)$. Remember that the condition for a steady state to be stable is that all their eigenvalues are negative. So the steady state $x=0$,$s=s_0$ is only stable if $D > \mu(s_0)$. In other words, id the dillution rate is higher than the growth rate the cells can achieve at the highest possible substrate concentration, then the cells are washed out $x=0$, and with no cells to consume it, the substrate concentration in the tank will be the same as in the feed.
+Resulting in the eigenvalues $\lambda_1 = -2 D$ and $\lambda_2 = 2\,(\mu(s_0) - D)$. Remember that the condition for a steady state to be stable is that all their eigenvalues are negative. So the steady state $x=0$,$s=s_0$ is only stable if $D > \mu(s_0)$. In other words, $\mu(s_0)$ is the highest growth rate the cells can achieve in the chemostat because $s_0$ if the highest concentration of substrate. If the dilution rate is higher than such growth rate, the cells will be washed out until $x=0$, and with no cells to consume it, the substrate concentration in the tank will be the same as in the feed.
 
 
 
@@ -649,7 +653,7 @@ Since all polynomials have the same structure, finding an approximating polynomi
 
 where the symbols $\left| \cdot \right|_0$ around the derivatives mean that we are not using the whole derivative, which is a function, but its value at the reference point, which is a number.
 
-The concept is very simple. At the reference point, $x=x_0$ and all terms will cancel out except $f(x_0)$ so the aproximation will ve exact. As we move away from the reference point by an increment of x ($\Delta x = x - x_0$) we will first use the derivative to approximate the change in the function $\Delta f= \frac{df}{dx}\Delta x$ and we will refine the calculation by adding terms for each succesive derivative.
+The concept is very simple. At the reference point, $x=x_0$ and all terms will cancel out except $f(x_0)$ so the approximation will ve exact. As we move away from the reference point by an increment of x ($\Delta x = x - x_0$) we will first use the derivative to approximate the change in the function $\Delta f= \frac{df}{dx}\Delta x$ and we will refine the calculation by adding terms for each successive derivative.
 
 In the context of this course, we will be interested in approximations very close to the reference state. In these cases, $\left( x - x_0\right) \ll 1$ and higher derivative terms, which are multiplied by higher powers of this number can be considered to be negligible:
 
@@ -660,31 +664,31 @@ In the context of this course, we will be interested in approximations very clos
 
 so we can use the Taylor polynomial to obtain  linear approximations.
 
-this can easily generalized to more than one variable as long as we remember the concept of partial derivative. when a function has more than one variable $f(x,y)$ we can calculate a partial derivative for each one
+Taylor polynomials can easily generalized to more than one variable as long as we remember the concept of partial derivative. When a function has more than one variable $f(x,y)$ we can calculate a partial derivative for each one
 
 \begin{equation}
-	\frac{\partial f}{\partial x} =\frac{d}{dx} \left| f(x,y) \right|_{y=const}
+	\frac{\partial f}{\partial x} =\frac{d}{dx} \left| f(x,y) \right|_{y=const}  \nonumber
 \end{equation}
 
 So we just derive as if our function only had one variable, for instance:
 
 \begin{equation}
-	f(x,y) = x^2 + x \, y + y^2
+	f(x,y) = x^2 + x \, y + y^2 \nonumber
 \end{equation}
 
 
 \begin{equation}
-	\frac{\partial f}{\partial x} = 2 \, x + y
+	\frac{\partial f}{\partial x} = 2 \, x + y \nonumber
 \end{equation}
 
 \begin{equation}
-	\frac{\partial f}{\partial y} =  x + 2 \,y
+	\frac{\partial f}{\partial y} =  x + 2 \,y \nonumber
 \end{equation}
 
-In a system with several variables, the role of the derivative is taken by a matrix of partial derivative called the Jacobian Matrix $\mathbf{J}$.  $f(x,y)$:
+In a system with several variables, the role of the derivative is taken by a matrix of partial derivatives called the Jacobian Matrix $\mathbf{J}$.  $f(x,y)$:
 
 \begin{equation}
-	\mathbf{J} = \begin{pmatrix} \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} \end{pmatrix}
+	\mathbf{J} = \begin{pmatrix} \frac{\partial f}{\partial x} & \frac{\partial f}{\partial y} \end{pmatrix} \nonumber
 \end{equation}
 
 and the linear approximation is:
@@ -698,11 +702,11 @@ The function in the previous example at the reference point $(x_0, y_0)=(1,2)$ w
 
 
 \begin{equation}
-	T(x,y) = 7 + \begin{pmatrix} 4 & 5 \end{pmatrix} \, \begin{pmatrix} 1-x \\ 2-y \end{pmatrix} = 7 +  4- 4 x + 10-5 y 
+	T(x,y) = 7 + \begin{pmatrix} 4 & 5 \end{pmatrix} \, \begin{pmatrix} 1-x \\ 2-y \end{pmatrix} = 7 +  4- 4 x + 10-5 y  \nonumber
 \end{equation}
 
 \begin{equation}
-	T(x,y) = 21 - 4 x - 5 y 
+	T(x,y) = 21 - 4 x - 5 y  \nonumber
 \end{equation}
 
 \FloatBarrier
