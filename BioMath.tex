@@ -4,7 +4,7 @@
 \usepackage{amsmath}
 \usepackage{placeins}
 \usepackage{graphicx}
-
+\usepackage[a4paper, margin=2cm]{geometry}
 
 %opening
 \title{Summary of Mathematics for the life sciences}
@@ -15,8 +15,65 @@
 \maketitle
 \tableofcontents
 
+\section{The mathematics of growth}
 
-\section{Ordinary differential equations}
+Growth is one of the main characteristics of biological systems. All living beings grow at least during a part of their life cycle with most keeping sustained growth through it all. During biological growth, some property of the system -- size, number of individuals, biomass, radius of a tumor dots - increases with time.Lets call this property, $x$. We can indicate that x changes with time by writing it as a function $x(t)$ or as a series $x_t = x_1, x_2, x_3,\dots$ with $x_i$ being the value of x after i time units.
+
+The simplest problems to analyze mathematically are those that happen at discrete intervals in time. For instance, if a population of microbes duplicates every hour, then the population at time $t+1$ will be twice the population at time $t$.
+
+\begin{equation}
+\label{geomgrowth_example}
+x_{t+1} = 2 \, x_t
+\end{equation}
+
+so given the population at the initial time,  $x_0$, then $x_1=2\, x_0$, $x_2=2\, x_1$ and so on. We can calculate the population at time $t$ using the simple formula:
+
+\begin{equation}
+x_{t} = 2^t \, x_0
+\end{equation}
+
+this is so simple that we hardly need any math!
+
+Now we move on to a slightly more complicated case. The radius of a tumor increases at a rate of  15 \% every hour, what is the duplication time of the tumor? The general form of equation \ref{geomgrowth_example} is
+
+\begin{equation}
+\label{geomgrowth_general}
+x_{t+1} = x_t  + r \, x_t =(1 + r) \, x_t
+\end{equation}
+
+and so
+
+\begin{equation}
+\label{geomgrowth_general2}
+x_{t} = (1 + r)^{t} \, x_0
+\end{equation}
+
+
+thi is called \textbf{geometric growth} with $r=0.15$ for our tumor. Now if the time it takes for x to duplicate is $t_d$,
+
+\begin{equation}
+2\, x_{0} = (1 + r)^{t_d} \, x_0
+\end{equation}
+
+where $x_0$ cancels out. Now we can take  logarithms and rearrange:
+
+\begin{equation}
+t_d = \frac{\log 2}{\log (1 + r) }
+\end{equation}
+
+So our doubling time for $r=0.15$ is 1.74 hours, about an hour and 45 min.
+
+But not all individuals in a population are identical. Most of the time, biological populations have many different types of individuals. Cells differentiate into types, animals grow in different stages, microbes can form spores \dots Fortunately, we have the mathematical tools to reflect that diversity. Consider a population of parasites that reproduce through eggs. Every week, some eggs hatch and produce new parasites that in time will produce more eggs. We can easily capture the idea of our population having two different components: animals of species $x$ and eggs of species $x$ by using vectors:
+
+\begin{equation}
+\mathbf{x} =\left( \begin{array}{c} x_1 \\  x_2 \end{array} \right)
+\end{equation}
+
+A vector of dimension $n$ are just collections of $n$ ``normal'' numbers which, by the way are caller scalars. 
+
+
+
+\subsection{Ordinary differential equations}
 
 A differential equation is an equality involving one or more unknowns ($x$, $y$, $z$,\dots) and their derivatives. Since our unknowns have derivatives, they are not just numbers like in regular -- a.k.a. algebraic -- equations. Our unknowns are functions or, more accurately, families of functions. We can make this explicit by writing our unknowns as $x(t)$, $y(t)$, $z(t)$,\dots thus sacrificing brevity for the sake of clarity. In the text that follows, very little effort will be made to maintain consistency between these two notations and we will wantonly switch between both. Live with it.
 
@@ -49,11 +106,11 @@ Keep in mind that the linearity requirement only applies to the unknowns and not
 
 In these equations, the coefficients that multiply our unknowns just happen to be functions of time. A linear equation can have coefficients that depend on time and also have time-dependent independent terms. In general, we will not concern ourselves with such systems.
 
-\section{Linear equations}
+\subsection{Linear equations}
 
 Solving differential equations is very challenging, that's why we will try to avoid it whenever possible. In fact, we are only going to solve one differential equation during the whole course. We will solve it in two versions: with one variable and with several variables.
 
-\subsection{Solving the linear equation with one variable}
+\subsubsection{Solving the linear equation with one variable}
 
 Lets start with the simplest possible case, which also happens to describe a fundamental biological process: exponential growth.
 
@@ -112,7 +169,7 @@ In general, we use the solution to the exponential equation as:
 	x   = x_0 \, e^{\mu \, t} \nonumber
 \end{equation}
 
-\subsection{Solving the linear equation with several variables}
+\subsubsection{Solving the linear equation with several variables}
 
 
 Our simple linear equation can also have more that one variable:
@@ -197,9 +254,9 @@ The expansion of this determinant results in a $n-th$ degree equation in terms o
 c_n \, \lambda^n +c_{n-1} \, \lambda^{n-1}  + \dots  + c_1 \, \lambda + c_0 = 0 \nonumber
 \end{equation}
 
-\section{Eigenvalues and eigenvectors} 
+\subsection{Eigenvalues and eigenvectors} 
 
-\subsection{Real eigenvalues}
+\subsubsection{Real eigenvalues}
 A matrix $\mathbf{A}$ with size $n \times n$ has n vectors $\mathbf{v_i}$ for $i = 1 \dots n$ called eigenvectors, and each eigenvector has an eigenvalue ($\lambda_i$) such that every pair of eigenvector and eigenvalue satisfy equation (\ref{eigendefinition}).
 	
 In order to understand the meaning of this and why eigenvector and eigenvalues are extremely important in applied mathematics, we have to think of the matrix product as an operation that transforms one vector into another. For instance, lets take the matrix
@@ -275,7 +332,7 @@ This is actually the same equation twice. It is easy to see that whenever $v_x=v
 
 \paragraph{Exercise:} Can you use equation (\ref{eigendefinition}) to show that given an eigenvector $\mathbf{v}$ and a constant $k$, any vector $k \, \mathbf{v}$ will also be an eigenvector?
 
-\subsection{Complex eigenvalues}
+\subsubsection{Complex eigenvalues}
 
 Now lets analyze another matrix 
 
@@ -294,7 +351,7 @@ The solutions to this equation are imaginary $\lambda_1 = i$ and $\lambda_1 = -i
 Complex eigenvalues always come in conjugate pairs: $\lambda_1 = a + b\, i$,  $\lambda_2 = a - b\, i$. In the context of ODEs, The real parts of a complex eigenvalue determine the stability, just as real eigenvalues do, while the existence of imaginary parts involves the existence of oscillations. Note that imaginary eigenvalues can only appear for systems with two or more variables. This means that for a system to oscillate, it must have at least two variables.
 
 
-\section{General solutions for linear equations}
+\subsection{General solutions for linear equations}
 
 So putting together all the eigenvectors of the system and the corresponding eigenvalues, we get the general solution for our equation with n variables:
 
@@ -370,7 +427,7 @@ So the real part of our solutions will be the product of an exponential and an o
 
 \FloatBarrier
 
-\section{Differential equations of higher order}
+\subsection{Differential equations of higher order}
 
 The following differential equation:
 
@@ -386,7 +443,7 @@ is called a second order differential equation because it contains a second deri
 \end{align}
 
 
-\section{Plotting solutions}
+\subsection{Plotting solutions}
 
 The particular solutions of a differential equation can be plotted as each variable being a function of time as shown in figure \ref{fig:cmplxeigen}, but there are alternative representations. A frequently used plot is the phase space like the one shown in figure \ref{fig:phase_plane}. In this plot, the state variables of the system are used as axes. Since time is not explicitly included in the plot, the lines showing the evolution of the system have arrows that indicate the direction in which the system moves as time goes by. In a plot like this, several particular solutions can be shown at the same time, the line representing each solution is called an orbit. 
 \begin{figure}
@@ -397,11 +454,11 @@ The particular solutions of a differential equation can be plotted as each varia
 	\label{fig:phase_plane}
 \end{figure}
 
-\section{Non-linear systems}
+\subsection{Non-linear systems}
 
 Unlike linear equations, non-linear equations rarely have analytic solutions. fortunately, we can extract a lot of information from a differential equation without solving it. This is so because we are often not interested in every detail about its dynamics but rather on its long term behavior.
 
-\subsection{Steady states}
+\subsubsection{Steady states}
 
 The first step to analyze non-linear systems is to find out its steady states. for a given non-linear system:
 
@@ -449,13 +506,13 @@ which can happen in two different ways. Either $x=0$, just like happened for exp
 	\label{fig:logisticall}
 \end{figure}
 
-\subsection{Stability}
+\subsubsection{Stability}
 
 Figure \ref{fig:logisticall} shows how the behavior of the logistic equation is dictated by its two steady states. The system tends to move away from $x=0$, which is therefore called an \emph{unstable steady state} or \emph{repulsor} and towards $x=K$, which is a \emph{stable steady state} or \emph{attractor}. But how do we know whether a steady state is stable?
 
 A steady state is said to be stable when the system tends to return to it after being moved away from it. In other words, lets assume a system has a steady state at $x=x_0$ and we move the system to another, nearby state $x_0+\delta x$. $\delta x$ is a small number and we call it a perturbation. if we define our variable as a composition of the steady state and a time varying perturbation: $x(t) = x_0 + \delta x(t)$, the system can be said to be stable if $\delta x \rightarrow 0$ as $t \rightarrow \infty$. Conversely, we say the system is unstable if $\delta x \rightarrow \infty$ as $t \rightarrow \infty$.  But how can we predict the behavior of $\delta x$? since we can only solve linear systems, we will have to turn this into a linear equation \dots
 
-\subsection{Linearization}
+\subsubsection{Linearization}
 
 Making the change of variable $x(t) = x_0 + \delta x(t)$ in equation \ref{odegeneral},
 
