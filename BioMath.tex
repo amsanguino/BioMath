@@ -14,8 +14,18 @@
 
 \maketitle
 \tableofcontents
+\section{Why systems?}
 
-\section{The mathematics of growth}
+Biology as always been the science without mathematics, a place where the non-mathematically oriented soul could develop a scientific career far from the trials and tribulations of linear Algebra, differential calculus and complex analysis. This way of thinking remained dominant in the field until the end of the twentieth century and the sequencing of the human genome.
+
+At the turn of the century, biologists found themselves drowning in data. Genomic sequences provided a list of all the relevant parts needed to build and operate a cell and, by extension, a full living being. But connecting all those parts and the relevant regulatory signals, also present in the genome, proved to be impossible due to several reasons. First, the sheer number of components, in the tens of thousands, were very difficult to represent using conventional means, such as diagrams, lists or sketches in a blackboard. Second, acting on a component that is part of a network initiates the propagation of multiple signals all over such network that are very difficult to follow. Third, when the nature of interaction between all the components is quantitative, the same kind of action (inhibiting a step of a pathway) can lead to very different outcomes depending on the intensity of the stimulus. Finally, when the three above mentioned conditions are given, system often have counter-intuitive behaviors.
+
+
+- Networked signals. Counter-intuitive behaviors. The Jevons paradox. Cortisol treatments and paradoxical side-effects. Local vs local effects. short-term vs long term effects. The need for matehmatics.
+
+\section{The mathematics of growth, evolution and change}
+
+\subsection{Discrete dynamic systems}
 
 Growth is one of the main characteristics of biological systems. All living beings grow at least during a part of their life cycle with most keeping sustained growth through it all. During biological growth, some property of the system -- size, number of individuals, biomass, radius of a tumor dots - increases with time.Lets call this property, $x$. We can indicate that x changes with time by writing it as a function $x(t)$ or as a series $x_t = x_1, x_2, x_3,\dots$ with $x_i$ being the value of x after i time units.
 
@@ -49,7 +59,7 @@ x_{t} = (1 + r)^{t} \, x_0
 \end{equation}
 
 
-thi is called \textbf{geometric growth} with $r=0.15$ for our tumor. Now if the time it takes for x to duplicate is $t_d$,
+this is called \textbf{geometric growth} with $r=0.15$ for our tumor. Now if the time it takes for x to duplicate is $t_d$,
 
 \begin{equation}
 2\, x_{0} = (1 + r)^{t_d} \, x_0
@@ -73,7 +83,7 @@ A vector of dimension $n$ are just collections of $n$ ``normal'' numbers which, 
 
 
 
-\subsection{Ordinary differential equations}
+\subsection{Continuous dynamic systems}
 
 A differential equation is an equality involving one or more unknowns ($x$, $y$, $z$,\dots) and their derivatives. Since our unknowns have derivatives, they are not just numbers like in regular -- a.k.a. algebraic -- equations. Our unknowns are functions or, more accurately, families of functions. We can make this explicit by writing our unknowns as $x(t)$, $y(t)$, $z(t)$,\dots thus sacrificing brevity for the sake of clarity. In the text that follows, very little effort will be made to maintain consistency between these two notations and we will wantonly switch between both. Live with it.
 
