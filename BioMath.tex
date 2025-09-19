@@ -229,7 +229,7 @@ The number $\lambda$ is a scalar associated to that particular eigenvector and i
 Every matrix of dimensions $n \times n$ has exactly $n$ eigenvectors and $n$ eigenvalues. Eigenvectors can be understood as the natural "axes" to study the transformation. If our coordinates are aligned with the eigenvectors, we can understand any transformation as just ``stretching'' or ``shrinking'' the vector in each direction by the corresponding eigenvalue. For instance, the matrix
 
 \begin{equation}
-	\begin{pmatrix} 0.5 & 0\\ 0 &  2 \end{pmatrix} 
+	\mathbf{A}=\begin{pmatrix} 0.5 & 0\\ 0 &  2 \end{pmatrix} 
 \end{equation}
 
 has dimension $2 \times 2$, so it has two eigenvectors with their corresponding eigenvalues. one eigenvector is $\mathbf{v_1}=\begin{pmatrix}  0\\ 1 \end{pmatrix} $,  -- that goes alonng the y-axis -- and its corresponding eigenvalue is $\lambda_1 = 2$. multiplying the matrix times $\mathbf{v_1}$, proves it is indeed an eigenvector with eigenvalue 2:
@@ -251,7 +251,13 @@ Now if we transform any other vector, like $\mathbf{u}=\begin{pmatrix}  1\\ 1 \e
 \end{equation}
 
 Knowing this, we can already predict that multiplying vector $\begin{pmatrix}  2\\ 4 \end{pmatrix}$ will result in vector  $\begin{pmatrix}  1\\ 8 \end{pmatrix}$, so knowing the eigenvectors and the eigenvalues is  knowing how the matrix works.
-
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.4\textwidth]{transform}	
+	\end{center}
+	\caption{Role of eigenvalues in a matrix transformation. The black eigenvector $\mathbf{v_1} = (0,1)$ has eigenvalue 2 while the red eigenvector $\mathbf{v2}=(1,0)$ has eigenvalue 0.5. When a vector like $\mathbf{u_1}$ -- in blue -- is transformed, it just gets stretched twice in the vertical axis along $v_1$ and compressed to half along the horizontal axis $\mathbf{v_2}$. the result of the transformation $\mathbf{u_2} = \mathbf{A} \, \mathbf{u_1}$ is shown in green}
+	\label{fig:Lpop}
+\end{figure}
 \FloatBarrier
 \section{Continuous dynamic systems}
 
