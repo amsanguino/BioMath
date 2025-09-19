@@ -153,14 +153,14 @@ So the fecundity $f_3$ connects $n_3$ (column) to $n_1$ (row) and so on. We do n
 	\end{pmatrix}
 \end{equation}
 
-Now it is very easy to get the equations, since vectors and matrices have their own mathematical operations. we can now write our euqation ofr the population at a certain time as:
+Now it is very easy to get the equations, since vectors and matrices have their own mathematical operations. we can now write our equation for the population at a certain time as:
 
 \begin{equation}
 	\mathbf{n_{t+1}} =\mathbf{L} \, \mathbf{n_t}
 	\label{fig:matequationL}
 \end{equation}
 
-If we apply the product between vectors and matrices as we learned in high school, we will see that:
+The matrix $\mathbf{L}$ is commonly known as the Leslie matrix to honor Patrick H. Leslie, the ecologist who proposed it.If we now apply the product between vectors and matrices as we learned in high school, we will see that:
 
 \begin{equation}
 	 	\begin{pmatrix}
@@ -170,8 +170,90 @@ If we apply the product between vectors and matrices as we learned in high schoo
 	\end{pmatrix} \cdot \begin{pmatrix} n_{1,t}\\ n_{2,t} \\ n_{3,t}\end{pmatrix} = \begin{pmatrix} f_1 \,n_{1,t} + f_2 \,n_{2,t} + f_3 \,n_{3,t}\\ s_1 \, n_{1,t} \\ s_2 \, n_{2,t}\end{pmatrix}
 \end{equation}
 
-So equation \ref{fig:matequationL} shows a very useful fact. a matrix is an object that convert a vector into another. Here we use it to convert the population now into the future population, but if we represent anything by a vector -- e.g the direction and intensity of a ray of light -- we can represent changes in ts state by a matrix multiplication --e.g. the direction and intensity of the light after passing through liquid medium. This capacity of abstraction is what makes mathematics so powerful in science and engineering. Solving a problem oce in a field like physics means solving hundreds of problems in other fields. In our case of a population of animals, for instance, we may wonder how it is going to change in the future. we may wonder if the structure of the population will remain constant or the distribution of age will keep changing for ever? This kind of questions are also very relevant for economists and social scientists. will the population of developed countries continue to get older? or will the aging stop at some point? The solution to this question is important since all our pensions depend on it. Surprisingly enough, the answer to this question was already found before it was asked, when Leonard Euler studied the rotation of rigid bodies in the 18$^th$ century \dots 
-\subsection{Continuous dynamic systems}
+and we can apply our growth equation as many times as we want:
+
+\begin{equation}
+	\mathbf{n_{2}} =\mathbf{L} \cdot \mathbf{n_1} = \mathbf{L} \cdot \mathbf{L} \cdot \mathbf{n_0} 
+	\label{fig:matequationL}
+\end{equation}
+
+and for $k$ generations:
+
+\begin{equation}
+	\mathbf{n_k} =\mathbf{L}^k \cdot \mathbf{n_0}
+\end{equation}
+
+where $\mathbf{L}^k$ mans we multiply the matrix by itself $k$ times.
+
+Equation \ref{fig:matequationL} shows a very useful fact. A matrix is an object that converts one vector into another. Here we use it to convert the population now into the future population, but if we represent anything by a vector -- e.g the direction and intensity of a ray of light -- we can represent changes in ts state by a matrix multiplication --e.g. the direction and intensity of the light after passing through liquid medium. This capacity of abstraction is what makes mathematics so powerful in science and engineering. Solving a problem once in a field like physics means solving hundreds of problems in other fields. In our case of a population of animals, for instance, we may wonder how it is going to change in the future. we may wonder if the structure of the population will remain constant or the distribution of age will keep changing for ever? This kind of questions are also very relevant for economists and social scientists. will the population of developed countries continue to get older? or will the aging stop at some point? The solution to this question is important since all our pensions depend on it. Surprisingly enough, the answer to this question was already found before it was asked, when Leonard Euler studied the rotation of rigid bodies in the 18$^th$ century \dots 
+
+\subsection{Eigenvalues and eigenvectors}
+
+Back to our mice example, look at the behavior of our population along several generations in figure \ref{fig:Lpop}.
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=\textwidth]{pop_evol}
+		\includegraphics[width=\textwidth]{tot_pop_evol}		
+	\end{center}
+	\caption{The upper graph shows the population structure as a bar graph for nine generations. The figure below shows the total population for each generation (the sum of all three age groups). As the total population increases, it is obvious that the vector is different each generation, but the proportion of the three age groups, seems to be very similar for each generation.}
+	\label{fig:Lpop}
+\end{figure}
+
+The population keeps growing, so the vectors keep changing but, looking at their shape, it looks like it is well preserved from one generation to the next. There are always more young mice than adults and more adults than seniors. Does this mean the population will reach a stable age structure?
+
+Imagine that the vectors of the population for several consecutive generations are as follows:
+
+\begin{equation}
+	n_0 = \begin{pmatrix} 3\\ 2 \\ 1\end{pmatrix}, 
+	n_1 = \begin{pmatrix} 6\\ 4 \\ 2\end{pmatrix}, 
+	n_2 = \begin{pmatrix} 12\\ 8 \\ 4\end{pmatrix}
+\end{equation}
+
+It is easy to see that $n_1 = 2 \cdot n_0$  and $n_2 = 2 \cdot n_1$. In other words, the matrix preserves the ``shape'' of the vector and just increases its size.
+
+\begin{equation}
+ \begin{pmatrix} 6\\ 4 \\ 2\end{pmatrix} =  2 \cdot\begin{pmatrix} 3\\ 2 \\ 1\end{pmatrix} 
+ \label{eigenvect_in_action}
+\end{equation}
+
+This means our population will keep growing -- in this case, it will double its size every generation -- but the age structure will remain stable with three young mice for every two adults and one senior. In fact, we could have made this prediction just looking at the matrix $\mathbf{L}$. Every matrix has a few vectors such that, when multiplied by it, result in the same vector multiplied by a constant, as shown in equation \ref{eigenvect_in_action}. This property is so important in science and engineering that it has a formal definition we should learn. Given matrix $\mathbf{A}$, we say $\mathbf{v}$ is an eigenvector of  $\mathbf{A}$ if:
+ 
+\begin{equation}
+	\label{eigendefinition}
+	\mathbf{A} \, \mathbf{v}  = \lambda  \,	\mathbf{v}   
+\end{equation}
+
+The number $\lambda$ is a scalar associated to that particular eigenvector and it is called an eigenvalue. In the example shown in equation \ref{eigenvect_in_action}, $(3,2,1)$ would be an eigenvector and $2$ would be its corresponding eigenvalue.
+
+Every matrix of dimensions $n \times n$ has exactly $n$ eigenvectors and $n$ eigenvalues. Eigenvectors can be understood as the natural "axes" to study the transformation. If our coordinates are aligned with the eigenvectors, we can understand any transformation as just ``stretching'' or ``shrinking'' the vector in each direction by the corresponding eigenvalue. For instance, the matrix
+
+\begin{equation}
+	\begin{pmatrix} 0.5 & 0\\ 0 &  2 \end{pmatrix} 
+\end{equation}
+
+has dimension $2 \times 2$, so it has two eigenvectors with their corresponding eigenvalues. one eigenvector is $\mathbf{v_1}=\begin{pmatrix}  0\\ 1 \end{pmatrix} $,  -- that goes alonng the y-axis -- and its corresponding eigenvalue is $\lambda_1 = 2$. multiplying the matrix times $\mathbf{v_1}$, proves it is indeed an eigenvector with eigenvalue 2:
+
+\begin{equation}
+	\begin{pmatrix} 0.5 & 0\\ 0 &  2 \end{pmatrix} \cdot \begin{pmatrix}  0\\ 1 \end{pmatrix} = \begin{pmatrix}  0\\ 2 \end{pmatrix}= 2 \, \begin{pmatrix}  0\\ 1 \end{pmatrix}
+\end{equation}
+
+The same happens with the second eigenvector $\mathbf{v_2}=\begin{pmatrix}  1\\ 0 \end{pmatrix}$ -- on the x-axis --, which has eigenvalue $\lambda_2 = 0.5$.
+
+\begin{equation}
+	\begin{pmatrix} 0.5 & 0\\ 0 &  2 \end{pmatrix} \cdot \begin{pmatrix}  1\\ 0 \end{pmatrix} = \begin{pmatrix}  0.5\\ 0 \end{pmatrix}= 0.5 \, \begin{pmatrix}  1\\ 0 \end{pmatrix}
+\end{equation}
+
+Now if we transform any other vector, like $\mathbf{u}=\begin{pmatrix}  1\\ 1 \end{pmatrix}$ it will be stretched along the y-axis to be twice as long and shrunk along the x-axis to be half as long:
+
+\begin{equation}
+	\begin{pmatrix} 0.5 & 0\\ 0 &  2 \end{pmatrix} \cdot \begin{pmatrix}  1\\ 1 \end{pmatrix} = \begin{pmatrix}  0.5\\ 2 \end{pmatrix}
+\end{equation}
+
+Knowing this, we can already predict that multiplying vector $\begin{pmatrix}  2\\ 4 \end{pmatrix}$ will result in vector  $\begin{pmatrix}  1\\ 8 \end{pmatrix}$, so knowing the eigenvectors and the eigenvalues is  knowing how the matrix works.
+
+\FloatBarrier
+\section{Continuous dynamic systems}
 
 A differential equation is an equality involving one or more unknowns ($x$, $y$, $z$,\dots) and their derivatives. Since our unknowns have derivatives, they are not just numbers like in regular -- a.k.a. algebraic -- equations. Our unknowns are functions or, more accurately, families of functions. We can make this explicit by writing our unknowns as $x(t)$, $y(t)$, $z(t)$,\dots thus sacrificing brevity for the sake of clarity. In the text that follows, very little effort will be made to maintain consistency between these two notations and we will wantonly switch between both. Live with it.
 
@@ -320,11 +402,10 @@ On the left hand side, the vector of  constants can be taken out of the derivati
 canceling out the exponentials:
 
 \begin{equation}
-\label{eigendefinition}
 \mathbf{A} \, \mathbf{v}  = \lambda  \,	\mathbf{v}   
 \end{equation}
  
-So $\mathbf{x}=\mathbf{v} \, e^{\lambda \, t}$ will be a solution of the equation as long as $\lambda$ and $\mathbf{v}$ satisfy equation (\ref{eigendefinition}).
+So $\mathbf{x}=\mathbf{v} \, e^{\lambda \, t}$ will be a solution of the equation as long as $\lambda$ and $\mathbf{v}$ satisfy the equation above, which we had already seen as (\ref{eigendefinition}).
 
 We can solve the equation and find all possible values of $\lambda$ by rearranging terms.
 
