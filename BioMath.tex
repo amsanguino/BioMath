@@ -244,21 +244,34 @@ The same happens with the second eigenvector $\mathbf{v_2}=\begin{pmatrix}  1\\ 
 	\begin{pmatrix} 0.5 & 0\\ 0 &  2 \end{pmatrix} \cdot \begin{pmatrix}  1\\ 0 \end{pmatrix} = \begin{pmatrix}  0.5\\ 0 \end{pmatrix}= 0.5 \, \begin{pmatrix}  1\\ 0 \end{pmatrix}
 \end{equation}
 
-Now if we transform any other vector, like $\mathbf{u}=\begin{pmatrix}  1\\ 1 \end{pmatrix}$ it will be stretched along the y-axis to be twice as long and shrunk along the x-axis to be half as long:
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.4\textwidth]{transform}	
+	\end{center}
+	\caption{Role of eigenvalues in a matrix transformation. The black eigenvector $\mathbf{v_1} = (0,1)$ has eigenvalue 2 while the red eigenvector $\mathbf{v2}=(1,0)$ has eigenvalue 0.5. When a vector like $\mathbf{u_1}$ -- in blue -- is transformed, it just gets stretched twice in the vertical axis along $v_1$ and compressed to half along the horizontal axis $\mathbf{v_2}$. the result of the transformation $\mathbf{u_2} = \mathbf{A} \, \mathbf{u_1}$ is shown in green}
+	\label{fig:transform}
+\end{figure}
+
+Figure \label{fig:transform} shows what happen if we transform any other vector, like $\mathbf{u_1}=\begin{pmatrix}  1\\ 1 \end{pmatrix}$ it will be stretched along the y-axis to be twice as long and shrunk along the x-axis to be half as long:
 
 \begin{equation}
 	\begin{pmatrix} 0.5 & 0\\ 0 &  2 \end{pmatrix} \cdot \begin{pmatrix}  1\\ 1 \end{pmatrix} = \begin{pmatrix}  0.5\\ 2 \end{pmatrix}
 \end{equation}
 
 Knowing this, we can already predict that multiplying vector $\begin{pmatrix}  2\\ 4 \end{pmatrix}$ will result in vector  $\begin{pmatrix}  1\\ 8 \end{pmatrix}$, so knowing the eigenvectors and the eigenvalues is  knowing how the matrix works.
+\subsection{The eigenvalues of the Leslie matrix}
+
 \begin{figure}
 	\begin{center}
-		\includegraphics[width=0.4\textwidth]{transform}	
+		\includegraphics[width=0.7\textwidth]{project_n2_n3}	
 	\end{center}
-	\caption{Role of eigenvalues in a matrix transformation. The black eigenvector $\mathbf{v_1} = (0,1)$ has eigenvalue 2 while the red eigenvector $\mathbf{v2}=(1,0)$ has eigenvalue 0.5. When a vector like $\mathbf{u_1}$ -- in blue -- is transformed, it just gets stretched twice in the vertical axis along $v_1$ and compressed to half along the horizontal axis $\mathbf{v_2}$. the result of the transformation $\mathbf{u_2} = \mathbf{A} \, \mathbf{u_1}$ is shown in green}
-	\label{fig:Lpop}
+	\caption{Progression of the population of adult mice $n_2$ vs senior mice $n_3$. Each point represents the values of these two age groups in one generation and arrows have been added to show the direction in which changes are happening. After just a few generations, the progress goes along a very clear straight line that is determined by the dominant eigenvector of the leslie matrix. }
+	\label{fig:leslie_phase}
 \end{figure}
+
 \FloatBarrier
+
+
 \section{Continuous dynamic systems}
 
 A differential equation is an equality involving one or more unknowns ($x$, $y$, $z$,\dots) and their derivatives. Since our unknowns have derivatives, they are not just numbers like in regular -- a.k.a. algebraic -- equations. Our unknowns are functions or, more accurately, families of functions. We can make this explicit by writing our unknowns as $x(t)$, $y(t)$, $z(t)$,\dots thus sacrificing brevity for the sake of clarity. In the text that follows, very little effort will be made to maintain consistency between these two notations and we will wantonly switch between both. Live with it.
