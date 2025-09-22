@@ -42,23 +42,20 @@ So if we want to dive into the field of systems biology, we will have to start a
 \end{itemize}
 
 % diagrams I/O example
-\section{The mathematics of growth, evolution and change}
-
-\subsection{Discrete dynamical systems}
-
+\subsection{The mathematics of growth, evolution and change}
 Growth is one of the main characteristics of biological systems. All living beings grow at least during a part of their life cycle with most keeping sustained growth through it all. During biological growth, some property of the system -- size, number of individuals, biomass, radius of a tumor \dots - increases with time. Lets call this property, $x$. We can indicate that x changes with time by writing it as a function $x(t)$ or as a series $x_t = x_1, x_2, x_3,\dots$ with $x_i$ being the value of x after i time units.
 
 The simplest problems to analyze mathematically are those that happen at discrete intervals in time. For instance, if a population of microbes duplicates every hour, then the population at time $t+1$ will be twice the population at time $t$.
 
 \begin{equation}
-\label{geomgrowth_example}
-x_{t+1} = 2 \, x_t
+	\label{geomgrowth_example}
+	x_{t+1} = 2 \, x_t
 \end{equation}
 
 so given the population at the initial time,  $x_0$, then $x_1=2\, x_0$, $x_2=2\, x_1$ and so on. We can calculate the population at time $t$ using the simple formula:
 
 \begin{equation}
-x_{t} = 2^t \, x_0
+	x_{t} = 2^t \, x_0
 \end{equation}
 
 This formula can be considered our first mathematical model. We can use it to make a simulation for a particular case. Lets say we start with a single cell. A simulation of our model for the next five generations will be:
@@ -82,7 +79,9 @@ Once we made a simulation, it is often helpful to show a visual representation. 
 
 For more complex systems, we may prefer to show the state of the system as point in space. For instance, our first mathematical model has a signle variable so any  state can be represented as a point obn the real line.
 
-Now we move on to a slightly more complicated case. The radius of a tumor increases at a rate of  15 \% every hour, what is the doubling time of the tumor? The general form of equation \ref{geomgrowth_example} for a growth rate $r$ is:
+\section{Discrete dynamical systems}
+
+the simple model we saw in the previous section is an example of discrete dynamical systems. Now we move on to a slightly more complicated case. The radius of a tumor increases at a rate of  15 \% every hour, what is the doubling time of the tumor? The general form of equation \ref{geomgrowth_example} for a growth rate $r$ is:
 
 \begin{equation}
 \label{geomgrowth_general}
