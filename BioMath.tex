@@ -92,7 +92,7 @@ The  individuals in a population are not always identical. Most of the time, bio
 \mathbf{x} =\left( \begin{array}{c} x_1 \\  x_2 \end{array} \right)
 \end{equation}
 
-A vector of dimension $n$ are just collections of $n$ ``normal'' numbers which, by the way are caller scalars. So the members of the total population is vector  $\mathbf{x}$ and it is composed of $x_1$ eggs and $x_2$ animals. we write vectors and matrices (see below) in \textbf{boldface}.
+A vector of dimension $n$ are just collections of $n$ ``normal'' numbers which, by the way are called scalars. So the members of the total population is vector  $\mathbf{x}$ and it is composed of $x_1$ eggs and $x_2$ animals. we write vectors and matrices (see below) in \textbf{boldface}.
 
 
 When we study the dynamics of this population, we will see why it was so important to keep the two types separate. The number of eggs produced each generation does not depend on the number of eggs present in it. Eggs are laid by the animals, so the more animals there are, the more eggs are produced:
@@ -261,6 +261,8 @@ Figure \label{fig:transform} shows what happen if we transform any other vector,
 Knowing this, we can already predict that multiplying vector $\begin{pmatrix}  2\\ 4 \end{pmatrix}$ will result in vector  $\begin{pmatrix}  1\\ 8 \end{pmatrix}$, so knowing the eigenvectors and the eigenvalues is  knowing how the matrix works.
 \subsection{The eigenvalues of the Leslie matrix}
 
+Leslie matrices tend to have very special eigenvalues. In most cases there is one dominant eigenvalue, larger than one, while every other eigenvalue is less than one. as a result of this, any starting population evolves towards the age structure dictated by the dominant eigenvvector after a few generations. Figure \ref{fig:leslie_phase} plots the amount of adult vs senior mice along several generations. We can clearly see how, after only three generations, the numbers move along a straight line, which is the direction of the dominant eigenvector.
+
 \begin{figure}
 	\begin{center}
 		\includegraphics[width=0.7\textwidth]{project_n2_n3}	
@@ -268,6 +270,8 @@ Knowing this, we can already predict that multiplying vector $\begin{pmatrix}  2
 	\caption{Progression of the population of adult mice $n_2$ vs senior mice $n_3$. Each point represents the values of these two age groups in one generation and arrows have been added to show the direction in which changes are happening. After just a few generations, the progress goes along a very clear straight line that is determined by the dominant eigenvector of the leslie matrix. }
 	\label{fig:leslie_phase}
 \end{figure}
+
+It is easy to prove that if a given vector $\mathbf{v}$ is an eigenvector of a matrix, so is any multiple $k \cdot\mathbf{v}$. This demonstration is left as an exercise. For those who feel ready for a bigger challenge, it is also possible to show why the dominant eigenvalue determines the final age structure. \textbf{Hint:} any vector can be written as a linear combination of the eigenvalues.
 
 \FloatBarrier
 
