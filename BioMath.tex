@@ -36,7 +36,7 @@ But biologists are lucky for there is another group of specialists that has alre
 % diagrams I/O example
 \section{The mathematics of growth, evolution and change}
 
-\subsection{Discrete dynamic systems}
+\subsection{Discrete dynamical systems}
 
 Growth is one of the main characteristics of biological systems. All living beings grow at least during a part of their life cycle with most keeping sustained growth through it all. During biological growth, some property of the system -- size, number of individuals, biomass, radius of a tumor \dots - increases with time. Lets call this property, $x$. We can indicate that x changes with time by writing it as a function $x(t)$ or as a series $x_t = x_1, x_2, x_3,\dots$ with $x_i$ being the value of x after i time units.
 
@@ -174,7 +174,6 @@ and we can apply our growth equation as many times as we want:
 
 \begin{equation}
 	\mathbf{n_{2}} =\mathbf{L} \cdot \mathbf{n_1} = \mathbf{L} \cdot \mathbf{L} \cdot \mathbf{n_0} 
-	\label{fig:matequationL}
 \end{equation}
 
 and for $k$ generations:
@@ -232,7 +231,7 @@ Every matrix of dimensions $n \times n$ has exactly $n$ eigenvectors and $n$ eig
 	\mathbf{A}=\begin{pmatrix} 0.5 & 0\\ 0 &  2 \end{pmatrix} 
 \end{equation}
 
-has dimension $2 \times 2$, so it has two eigenvectors with their corresponding eigenvalues. one eigenvector is $\mathbf{v_1}=\begin{pmatrix}  0\\ 1 \end{pmatrix} $,  -- that goes alonng the y-axis -- and its corresponding eigenvalue is $\lambda_1 = 2$. multiplying the matrix times $\mathbf{v_1}$, proves it is indeed an eigenvector with eigenvalue 2:
+has dimension $2 \times 2$, so it has two eigenvectors with their corresponding eigenvalues. one eigenvector is $\mathbf{v_1}=\begin{pmatrix}  0\\ 1 \end{pmatrix} $,  -- that goes along the y-axis -- and its corresponding eigenvalue is $\lambda_1 = 2$. multiplying the matrix times $\mathbf{v_1}$, proves it is indeed an eigenvector with eigenvalue 2:
 
 \begin{equation}
 	\begin{pmatrix} 0.5 & 0\\ 0 &  2 \end{pmatrix} \cdot \begin{pmatrix}  0\\ 1 \end{pmatrix} = \begin{pmatrix}  0\\ 2 \end{pmatrix}= 2 \, \begin{pmatrix}  0\\ 1 \end{pmatrix}
@@ -261,6 +260,7 @@ Figure \label{fig:transform} shows what happen if we transform any other vector,
 Knowing this, we can already predict that multiplying vector $\begin{pmatrix}  2\\ 4 \end{pmatrix}$ will result in vector  $\begin{pmatrix}  1\\ 8 \end{pmatrix}$, so knowing the eigenvectors and the eigenvalues is  knowing how the matrix works.
 \subsection{The eigenvalues of the Leslie matrix}
 
+\subsubsection{Real eigenvalues}
 Leslie matrices tend to have very special eigenvalues. In most cases there is one dominant eigenvalue, larger than one, while every other eigenvalue is less than one. as a result of this, any starting population evolves towards the age structure dictated by the dominant eigenvvector after a few generations. Figure \ref{fig:leslie_phase} plots the amount of adult vs senior mice along several generations. We can clearly see how, after only three generations, the numbers move along a straight line, which is the direction of the dominant eigenvector.
 
 \begin{figure}
@@ -273,10 +273,49 @@ Leslie matrices tend to have very special eigenvalues. In most cases there is on
 
 It is easy to prove that if a given vector $\mathbf{v}$ is an eigenvector of a matrix, so is any multiple $k \cdot\mathbf{v}$. This demonstration is left as an exercise. For those who feel ready for a bigger challenge, it is also possible to show why the dominant eigenvalue determines the final age structure. \textbf{Hint:} any vector can be written as a linear combination of the eigenvalues.
 
+\subsubsection{Complex eigenvalues}
+
+In some cases, a Leslie matrix does not behave as sated before. Lets see this model describing the dynamics of a locust population. Locusts have three stages in their life cycle, just as the example before. The first stage, $n_1$, are the eggs, second stage individuals, $n_2$, are called hoppers since they are not yet able to fly. Finally, when an individual develops proper wings and the ability to fly, it is considered an adult, $n_3$.
+
+The Leslie matrix for this case is:
+
+\begin{equation}
+L=\begin{pmatrix}
+	0	&0	&1000	\\
+	0.02	&0	&0	\\
+	0	&0.05	&0	\\
+\end{pmatrix}
+\end{equation}
+
+Inspection of the Leslie matrix already tells us a few things about the biology of locusts. first of all, the zero inthe first row and first column tells us that hoppers are not yet sexually matrue $f_2=0$ but adult locusts are extremely prolific with an average production of 1,000 eggs per individual. The survival rate of eggs is extremely low, with the survival rte of hopper being more that twice as high but still very low, with only 5\% of hoppers surviving until the adult stage.
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=\textwidth]{locusts_evol}
+		\includegraphics[width=\textwidth]{tot_locusts_evol}		
+	\end{center}
+	\caption{The upper graph shows the population structure as a bar graph for nine generations (y axis in log-coordinates). The figure below shows the total population for each generation (the sum of all three age groups). Unlike the previous case, we can clearly see an oscillating population.}
+	\label{fig:Llocusts}
+\end{figure}
+
+Simulating nine generations with this matrix, as can be seen in figure \ref{fig:Llocusts} shows a very different behavior. This population does not grow as before, but keeps oscillating instead. Moreover, the age structure does not remain fixed, it keeps switching between three diferent shapes.
+
+We can also view a projection of the amount of eggs and hoppers as we did with mice in figure \ref{fig:leslie_phase}. The result is a completely different behavior shown in figure \ref{fig:leslie_locust_phase}.
+
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.7\textwidth]{locusts_phaseI}	
+	\end{center}
+	\caption{Progression of the population of eggs $n_1$ vs hoppers $n_2$. Each point represents the values of these two age groups in one generation and arrows have been added to show the direction in which changes are happening. Only three generations are shown since the third generation ends up exactly in the same position as the first, therefore repeating this cycle over and over }
+	\label{fig:leslie_locust_phase}
+\end{figure}
+
+
 \FloatBarrier
 
 
-\section{Continuous dynamic systems}
+\section{Continuous dynamical systems}
 
 A differential equation is an equality involving one or more unknowns ($x$, $y$, $z$,\dots) and their derivatives. Since our unknowns have derivatives, they are not just numbers like in regular -- a.k.a. algebraic -- equations. Our unknowns are functions or, more accurately, families of functions. We can make this explicit by writing our unknowns as $x(t)$, $y(t)$, $z(t)$,\dots thus sacrificing brevity for the sake of clarity. In the text that follows, very little effort will be made to maintain consistency between these two notations and we will wantonly switch between both. Live with it.
 
