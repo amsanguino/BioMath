@@ -34,6 +34,13 @@ There is no question that complicated networks of interacting components have to
 
 But biologists are lucky for there is another group of specialists that has already faced similar difficulties and has been reasonably successful dealing with them. Engineers have developed precise tools for drawing diagrams, making calculations on how signal propagate and making quantitative predictions based on them. Many of these tools have already been translated to biological systems and this has resulted in the creation of new fields such as bioinformatics, computational neuro-science or systems biology. The emergence of these new fields has resulted in a much better understanding of complex biological problems such as biochemical and genetic regulation, cognitive processes and mental illness, but it has also resulted in productive exchanges for other sciences such as artificial neural networks, which are at the center of recent developments in artificial intelligence.
 
+So if we want to dive into the field of systems biology, we will have to start assimilating some important concepts: 
+\begin{itemize}
+	\item A \textbf{system} is a set of parts that work together and can be defined within a \textbf{boundary}. If a system can exchange material, energy or information with the outside through the boundary, it is said to be open. If the boundary does not let matter pass through it, the system is said to be closed. When the boundary is so tight that neither matter nor energy may pass through it, we say the system is isolated.
+	\item In order to predict the behavior of a system, we often need mathematics. In order to do so, we define a \textbf{mathematical model} as any mathematical representation of our system. A model does not need to be perfect. Some models only capture part of the system behavior and some model give only  approximate results.
+	\item When we use a model to make predictions about the behavior of a system, we are making a \textbf{simulation}. Simulations can be done with paper and pencil for very simple models, but they often must be done using a computer.
+\end{itemize}
+
 % diagrams I/O example
 \section{The mathematics of growth, evolution and change}
 
@@ -54,7 +61,26 @@ so given the population at the initial time,  $x_0$, then $x_1=2\, x_0$, $x_2=2\
 x_{t} = 2^t \, x_0
 \end{equation}
 
+This formula can be considered our first mathematical model. We can use it to make a simulation for a particular case. Lets say we start with a single cell. A simulation of our model for the next five generations will be:
+
+\begin{equation}
+	x_{t} =1 ,\, 2 ,\,4 ,\,8 ,\,16,\dots
+\end{equation}
+
 this is so simple that we hardly need any math!
+
+Once we made a simulation, it is often helpful to show a visual representation. This can be done in many different ways, but we will see the two most common here. On the one hand, we can just plot the results as the state of our system, $x$, against time, as shown in figure \ref{fig:tcourse}.
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.46\textwidth]{time_course}
+		\includegraphics[width=0.46\textwidth]{phase_space}
+	\end{center}
+	\caption{Dynamics of a population of microbes. The graph on the left shows the time course,$x$ vs $t$ while the graph on the right shows the one-dimensional phase space with a series of points with the successive values of x as dots. The points are connected by arrows to show the progression. The trajectory followed by a system in phase-space is called an orbit.}
+	\label{fig:tcourse}
+\end{figure}
+
+For more complex systems, we may prefer to show the state of the system as point in space. For instance, our first mathematical model has a signle variable so any  state can be represented as a point obn the real line.
 
 Now we move on to a slightly more complicated case. The radius of a tumor increases at a rate of  15 \% every hour, what is the doubling time of the tumor? The general form of equation \ref{geomgrowth_example} for a growth rate $r$ is:
 
@@ -71,7 +97,11 @@ x_{t} = (1 + r)^{t} \, x_0
 \end{equation}
 
 
-this is called \textbf{geometric growth} with $r=0.15$ for our tumor. Biologists often describe growth using its doubling time, $t_d$,  which is the time needed for the system to duplicate ts size:
+this is called \textbf{geometric growth} with $r=0.15$ for our tumor. 
+
+
+
+Biologists often describe growth using its doubling time, $t_d$,  which is the time needed for the system to duplicate ts size:
 
 \begin{equation}
 2\, x_{0} = (1 + r)^{t_d} \, x_0
@@ -93,7 +123,7 @@ The  individuals in a population are not always identical. Most of the time, bio
 \mathbf{x} =\left( \begin{array}{c} x_1 \\  x_2 \end{array} \right)
 \end{equation}
 
-A vector of dimension $n$ are just collections of $n$ ``normal'' numbers which, by the way are called scalars. So the members of the total population is vector  $\mathbf{x}$ and it is composed of $x_1$ eggs and $x_2$ animals. we write vectors and matrices (see below) in \textbf{boldface}.
+A vector of dimension $n$ is just a collection of $n$ ``normal'' numbers which, by the way, are called scalars. So the members of the total population is vector  $\mathbf{x}$ and it is composed of $x_1$ eggs and $x_2$ animals. We write vectors and matrices (see below) in \textbf{boldface}.
 
 
 When we study the dynamics of this population, we will see why it was so important to keep the two types separate. The number of eggs produced each generation does not depend on the number of eggs present in it. Eggs are laid by the animals, so the more animals there are, the more eggs are produced:
@@ -108,13 +138,13 @@ where $f_1$ is the fecundity of the animals ($x_2$). The production of new anima
 	x_2 = s_{1} \\  x_1 
 \end{equation}
 
-In this simple case, we can just work with the two equations, but as the complexity of the population increases, we have to find a more efficient method to handle our calculations. Lets assume we are studying a population of mice with three different age groups: young  mice up to one year old, $n_1$ can reproduce at very low rates, mice between 1 and 1.5 years old, $n_2$ are adults in their prime and old mice up to two years old $n_3$ have more fragile health, which leads to lower fecundity. we can summarize this information making a drawing, as shown in figure \ref{fig:mice}.
+In this simple case, we can just work with the two equations, but as the complexity of the population increases, we have to find a more efficient method to handle our calculations. Lets assume we are studying a population of mice with three different age groups: young  mice up to one year old, $n_1$, can reproduce at very low rates, mice between 1 and 1.5 years old, $n_2$, are adults in their prime and old mice up to two years old, $n_3$, have more fragile health, which leads to lower fecundity. We can summarize this information making a drawing, as shown in figure \ref{fig:mice}.
 
 \begin{figure}
 	\begin{center}
 		\includegraphics[width=0.5\textwidth]{Mouse_pop_graph}
 	\end{center}
-	\caption{Dynamics of a population of mice. Circles contain the three age groups that are connected by arrows showing how one population affects the growth of another. $f_3$ is the fecundity of old mice, $n_3$, while $s_1$ is the fraction of young mice that survive to adulthood.}
+	\caption{Dynamics of a population of mice. Circles contain the three age groups that are connected by arrows showing how one population affects the growth of another. Symbols on top of each arrow show the coefficient that governs the interaction. For instance, $f_3$ is the fecundity of old mice, $n_3$, while $s_1$ is the fraction of young mice that survive to adulthood.}
 	\label{fig:mice}
 \end{figure}
  
@@ -132,7 +162,7 @@ A matrix is just a square of numbers that connects elements represented in its c
 \end{tabular}
 \end{center}
 
-And now, we will place a number for each arrow in the drawing. The starting point of the arrow will be the column where we place the number and the ending point of the arrow will be the column. Our table will look like this.
+And now, we will place a number for each arrow in the drawing. The starting point of the arrow will be the column where we place the number and the ending point of the arrow will be the row. Our table will look like this.
 
 \begin{center}
 	\begin{tabular}{c|ccc}
@@ -154,14 +184,14 @@ So the fecundity $f_3$ connects $n_3$ (column) to $n_1$ (row) and so on. We do n
 	\end{pmatrix}
 \end{equation}
 
-Now it is very easy to get the equations, since vectors and matrices have their own mathematical operations. we can now write our equation for the population at a certain time as:
+Now it is very easy to get the equations, since vectors and matrices have their own mathematical operations. We can now write our equation for the population at a certain time as:
 
 \begin{equation}
 	\mathbf{n_{t+1}} =\mathbf{L} \, \mathbf{n_t}
 	\label{fig:matequationL}
 \end{equation}
 
-The matrix $\mathbf{L}$ is commonly known as the Leslie matrix to honor Patrick H. Leslie, the ecologist who proposed it.If we now apply the product between vectors and matrices as we learned in high school, we will see that:
+The matrix $\mathbf{L}$ is commonly known as the Leslie matrix to honor Patrick H. Leslie, the ecologist who proposed it. If we now apply the product between vectors and matrices as we learned in high school, we will see that:
 
 \begin{equation}
 	 	\begin{pmatrix}
@@ -185,7 +215,7 @@ and for $k$ generations:
 
 where $\mathbf{L}^k$ mans we multiply the matrix by itself $k$ times.
 
-Equation \ref{fig:matequationL} shows a very useful fact. A matrix is an object that converts one vector into another. Here we use it to convert the population now into the future population, but if we represent anything by a vector -- e.g the direction and intensity of a ray of light -- we can represent changes in ts state by a matrix multiplication --e.g. the direction and intensity of the light after passing through liquid medium. This capacity of abstraction is what makes mathematics so powerful in science and engineering. Solving a problem once in a field like physics means solving hundreds of problems in other fields. In our case of a population of animals, for instance, we may wonder how it is going to change in the future. we may wonder if the structure of the population will remain constant or the distribution of age will keep changing for ever? This kind of questions are also very relevant for economists and social scientists. will the population of developed countries continue to get older? or will the aging stop at some point? The solution to this question is important since all our pensions depend on it. Surprisingly enough, the answer to this question was already found before it was asked, when Leonard Euler studied the rotation of rigid bodies in the 18$^th$ century \dots 
+Equation \ref{fig:matequationL} shows a very useful fact.  By multiplying a vector times a matrix, we \emph{transform} this vector into another. For this reason, we often talk about a matrix as a \textbf{transformation}.  Here we use matrix $\mathbf{L}$ it to transform the current population into the population of the next generation. When we represent anything by a vector -- e.g the direction and intensity of a ray of light -- we can represent changes in ts state by a matrix multiplication --e.g. the direction and intensity of the light after passing through liquid medium. This capacity of abstraction is what makes mathematics so powerful in science and engineering. Solving a problem once in a field like physics means solving hundreds of problems in other fields. In our case of a population of animals, for instance, we may wonder how it is going to change in the future. we may wonder if the structure of the population will remain constant or the distribution of age will keep changing for ever? This kind of questions are also very relevant for economists and social scientists. will the population of developed countries continue to get older? Or will the aging stop at some point? The solution to this question is important since all our pensions depend on it. Surprisingly enough, the answer to this question was already found before it was asked, when Leonard Euler studied the rotation of rigid bodies in the 18$^th$ century \dots 
 
 \subsection{Eigenvalues and eigenvectors}
 
@@ -200,7 +230,7 @@ Back to our mice example, look at the behavior of our population along several g
 	\label{fig:Lpop}
 \end{figure}
 
-The population keeps growing, so the vectors keep changing but, looking at their shape, it looks like it is well preserved from one generation to the next. There are always more young mice than adults and more adults than seniors. Does this mean the population will reach a stable age structure?
+The population keeps growing, so the vectors keep changing, but looking at their shape, it looks like it is well preserved from one generation to the next. There are always more young mice than adults and more adults than seniors. Does this mean the population will reach a stable age structure?
 
 Imagine that the vectors of the population for several consecutive generations are as follows:
 
@@ -252,7 +282,7 @@ The same happens with the second eigenvector $\mathbf{v_2}=\begin{pmatrix}  1\\ 
 	\label{fig:transform}
 \end{figure}
 
-Figure \label{fig:transform} shows what happen if we transform any other vector, like $\mathbf{u_1}=\begin{pmatrix}  1\\ 1 \end{pmatrix}$ it will be stretched along the y-axis to be twice as long and shrunk along the x-axis to be half as long:
+Figure \ref{fig:transform} shows what happen if we transform any other vector, like $\mathbf{u_1}=\begin{pmatrix}  1\\ 1 \end{pmatrix}$ it will be stretched along the y-axis to be twice as long and shrunk along the x-axis to be half as long:
 
 \begin{equation}
 	\begin{pmatrix} 0.5 & 0\\ 0 &  2 \end{pmatrix} \cdot \begin{pmatrix}  1\\ 1 \end{pmatrix} = \begin{pmatrix}  0.5\\ 2 \end{pmatrix}
@@ -262,7 +292,7 @@ Knowing this, we can already predict that multiplying vector $\begin{pmatrix}  2
 \subsection{The eigenvalues of the Leslie matrix}
 
 \subsubsection{Real eigenvalues}
-Leslie matrices tend to have very special eigenvalues. In most cases there is one dominant eigenvalue, larger than one, while every other eigenvalue is less than one. as a result of this, any starting population evolves towards the age structure dictated by the dominant eigenvector after a few generations. Figure \ref{fig:leslie_phase} plots the amount of adult vs senior mice along several generations. We can clearly see how, after only three generations, the numbers move along a straight line, which is the direction of the dominant eigenvector.
+Leslie matrices tend to have very special eigenvalues. In most cases there is one dominant eigenvalue, larger than one, while every other eigenvalue is less than one. As a result of this, any starting population evolves towards the age structure dictated by the dominant eigenvector after a few generations. Figure \ref{fig:leslie_phase} plots the amount of adult vs senior mice along several generations. We can clearly see how, after only three generations, the numbers move along a straight line, which is the direction of the dominant eigenvector.
 
 \begin{figure}
 	\begin{center}
@@ -276,7 +306,7 @@ It is easy to prove that if a given vector $\mathbf{v}$ is an eigenvector of a m
 
 \subsubsection{Complex eigenvalues}
 
-In some cases, a Leslie matrix does not behave as sated before. Lets see this model describing the dynamics of a locust population. Locusts have three stages in their life cycle, just as the example before. The first stage, $n_1$, are the eggs, second stage individuals, $n_2$, are called hoppers since they are not yet able to fly. Finally, when an individual develops proper wings and the ability to fly, it is considered an adult, $n_3$.
+In some cases, a Leslie matrix does not behave as stated before. Lets see the following model describing the dynamics of a locust population. Locusts have three stages in their life cycle, just as the example before. The first stage, $n_1$, are the eggs, second stage individuals, $n_2$, are called hoppers since they are not yet able to fly. Finally, when an individual develops proper wings and the ability to fly, it is considered an adult, $n_3$.
 
 The Leslie matrix for this case is:
 
@@ -288,7 +318,7 @@ L=\begin{pmatrix}
 \end{pmatrix}
 \end{equation}
 
-Inspection of the Leslie matrix already tells us a few things about the biology of locusts. first of all, the zero in the first row and first column tells us that hoppers are not yet sexually mature $f_2=0$ but adult locusts are extremely prolific with an average production of 1,000 eggs per individual. The survival rate of eggs is extremely low, with the survival rte of hopper being more that twice as high but still very low, with only 5\% of hoppers surviving until the adult stage.
+Inspection of the Leslie matrix already tells us a few things about the biology of locusts. first of all, the zero in the first row and first column tells us that hoppers are not yet sexually mature $f_2=0$ but adult locusts are extremely prolific with an average production of 1,000 eggs per individual. The survival rate of eggs is extremely low, with the survival rate of hopper being more that twice as high but still very low, with only 5\% of hoppers surviving until the adult stage.
 
 \begin{figure}
 	\begin{center}
