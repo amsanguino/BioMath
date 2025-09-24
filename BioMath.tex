@@ -4,7 +4,7 @@
 \usepackage{amsmath}
 \usepackage{placeins}
 \usepackage{graphicx}
-\usepackage[a4paper, margin=2cm]{geometry}
+\usepackage[a4paper, margin=2.5cm]{geometry}
 
 %opening
 \title{Summary of Mathematics for the life sciences}
@@ -16,14 +16,14 @@
 \tableofcontents
 \section{Why systems?}
 
-Biology as traditionally been the science without mathematics, a place where the non-mathematically oriented  could develop  scientific careers far from the trials and tribulations of linear algebra, differential calculus and complex analysis. This way of thinking remained dominant in the field until the end of the twentieth century and the sequencing of the human genome.
+Biology has traditionally been the science without mathematics, a place where the non-mathematically oriented  could develop  scientific careers far from the trials and tribulations of linear algebra, differential calculus and complex analysis. This way of thinking remained dominant in the field until the end of the twentieth century and the sequencing of the human genome.
  Then, biologists found themselves drowning in data. Genomic sequences provided a list of all the relevant parts needed to build and operate a cell and, by extension, a full living being. But connecting all those parts and the relevant regulatory signals, also present in the genome, proved to be impossible due to several reasons. First, the sheer number of components, in the tens of thousands, were very difficult to represent using conventional means, such as diagrams, lists or sketches in a blackboard. Second, acting on a component that is part of a network initiates the propagation of multiple signals criss-crossing one another and doubling back onto themselves in ways that are very difficult to follow. Third, when the nature of interaction between all the components is quantitative, the same kind of action (inhibiting a step of a pathway) can lead to very different outcomes depending on the intensity of the stimulus. Finally, the combination of these three effects often results counter-intuitive behaviors.
 
 Fortunately for modern biology, these problems had already been encountered in the domain of engineering. The study of machines formed by many different components into a network of complex interactions started in the years following world war II and continued with great intensity in the following decades. The discipline that resulted from this was called systems theory, and its incredible success fueled an era of technological innovation in fields as diverse as mechanics, electronics and chemical engineering.
 
-At the heart of systems Theory is the definition of a system as an ensemble of components connected in a certain manner and limited by a boundary. signals and materials can cross the boundary into the system -- inputs -- or out of it -- outputs.
+At the heart of systems Theory is the definition of a system as an ensemble of components connected in a certain manner and limited by a boundary. Signals and materials can cross the boundary into the system -- inputs -- or out of it -- outputs.
 
-As a complex system with numerous inter-connected components, social and economic systems are  rich sources of surprising behaviors. lets assume I replace all the light bulbs in my home with power saving leds that consume half as much electricity. With such a measure, I will  lower my immediate electricity consumption and save money. In light of these effects, which are short-term and local, I might be temped to think that I am contributing to an overall reduction in energy consumption in my community. Experience, however, shows the opposite. The development and adoption of machines that are more efficient tends to increase the overall consumption in the long run. My modest action changing light bulbs at home, modifies a very intricate system and signals start rippling through it. A reduction in electricity demand of homes, frees kilowatts that can be sent elsewhere. The utility company can sell the surplus electricity at a lower price for industrial purposes, so it will be used anyway. So beyond the boundary of my neighborhood, there is a bigger system that includes power plants, factories and much more. This bigger system, has compensated my reduction in power consumption with an equal increase somewhere else. Moreover, producing energy has an energy cost so the energy that has gone to industrial purposes can be redirected to oil extraction or the construction of new solar panels. This, together with the invention of more efficient engines and machinery lowers the cost of oil extraction, which, in turn enables more energy production at cheaper prices that incentivate consumers to use more energy. In the long term, I might end up  buying new appliances that consume as much electricity as I saved before, maybe even more! So the long term effects of my action end up contradicting my initial intention. This phenomenom is called the Jevons paradox and, if we are surprised by it is due to our innate tendency to think both local and short term. If I place the boundary of my system along the walls of my home, I am not taking into account the effects of my actions on other actors, like my neighbors or the appliance company. These effects, will eventually double back on me in the long term through things such as lower electricity prices, power discounts and fancy new appliances.
+As a complex system with numerous inter-connected components, social and economic systems are  rich sources of surprising behaviors. Lets assume I replace all the light bulbs in my home with power saving leds that consume half as much electricity. With such a measure, I will  lower my immediate electricity consumption and save money. In light of these effects, which are short-term and local, I might be temped to think that I am contributing to an overall reduction in energy consumption in my community. Experience, however, shows the opposite. The development and adoption of machines that are more efficient tends to increase the overall consumption in the long run. My modest action changing light bulbs at home, modifies a very intricate system and signals start rippling through it. A reduction in electricity demand of homes, frees kilowatts that can be sent elsewhere. The utility company can sell the surplus electricity at a lower price for industrial purposes, so it will be used anyway. So beyond the boundary of my neighborhood, there is a bigger system that includes power plants, factories and much more. This bigger system, has compensated my reduction in power consumption with an equal increase somewhere else. Moreover, producing energy has an energy cost so the energy that has gone to industrial purposes can be redirected to oil extraction or the construction of new solar panels. This, together with the invention of more efficient engines and machinery lowers the cost of oil extraction, which, in turn enables more energy production at cheaper prices that incentivate consumers to use more energy. In the long term, I might end up  buying new appliances that consume as much electricity as I saved before, maybe even more! So the long term effects of my action end up contradicting my initial intention. This phenomenom is called the Jevons paradox and, if we are surprised by it is due to our innate tendency to think both local and short term. If I place the boundary of my system along the walls of my home, I am not taking into account the effects of my actions on other actors, like my neighbors or the appliance company. These effects, will eventually double back on me in the long term through things such as lower electricity prices, power discounts and fancy new appliances.
 
 Just as the Jevons paradox may result in unpredictable consequences due to the complexity of social systems, so can happen with ecological, physiological and biochemical systems. Lets have a look at medical treatments and their side effects. Cortisol is a common treatment used to prevent strong inflammatory or immune responses, and patients undergoing such treatment exhibits a symptom commonly known as ``moon face''. The face of the patient acquires a rounder than usual form due to the accumulation of fat on the cheeks and around the throat. The cause for this effect is, surprisingly, that cortisol boosts metabolism and burns calories. The sudden consumption of energy in the form of carbohydrates triggers a response to store more energy in the form of fat-tissue. What are the factors that favor this side effect? Is everybody equally vulnerable to it? Is there a genetic predisposition? Why the face? Will any metabolic boost result in fat accumulation? In order to answer any of these questions, we need systems theory.
 
@@ -67,7 +67,8 @@ This formula can be considered our first mathematical model. We can use it to ma
 
 this is so simple that we hardly need any math!
 
-Once we made a simulation, it is often helpful to show a visual representation. This can be done in many different ways, but we will see the two most common here. On the one hand, we can just plot the results as the state of our system, $x$, against time, as shown in figure \ref{fig:tcourse}.
+Once we made a simulation, it is often helpful to show a visual representation. This can be done in many different ways, the two most common are shown in figure \ref{fig:tcourse}. 
+
 
 \begin{figure}
 	\begin{center}
@@ -78,11 +79,11 @@ Once we made a simulation, it is often helpful to show a visual representation. 
 	\label{fig:tcourse}
 \end{figure}
 
-For more complex systems, we may prefer to show the state of the system as point in space. For instance, our first mathematical model has a signle variable so any  state can be represented as a point obn the real line.
+ We could just plot the results as the state of our system, $x$, against time, we would call that a time course. For more complex systems, we may prefer to show the state of the system as point in space. For instance, our first mathematical model has a single variable so any  state can be represented as a point on the real line.
 
 \section{Discrete dynamical systems}
 
-the simple model we saw in the previous section is an example of discrete dynamical systems. Now we move on to a slightly more complicated case. The radius of a tumor increases at a rate of  15 \% every hour, what is the doubling time of the tumor? The general form of equation \ref{geomgrowth_example} for a growth rate $r$ is:
+The simple model we saw in the previous section is an example of discrete dynamical systems. Now we move on to a slightly more complicated case. The radius of a tumor increases at a rate of  15 \% every hour, what is the doubling time of the tumor? The general form of equation \ref{geomgrowth_example} for a growth rate $r$ is:
 
 \begin{equation}
 \label{geomgrowth_general}
@@ -101,7 +102,7 @@ this is called \textbf{geometric growth} with $r=0.15$ for our tumor.
 
 
 
-Biologists often describe growth using its doubling time, $t_d$,  which is the time needed for the system to duplicate ts size:
+Biologists often describe growth using its doubling time, $t_d$,  which is the time needed for the system to duplicate its size:
 
 \begin{equation}
 2\, x_{0} = (1 + r)^{t_d} \, x_0
@@ -123,7 +124,7 @@ The  individuals in a population are not always identical. Most of the time, bio
 \mathbf{x} =\left( \begin{array}{c} x_1 \\  x_2 \end{array} \right)
 \end{equation}
 
-A vector of dimension $n$ is just a collection of $n$ ``normal'' numbers which, by the way, are called scalars. So the members of the total population is vector  $\mathbf{x}$ and it is composed of $x_1$ eggs and $x_2$ animals. We write vectors and matrices (see below) in \textbf{boldface}.
+A vector of dimension $n$ is just a collection of $n$ ``ordinary'' numbers which, by the way, are called scalars. So the total population is represented by vector  $\mathbf{x}$, which is composed of $x_1$ eggs and $x_2$ animals. We write vectors and matrices (see below) in \textbf{boldface}.
 
 
 When we study the dynamics of this population, we will see why it was so important to keep the two types separate. The number of eggs produced each generation does not depend on the number of eggs present in it. Eggs are laid by the animals, so the more animals there are, the more eggs are produced:
@@ -138,7 +139,7 @@ where $f_1$ is the fecundity of the animals ($x_2$). The production of new anima
 	x_2 = s_{1} \\  x_1 
 \end{equation}
 
-In this simple case, we can just work with the two equations, but as the complexity of the population increases, we have to find a more efficient method to handle our calculations. Lets assume we are studying a population of mice with three different age groups: young  mice up to one year old, $n_1$, can reproduce at very low rates, mice between 1 and 1.5 years old, $n_2$, are adults in their prime and old mice up to two years old, $n_3$, have more fragile health, which leads to lower fecundity. We can summarize this information making a drawing, as shown in figure \ref{fig:mice}.
+In this simple case, we can just work with the two equations, but as the complexity of the population increases, we have to find a more efficient method to handle our calculations. Lets assume we are studying a population of mice with three different age groups: young  mice up to one year old, $n_1$, can reproduce at very low rates, mice between 1 and 1.5 years old, $n_2$, are adults in their prime and old mice up to two years old, $n_3$, have more fragile health, which leads to lower fecundity. We can summarize this information making a drawing, as shown in figure \ref{fig:mice}. Each age group is represented by a circle, and each process changing the population, by an arrow. The starting point of an arrow shows which group determines the speed of the process while the  destination of the arrow shows which group is affected by it.
 
 \begin{figure}
 	\begin{center}
@@ -215,7 +216,7 @@ and for $k$ generations:
 
 where $\mathbf{L}^k$ mans we multiply the matrix by itself $k$ times.
 
-Equation \ref{fig:matequationL} shows a very useful fact.  By multiplying a vector times a matrix, we \emph{transform} this vector into another. For this reason, we often talk about a matrix as a \textbf{transformation}.  Here we use matrix $\mathbf{L}$ it to transform the current population into the population of the next generation. When we represent anything by a vector -- e.g the direction and intensity of a ray of light -- we can represent changes in ts state by a matrix multiplication --e.g. the direction and intensity of the light after passing through liquid medium. This capacity of abstraction is what makes mathematics so powerful in science and engineering. Solving a problem once in a field like physics means solving hundreds of problems in other fields. In our case of a population of animals, for instance, we may wonder how it is going to change in the future. we may wonder if the structure of the population will remain constant or the distribution of age will keep changing for ever? This kind of questions are also very relevant for economists and social scientists. will the population of developed countries continue to get older? Or will the aging stop at some point? The solution to this question is important since all our pensions depend on it. Surprisingly enough, the answer to this question was already found before it was asked, when Leonard Euler studied the rotation of rigid bodies in the 18$^th$ century \dots 
+Equation \ref{fig:matequationL} shows a very useful fact.  By multiplying a vector times a matrix, we \emph{transform} this vector into another. For this reason, we often talk about a matrix as a \textbf{transformation}.  Here we use matrix $\mathbf{L}$ it to transform the current population into the population of the next generation. When we represent anything by a vector -- e.g the direction and intensity of a ray of light -- we can represent changes in ts state by a matrix multiplication --e.g. the direction and intensity of the light after passing through liquid medium. This capacity of abstraction is what makes mathematics so powerful in science and engineering. Solving a problem once in a field like physics means solving hundreds of problems in other fields. In our case of a population of animals, for instance, we may wonder how it is going to change in the future. We may wonder if the structure of the population will remain constant or the distribution of age will keep changing for ever? This kind of questions are also very relevant for economists and social scientists. Will the population of developed countries continue to get older? Or will the aging stop at some point? The solution to this question is important since all our pensions depend on it. Surprisingly enough, the answer to this question was already found before it was asked, when Leonard Euler studied the rotation of rigid bodies in the 18$^th$ century \dots 
 
 \subsection{Eigenvalues and eigenvectors}
 
@@ -247,7 +248,7 @@ It is easy to see that $n_1 = 2 \cdot n_0$  and $n_2 = 2 \cdot n_1$. In other wo
  \label{eigenvect_in_action}
 \end{equation}
 
-This means our population will keep growing -- in this case, it will double its size every generation -- but the age structure will remain stable with three young mice for every two adults and one senior. In fact, we could have made this prediction just looking at the matrix $\mathbf{L}$. Every matrix has a few vectors such that, when multiplied by it, result in the same vector multiplied by a constant, as shown in equation \ref{eigenvect_in_action}. This property is so important in science and engineering that it has a formal definition we should learn. Given matrix $\mathbf{A}$, we say $\mathbf{v}$ is an eigenvector of  $\mathbf{A}$ if:
+This means our population will keep growing -- in this case, it will double its size every generation -- but the age structure will remain stable with three young mice for every two adults and one senior. In fact, we could have made this prediction just looking at the matrix $\mathbf{L}$. Every matrix has a few vectors such that, when multiplied by it, result in the same vector multiplied by a constant. This property is so important in science and engineering that it has a formal definition we should learn. Given matrix $\mathbf{A}$, we say $\mathbf{v}$ is an eigenvector of  $\mathbf{A}$ if:
  
 \begin{equation}
 	\label{eigendefinition}
