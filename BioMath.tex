@@ -343,7 +343,27 @@ Simulating nine generations with this matrix, as can be seen in figure \ref{fig:
 
 We can also view a projection of the amount of eggs and hoppers as we did with mice in figure \ref{fig:leslie_phase}. The result is a completely different behavior shown in figure \ref{fig:leslie_locust_phase}. It is noteworthy that periodic behaviors -- oscillations -- result in closed orbits in the phase space. 
 
+Complex eigenvalues always result in oscillatory dynamics, but these oscillations are not always sustained. When the oscillations decrease in amplitude, the oscillation is said to be dampened and the system is said to be stable, because it is going towards a certain point where it will stay as time goes to infinity. If the oscillations have increased amplitude, the system will not be able to sustain the oscillation, and it is said to be stable.
 
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=\textwidth]{tot_locusts_evol_dec}
+		\includegraphics[width=\textwidth]{tot_locusts_evol_inc}
+	\end{center}
+	\caption{Evolution of the total number of locusts for different values of adult fecundity. At lower fecundities ($f_3 = 500$) the population exhibits damped oscillations until it eventually reaches extinction $N=0$. For higher fecundities $f_3 = 1,500$, the size of the population increases towards infinity. Obviously, the population will eventually collapse due to lack of resources.}
+	\label{fig:Llocusts_stability}
+\end{figure}
+
+
+\begin{figure}
+	\begin{center}
+		\includegraphics[width=0.45\textwidth]{locusts_phaseIdec}
+		\includegraphics[width=0.45\textwidth]{locusts_phaseIinc}
+	\end{center}
+	\caption{Phase space representation (only 2D) for two different fecundities. The first three generations are displayed in blue and the next three in black to facilitate interpretation. At low fecundities the orbits are almost closed but every turn is smaller until the system reaches zero as $t \mapsto \infty$. At higher fecundity, however, oscillations become wider.}
+	 
+	\label{fig:Llocusts_stability_pp}
+\end{figure}
 
 \FloatBarrier
 
