@@ -25,7 +25,7 @@ At the heart of systems Theory is the definition of a system as an ensemble of c
 
 As a complex system with numerous inter-connected components, social and economic systems are  rich sources of surprising behaviors. Lets assume I replace all the light bulbs in my home with power saving leds that consume half as much electricity. With such a measure, I will  lower my immediate electricity consumption and save money. In light of these effects, which are short-term and local, I might be temped to think that I am contributing to an overall reduction in energy consumption in my community. Experience, however, shows the opposite. The development and adoption of machines that are more efficient tends to increase the overall consumption in the long run. My modest action changing light bulbs at home, modifies a very intricate system and signals start rippling through it. A reduction in electricity demand of homes, frees kilowatts that can be sent elsewhere. The utility company can sell the surplus electricity at a lower price for industrial purposes, so it will be used anyway. So beyond the boundary of my neighborhood, there is a bigger system that includes power plants, factories and much more. This bigger system, has compensated my reduction in power consumption with an equal increase somewhere else. Moreover, producing energy has an energy cost so the energy that has gone to industrial purposes can be redirected to oil extraction or the construction of new solar panels. This, together with the invention of more efficient engines and machinery lowers the cost of oil extraction, which, in turn enables more energy production at cheaper prices that incentivate consumers to use more energy. In the long term, I might end up  buying new appliances that consume as much electricity as I saved before, maybe even more! So the long term effects of my action end up contradicting my initial intention. This phenomenom is called the Jevons paradox and, if we are surprised by it is due to our innate tendency to think both local and short term. If I place the boundary of my system along the walls of my home, I am not taking into account the effects of my actions on other actors, like my neighbors or the appliance company. These effects, will eventually double back on me in the long term through things such as lower electricity prices, power discounts and fancy new appliances.
 
-Just as the Jevons paradox may result in unpredictable consequences due to the complexity of social systems, so can happen with ecological, physiological and biochemical systems. Lets have a look at medical treatments and their side effects. Cortisol is a common treatment used to prevent strong inflammatory or immune responses, and patients undergoing such treatment exhibits a symptom commonly known as ``moon face''. The face of the patient acquires a rounder than usual form due to the accumulation of fat on the cheeks and around the throat. The cause for this effect is, surprisingly, that cortisol boosts metabolism and burns calories. The sudden consumption of energy in the form of carbohydrates triggers a response to store more energy in the form of fat-tissue. What are the factors that favor this side effect? Is everybody equally vulnerable to it? Is there a genetic predisposition? Why the face? Will any metabolic boost result in fat accumulation? In order to answer any of these questions, we need systems theory.
+Just as the Jevons paradox may result in unpredictable consequences due to the complexity of social systems, so can happen with ecological, physiological and biochemical systems. Lets have a look at medical treatments and their side effects. Cortisol is a common treatment used to prevent strong inflammatory or immune responses, and patients undergoing such treatment exhibit a symptom commonly known as ``moon face''. The face of the patient acquires a rounder than usual form due to the accumulation of fat on the cheeks and around the throat. The cause for this effect is, surprisingly, that cortisol boosts metabolism and burns calories. The sudden consumption of energy in the form of carbohydrates triggers a response to store more energy in the form of fat-tissue. What are the factors that favor this side effect? Is everybody equally vulnerable to it? Is there a genetic predisposition? Why the face? Will any metabolic boost result in fat accumulation? In order to answer any of these questions, we need systems theory.
 
 
 \subsection{Systems biology}
@@ -139,7 +139,7 @@ where $f_1$ is the fecundity of the animals ($x_2$). The production of new anima
 	x_2 = s_{1} \\  x_1 
 \end{equation}
 
-In this simple case, we can just work with the two equations, but as the complexity of the population increases, we have to find a more efficient method to handle our calculations. Lets assume we are studying a population of mice with three different age groups: young  mice up to one year old, $n_1$, can reproduce at very low rates, mice between 1 and 1.5 years old, $n_2$, are adults in their prime and old mice up to two years old, $n_3$, have more fragile health, which leads to lower fecundity. We can summarize this information making a drawing, as shown in figure \ref{fig:mice}. Each age group is represented by a circle, and each process changing the population, by an arrow. The starting point of an arrow shows which group determines the speed of the process while the  destination of the arrow shows which group is affected by it.
+In this simple case, we can just work with the two equations, but as the complexity of the population increases, we have to find a more efficient method to handle the complex interactions between all the groups. Lets assume we are studying a population of mice with three different age groups: young  mice up to one year old, $n_1$, can reproduce at very low rates, mice between 1 and 1.5 years old, $n_2$, are adults in their prime and old mice up to two years old, $n_3$, have more fragile health, which leads to lower fecundity. We can summarize this information making a drawing, as shown in figure \ref{fig:mice}. Each age group is represented by a circle, and each process changing the population, by an arrow. The starting point of an arrow shows which group determines the speed of the process while the  destination of the arrow shows which group is affected by it.
 
 \begin{figure}
 	\begin{center}
@@ -185,10 +185,10 @@ So the fecundity $f_3$ connects $n_3$ (column) to $n_1$ (row) and so on. We do n
 	\end{pmatrix}
 \end{equation}
 
-Now it is very easy to get the equations, since vectors and matrices have their own mathematical operations. We can now write our equation for the population at a certain time as:
+Now it is very easy to get the equations, since vectors and matrices have their own mathematical operations. The transition from one vector to another ( $n_t \mapsto n_{t+1}$ ) Is obtained by multiplying the initial vector:
 
 \begin{equation}
-	\mathbf{n_{t+1}} =\mathbf{L} \, \mathbf{n_t}
+	\mathbf{n_{t+1}} =\mathbf{L} \cdot \mathbf{n_t}
 	\label{fig:matequationL}
 \end{equation}
 
@@ -216,7 +216,7 @@ and for $k$ generations:
 
 where $\mathbf{L}^k$ mans we multiply the matrix by itself $k$ times.
 
-Equation \ref{fig:matequationL} shows a very useful fact.  By multiplying a vector times a matrix, we \emph{transform} this vector into another. For this reason, we often talk about a matrix as a \textbf{transformation}.  Here we use matrix $\mathbf{L}$ it to transform the current population into the population of the next generation. When we represent anything by a vector -- e.g the direction and intensity of a ray of light -- we can represent changes in ts state by a matrix multiplication --e.g. the direction and intensity of the light after passing through liquid medium. This capacity of abstraction is what makes mathematics so powerful in science and engineering. Solving a problem once in a field like physics means solving hundreds of problems in other fields. In our case of a population of animals, for instance, we may wonder how it is going to change in the future. We may wonder if the structure of the population will remain constant or the distribution of age will keep changing for ever? This kind of questions are also very relevant for economists and social scientists. Will the population of developed countries continue to get older? Or will the aging stop at some point? The solution to this question is important since all our pensions depend on it. Surprisingly enough, the answer to this question was already found before it was asked, when Leonard Euler studied the rotation of rigid bodies in the 18$^th$ century \dots 
+Equation \ref{fig:matequationL} shows a very useful fact.  By multiplying a vector times a matrix, we \emph{transform} this vector into another. For this reason, we often talk about a matrix as a \textbf{transformation}.  Here we use matrix $\mathbf{L}$ it to transform the current population into the population of the next generation. When we represent anything by a vector -- e.g the direction and intensity of a ray of light -- we can represent changes in ts state by a matrix multiplication --e.g. the direction and intensity of the light after passing through liquid medium. This capacity of abstraction is what makes mathematics so powerful in science and engineering. Solving a problem once in a field like physics means solving hundreds of problems in other fields. In our case of a population of animals, for instance, we may wonder how it is going to change in the future.  Is the age distribution of the population going to stabilize in the long run or will it keep changing forever? This kind of questions are also very relevant for economists and social scientists. Will the population of developed countries continue to get older? Or will the aging stop at some point? The solution to this question is important since all our pensions depend on it. Surprisingly enough, the answer to this question was already found in the 18$^th$ century by Leonard Euler, while he was studying the rotation of rigid bodies.
 
 \subsection{Eigenvalues and eigenvectors}
 
@@ -248,7 +248,7 @@ It is easy to see that $n_1 = 2 \cdot n_0$  and $n_2 = 2 \cdot n_1$. In other wo
  \label{eigenvect_in_action}
 \end{equation}
 
-This means our population will keep growing -- in this case, it will double its size every generation -- but the age structure will remain stable with three young mice for every two adults and one senior. In fact, we could have made this prediction just looking at the matrix $\mathbf{L}$. Every matrix has a few vectors such that, when multiplied by it, result in the same vector multiplied by a constant. This property is so important in science and engineering that it has a formal definition we should learn. Given matrix $\mathbf{A}$, we say $\mathbf{v}$ is an eigenvector of  $\mathbf{A}$ if:
+This means our population will keep growing -- in this case, it will double its size every generation -- but the age structure will remain stable with three young mice for every two adults and one senior. In fact, we could have made this prediction just looking at the matrix $\mathbf{L}$. Every matrix has a few vectors that keep their direction when transformed by it. They may become longer or shorter, because they are multiplied by a certain scalar. This property is so important in science and engineering that it has a formal definition we should learn. Given matrix $\mathbf{A}$, we say $\mathbf{v}$ is an eigenvector of  $\mathbf{A}$ if:
  
 \begin{equation}
 	\label{eigendefinition}
@@ -332,8 +332,6 @@ Inspection of the Leslie matrix already tells us a few things about the biology 
 
 Simulating nine generations with this matrix, as can be seen in figure \ref{fig:Llocusts} shows a very different behavior. This population does not grow as before, but keeps oscillating instead. Moreover, the age structure does not remain fixed, it keeps switching between three different shapes.
 
-We can also view a projection of the amount of eggs and hoppers as we did with mice in figure \ref{fig:leslie_phase}. The result is a completely different behavior shown in figure \ref{fig:leslie_locust_phase}.
-
 
 \begin{figure}
 	\begin{center}
@@ -342,6 +340,9 @@ We can also view a projection of the amount of eggs and hoppers as we did with m
 	\caption{Progression of the population of eggs $n_1$ vs hoppers $n_2$. Each point represents the values of these two age groups in one generation and arrows have been added to show the direction in which changes are happening. Only three generations are shown since the third generation ends up exactly in the same position as the first, therefore repeating this cycle over and over }
 	\label{fig:leslie_locust_phase}
 \end{figure}
+
+We can also view a projection of the amount of eggs and hoppers as we did with mice in figure \ref{fig:leslie_phase}. The result is a completely different behavior shown in figure \ref{fig:leslie_locust_phase}. It is noteworthy that periodic behaviors -- oscillations -- result in closed orbits in the phase space. 
+
 
 
 \FloatBarrier
