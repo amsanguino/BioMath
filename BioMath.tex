@@ -37,7 +37,7 @@ But biologists are lucky for there is another group of specialists that has alre
 So if we want to dive into the field of systems biology, we will have to start assimilating some important concepts: 
 \begin{itemize}
 	\item A \textbf{system} is a set of parts that work together and can be defined within a \textbf{boundary}. If a system can exchange material, energy or information with the outside through the boundary, it is said to be open. If the boundary does not let matter pass through it, the system is said to be closed. When the boundary is so tight that neither matter nor energy may pass through it, we say the system is isolated.
-	\item In order to predict the behavior of a system, we often need mathematics. In order to do so, we define a \textbf{mathematical model} as any mathematical representation of our system. A model does not need to be perfect. Some models only capture part of the system behavior and some model give only  approximate results.
+	\item In order to predict the behavior of a system, we often need mathematics. In order to do so, we define a \textbf{mathematical model} as any mathematical representation of our system. A model does not need to be perfect. Some models only capture part of the system behavior and some models give only  approximate results.
 	% Add variables, maybe inputs and outputs too ...
 	\item When we use a model to make predictions about the behavior of a system, we are making a \textbf{simulation}. Simulations can be done with paper and pencil for very simple models, but they often must be done using a computer.
 \end{itemize}
@@ -75,7 +75,7 @@ Once we made a simulation, it is often helpful to show a visual representation. 
 		\includegraphics[width=0.46\textwidth]{time_course}
 		\includegraphics[width=0.46\textwidth]{phase_space}
 	\end{center}
-	\caption{Dynamics of a population of microbes. The graph on the left shows the time course,$x$ vs $t$ while the graph on the right shows the one-dimensional phase space with a series of points with the successive values of x as dots. The points are connected by arrows to show the progression. The trajectory followed by a system in phase-space is called an orbit.}
+	\caption{Dynamics of a population of microbes. The graph on the left shows the time course, $x$ vs $t$ while the graph on the right shows the one-dimensional phase space (a line) where a series of points show the successive values of x as dots. The points are connected by arrows to show the progression. The trajectory followed by a system in phase-space is called an orbit.}
 	\label{fig:tcourse}
 \end{figure}
 
@@ -149,9 +149,9 @@ In this simple case, we can just work with the two equations, but as the complex
 	\label{fig:mice}
 \end{figure}
  
-The figures show clearly that the increase in young mice, $n_1$, for each generation will depend on the fecundities of all three age groups, while the growth of old mice $n_3$, only depends on the survival of adult mice $n_2$. but even as the arrows clearly show which population affects which through the arrows, how do we write our equations? Fortunately, mathematics has a simple tool to transform drawings into numbers: matrices.
+The figures show clearly that the increase in young mice, $n_1$, for each generation will depend on the fecundities of all three age groups, while the growth of old mice $n_3$, only depends on the survival of adult mice $n_2$. The arrows clearly show which population affects which but, how do we write our equations? Fortunately, mathematics has a simple tool to transform drawings into numbers: matrices.
 
-A matrix is just a square of numbers that connects elements represented in its columns to elements represented in its rows. Since our drawing connects the three elements $n_1$, $n_2$,$n_2$ to one another, we will have a row and a column for each. Lets start making such a square and fill it with zeroes:
+A matrix is just a square of numbers that connects elements represented in its columns to elements represented in its rows. Since our drawing connects the three elements $n_1$, $n_2$, $n_2$ to one another, we will have a row and a column for each. Lets start making such a square and fill it with zeroes:
 
 \begin{center}
 \begin{tabular}{c|ccc}
@@ -216,7 +216,8 @@ and for $k$ generations:
 
 where $\mathbf{L}^k$ mans we multiply the matrix by itself $k$ times.
 
-Equation \ref{fig:matequationL} shows a very useful fact.  By multiplying a vector times a matrix, we \emph{transform} this vector into another. For this reason, we often talk about a matrix as a \textbf{transformation}.  Here we use matrix $\mathbf{L}$ it to transform the current population into the population of the next generation. When we represent anything by a vector -- e.g the direction and intensity of a ray of light -- we can represent changes in ts state by a matrix multiplication --e.g. the direction and intensity of the light after passing through liquid medium. This capacity of abstraction is what makes mathematics so powerful in science and engineering. Solving a problem once in a field like physics means solving hundreds of problems in other fields. In our case of a population of animals, for instance, we may wonder how it is going to change in the future.  Is the age distribution of the population going to stabilize in the long run or will it keep changing forever? This kind of questions are also very relevant for economists and social scientists. Will the population of developed countries continue to get older? Or will the aging stop at some point? The solution to this question is important since all our pensions depend on it. Surprisingly enough, the answer to this question was already found in the 18$^th$ century by Leonard Euler, while he was studying the rotation of rigid bodies.
+Equation \ref{fig:matequationL} shows a very useful fact.  By multiplying a vector times a matrix, we \emph{transform} this vector into another. For this reason, we often talk about a matrix as a \textbf{transformation}.  Here we use matrix $\mathbf{L}$ it to transform the current population into the population of the next generation. When we represent anything by a vector -- e.g the direction and intensity of a ray of light -- we can represent changes in ts state by a matrix multiplication --e.g. the direction and intensity of the light after passing through liquid medium. This capacity of abstraction is what makes mathematics so powerful in science and engineering. Solving a problem once in a field like physics means solving hundreds of problems in other fields. In our case of a population of animals, for instance, we may wonder how it is going to change in the future.  Is the age distribution of the population going to stabilize in the long run or will it keep changing forever? This kind of questions are also very relevant for economists and social scientists. Will the population of developed countries continue to get older? Or will the aging stop at some point? The solution to this question is important since all our pensions depend on it. Surprisingly enough, the answer was already found in the 18$^th$ century by Leonard Euler, while he was wor
+king on a completely different problem: the rotation of rigid bodies.
 
 \subsection{Eigenvalues and eigenvectors}
 
@@ -319,7 +320,7 @@ L=\begin{pmatrix}
 \end{pmatrix}
 \end{equation}
 
-Inspection of the Leslie matrix already tells us a few things about the biology of locusts. first of all, the zero in the first row and first column tells us that hoppers are not yet sexually mature $f_2=0$ but adult locusts are extremely prolific with an average production of 1,000 eggs per individual. The survival rate of eggs is extremely low, with the survival rate of hopper being more that twice as high but still very low, with only 5\% of hoppers surviving until the adult stage.
+Inspection of the Leslie matrix already tells us a few things about the biology of locusts. First of all, the zero in the first row and first column tells us that hoppers are not yet sexually mature $f_2=0$ but adult locusts are extremely prolific with an average production of 1,000 eggs per individual. The survival rate of eggs is extremely low, with the survival rate of hopper being more that twice as high but still very low, with only 5\% of hoppers surviving until the adult stage.
 
 \begin{figure}
 	\begin{center}
