@@ -1,40 +1,184 @@
  % !TeX spellcheck = en_US
-\documentclass[12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Block from the:
+% Tufte-Style Book (Documentation Template)
+% LaTeX Template
+% Version 1.0 (5/1/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% The Tufte-LaTeX Developers (tufte-latex.googlecode.com)
+%
+% License:
+% Apache License (Version 2.0)
+%
+% IMPORTANT NOTE:
+% In addition to running BibTeX to compile the reference list from the .bib
+% file, you will need to run MakeIndex to compile the index at the end of the
+% document.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{tufte-book} % Use the tufte-book class which in turn uses the tufte-common class
+
+\hypersetup{colorlinks} % Comment this line if you don't wish to have colored links
+
+\usepackage{microtype} % Improves character and word spacing
+
+\usepackage{lipsum} % Inserts dummy text
+
+\usepackage{booktabs} % Better horizontal rules in tables
+
+\usepackage{graphicx} % Needed to insert images into the document
+\graphicspath{{figures/}} % Sets the default location of pictures
+\setkeys{Gin}{width=\linewidth,totalheight=\textheight,keepaspectratio} % Improves figure scaling
+
+\usepackage{fancyvrb} % Allows customization of verbatim environments
+\fvset{fontsize=\normalsize} % The font size of all verbatim text can be changed here
+
+\newcommand{\hangp}[1]{\makebox[0pt][r]{(}#1\makebox[0pt][l]{)}} % New command to create parentheses around text in tables which take up no horizontal space - this improves column spacing
+\newcommand{\hangstar}{\makebox[0pt][l]{*}} % New command to create asterisks in tables which take up no horizontal space - this improves column spacing
+
+\usepackage{xspace} % Used for printing a trailing space better than using a tilde (~) using the \xspace command
+
+\newcommand{\monthyear}{\ifcase\month\or January\or February\or March\or April\or May\or June\or July\or August\or September\or October\or November\or December\fi\space\number\year} % A command to print the current month and year
+
+\newcommand{\openepigraph}[2]{ % This block sets up a command for printing an epigraph with 2 arguments - the quote and the author
+	\begin{fullwidth}
+		\sffamily\large
+		\begin{doublespace}
+			\noindent\allcaps{#1}\\ % The quote
+			\noindent\allcaps{#2} % The author
+		\end{doublespace}
+	\end{fullwidth}
+}
+
+\newcommand{\blankpage}{\newpage\hbox{}\thispagestyle{empty}\newpage} % Command to insert a blank page
+
+\usepackage{units} % Used for printing standard units
+
+\newcommand{\hlred}[1]{\textcolor{Maroon}{#1}} % Print text in maroon
+\newcommand{\hangleft}[1]{\makebox[0pt][r]{#1}} % Used for printing commands in the index, moves the slash left so the command name aligns with the rest of the text in the index 
+\newcommand{\hairsp}{\hspace{1pt}} % Command to print a very short space
+\newcommand{\ie}{\textit{i.\hairsp{}e.}\xspace} % Command to print i.e.
+\newcommand{\eg}{\textit{e.\hairsp{}g.}\xspace} % Command to print e.g.
+\newcommand{\na}{\quad--} % Used in tables for N/A cells
+\newcommand{\measure}[3]{#1/#2$\times$\unit[#3]{pc}} % Typesets the font size, leading, and measure in the form of: 10/12x26 pc.
+\newcommand{\tuftebs}{\symbol{'134}} % Command to print a backslash in tt type in OT1/T1
+
+\providecommand{\XeLaTeX}{X\lower.5ex\hbox{\kern-0.15em\reflectbox{E}}\kern-0.1em\LaTeX}
+\newcommand{\tXeLaTeX}{\XeLaTeX\index{XeLaTeX@\protect\XeLaTeX}} % Command to print the XeLaTeX logo while simultaneously adding the position to the index
+
+\newcommand{\doccmdnoindex}[2][]{\texttt{\tuftebs#2}} % Command to print a command in texttt with a backslash of tt type without inserting the command into the index
+
+\newcommand{\doccmddef}[2][]{\hlred{\texttt{\tuftebs#2}}\label{cmd:#2}\ifthenelse{\isempty{#1}} % Command to define a command in red and add it to the index
+	{ % If no package is specified, add the command to the index
+		\index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2}}% Command name
+	}
+	{ % If a package is also specified as a second argument, add the command and package to the index
+		\index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2} (\texttt{#1} package)}% Command name
+		\index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}% Package name
+}}
+
+\newcommand{\doccmd}[2][]{% Command to define a command and add it to the index
+	\texttt{\tuftebs#2}%
+	\ifthenelse{\isempty{#1}}% If no package is specified, add the command to the index
+	{%
+		\index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2}}% Command name
+	}
+	{%
+		\index{#2 command@\protect\hangleft{\texttt{\tuftebs}}\texttt{#2} (\texttt{#1} package)}% Command name
+		\index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}% Package name
+}}
+
+% A bunch of new commands to print commands, arguments, environments, classes, etc within the text using the correct formatting
+\newcommand{\docopt}[1]{\ensuremath{\langle}\textrm{\textit{#1}}\ensuremath{\rangle}}
+\newcommand{\docarg}[1]{\textrm{\textit{#1}}}
+\newenvironment{docspec}{\begin{quotation}\ttfamily\parskip0pt\parindent0pt\ignorespaces}{\end{quotation}}
+\newcommand{\docenv}[1]{\texttt{#1}\index{#1 environment@\texttt{#1} environment}\index{environments!#1@\texttt{#1}}}
+\newcommand{\docenvdef}[1]{\hlred{\texttt{#1}}\label{env:#1}\index{#1 environment@\texttt{#1} environment}\index{environments!#1@\texttt{#1}}}
+\newcommand{\docpkg}[1]{\texttt{#1}\index{#1 package@\texttt{#1} package}\index{packages!#1@\texttt{#1}}}
+\newcommand{\doccls}[1]{\texttt{#1}}
+\newcommand{\docclsopt}[1]{\texttt{#1}\index{#1 class option@\texttt{#1} class option}\index{class options!#1@\texttt{#1}}}
+\newcommand{\docclsoptdef}[1]{\hlred{\texttt{#1}}\label{clsopt:#1}\index{#1 class option@\texttt{#1} class option}\index{class options!#1@\texttt{#1}}}
+\newcommand{\docmsg}[2]{\bigskip\begin{fullwidth}\noindent\ttfamily#1\end{fullwidth}\medskip\par\noindent#2}
+\newcommand{\docfilehook}[2]{\texttt{#1}\index{file hooks!#2}\index{#1@\texttt{#1}}}
+\newcommand{\doccounter}[1]{\texttt{#1}\index{#1 counter@\texttt{#1} counter}}
+
+\usepackage{makeidx} % Used to generate the index
+\makeindex % Generate the index which is printed at the end of the document
+
+% This block contains a number of shortcuts used throughout the book
+\newcommand{\vdqi}{\textit{VDQI}\xspace}
+\newcommand{\ei}{\textit{EI}\xspace}
+\newcommand{\ve}{\textit{VE}\xspace}
+\newcommand{\be}{\textit{BE}\xspace}
+\newcommand{\VDQI}{\textit{The Visual Display of Quantitative Information}\xspace}
+\newcommand{\EI}{\textit{Envisioning Information}\xspace}
+\newcommand{\VE}{\textit{Visual Explanations}\xspace}
+\newcommand{\BE}{\textit{Beautiful Evidence}\xspace}
+\newcommand{\TL}{Tufte-\LaTeX\xspace}
+
+%----------------------------------------------------------------------------------------
+%	BOOK META-INFORMATION
+%----------------------------------------------------------------------------------------
+
+%\title{A Tufte-Style Book\thanks{Thanks to Edward R.~Tufte for his inspiration.}} % Title of the book
+
+%\author[The Tufte-LaTeX Developers]{The Tufte-LaTeX\ Developers} % Author
+
+%\publisher{Publisher of This Book} % Publisher
+%\documentclass[12pt]{article}
 \usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage{placeins}
-\usepackage{graphicx}
-\usepackage[a4paper, margin=2.5cm]{geometry}
+%\usepackage{graphicx}
+%\usepackage[a4paper, margin=2.5cm]{geometry}
 
 %opening
-\title{Summary of Mathematics for the life sciences}
+\title{Systems Biology,\\ an introduction}
 \author{Alberto Marin Sanguino}
+%\publisher{Publisher of This Book} % Publisher
 
 \begin{document}
-
+\setcounter{tocdepth}{2}
+\frontmatter
 \maketitle
 \tableofcontents
+
+\chapter{Introduction}
 \section{Why systems?}
 
-Biology has traditionally been the science without mathematics, a place where the non-mathematically oriented  could develop  scientific careers far from the trials and tribulations of linear algebra, differential calculus and complex analysis. This way of thinking remained dominant in the field until the end of the twentieth century and the sequencing of the human genome.
- Then, biologists found themselves drowning in data. Genomic sequences provided a list of all the relevant parts needed to build and operate a cell and, by extension, a full living being. But connecting all those parts and the relevant regulatory signals, also present in the genome, proved to be impossible due to several reasons. First, the sheer number of components, in the tens of thousands, were very difficult to represent using conventional means, such as diagrams, lists or sketches in a blackboard. Second, acting on a component that is part of a network initiates the propagation of multiple signals criss-crossing one another and doubling back onto themselves in ways that are very difficult to follow. Third, when the nature of interaction between all the components is quantitative, the same kind of action (inhibiting a step of a pathway) can lead to very different outcomes depending on the intensity of the stimulus. Finally, the combination of these three effects often results counter-intuitive behaviors.
+Biology has traditionally been the science without mathematics, a place where the non-mathematically oriented  could develop  scientific careers far from the trials and tribulations of linear algebra, differential calculus and complex analysis. This way of thinking remained dominant in the field until the end of the twentieth century and the sequencing of the human genome, when biologists found themselves drowning in data. Genomic sequences provided a list of all the relevant parts needed to build and operate a cell and, by extension, a full living being. But connecting all those parts and the relevant regulatory signals, also present in the genome, proved to be impossible.\begin{itemize}
+	\item The sheer number of components, in the tens of thousands, were very difficult to represent using conventional means, such as diagrams, lists or sketches in a blackboard.
+	\item Acting on a component that is part of a network initiates the propagation of multiple signals criss-crossing one another and doubling back onto themselves in ways that are very difficult to follow.
+	\item Since the interaction between all the components is quantitative, the same kind of action (inhibiting a step of a pathway) can lead to very different outcomes depending on the intensity of the stimulus.
+\end{itemize}    
+
+The combination of these three effects often results counter-intuitive behaviors.
 
 Fortunately for modern biology, these problems had already been encountered in the domain of engineering. The study of machines formed by many different components into a network of complex interactions started in the years following world war II and continued with great intensity in the following decades. The discipline that resulted from this was called systems theory, and its incredible success fueled an era of technological innovation in fields as diverse as mechanics, electronics and chemical engineering.
 
 At the heart of systems Theory is the definition of a system as an ensemble of components connected in a certain manner and limited by a boundary. Signals and materials can cross the boundary into the system -- inputs -- or out of it -- outputs.
 
-As a complex system with numerous inter-connected components, social and economic systems are  rich sources of surprising behaviors. Lets assume I replace all the light bulbs in my home with power saving leds that consume half as much electricity. With such a measure, I will  lower my immediate electricity consumption and save money. In light of these effects, which are short-term and local, I might be temped to think that I am contributing to an overall reduction in energy consumption in my community. Experience, however, shows the opposite. The development and adoption of machines that are more efficient tends to increase the overall consumption in the long run. My modest action changing light bulbs at home, modifies a very intricate system and signals start rippling through it. A reduction in electricity demand of homes, frees kilowatts that can be sent elsewhere. The utility company can sell the surplus electricity at a lower price for industrial purposes, so it will be used anyway. So beyond the boundary of my neighborhood, there is a bigger system that includes power plants, factories and much more. This bigger system, has compensated my reduction in power consumption with an equal increase somewhere else. Moreover, producing energy has an energy cost so the energy that has gone to industrial purposes can be redirected to oil extraction or the construction of new solar panels. This, together with the invention of more efficient engines and machinery lowers the cost of oil extraction, which, in turn enables more energy production at cheaper prices that incentivate consumers to use more energy. In the long term, I might end up  buying new appliances that consume as much electricity as I saved before, maybe even more! So the long term effects of my action end up contradicting my initial intention. This phenomenom is called the Jevons paradox and, if we are surprised by it is due to our innate tendency to think both local and short term. If I place the boundary of my system along the walls of my home, I am not taking into account the effects of my actions on other actors, like my neighbors or the appliance company. These effects, will eventually double back on me in the long term through things such as lower electricity prices, power discounts and fancy new appliances.
+Social and economic systems are  rich sources of surprising behaviors. Lets assume I replace all the light bulbs in my home with power saving leds that consume half as much electricity. With such a measure, I will  lower my immediate electricity consumption and save money. In light of these effects, which are short-term and local, I might be temped to think that I am contributing to an overall reduction in energy consumption in my community. Experience, however, shows the opposite. The development and adoption of machines that are more efficient tends to increase the overall consumption in the long run. My modest action changing light bulbs at home, modifies a very intricate system and signals start rippling through it. A reduction in electricity demand of homes, frees kilowatts that can be sent elsewhere. The utility company can sell this surplus electricity at a lower price for industrial purposes. The energy will be used anyway because there is a bigger system beyond the boundaries of my neighborhood -- power plants, factories and much more. This bigger system, has compensated my reduction in power consumption with an equal increase somewhere else. Moreover, producing energy has an energy cost so the energy that has gone to industrial purposes can be redirected to oil extraction or the construction of new solar panels. This, together with the invention of more efficient engines and machinery lowers the cost of oil extraction, which, in turn enables more energy production at cheaper prices that incentivate consumers to use more energy. In the long term, I might end up  buying new appliances that consume as much electricity as I saved before, maybe even more! So the long term effects of my action end up contradicting my initial intention. This phenomenom is called the Jevons paradox and, if we are surprised by it is due to our innate tendency to think both local and short term. If I place the boundary of my system along the walls of my home, I am not taking into account the effects of my actions on other actors, like my neighbors or the appliance company. These effects, will eventually double back on me in the long term through things such as lower electricity prices, power discounts and fancy new appliances.
 
-Just as the Jevons paradox may result in unpredictable consequences due to the complexity of social systems, so can happen with ecological, physiological and biochemical systems. Lets have a look at medical treatments and their side effects. Cortisol is a common treatment used to prevent strong inflammatory or immune responses, and patients undergoing such treatment exhibit a symptom commonly known as ``moon face''. The face of the patient acquires a rounder than usual form due to the accumulation of fat on the cheeks and around the throat. The cause for this effect is, surprisingly, that cortisol boosts metabolism and burns calories. The sudden consumption of energy in the form of carbohydrates triggers a response to store more energy in the form of fat-tissue. What are the factors that favor this side effect? Is everybody equally vulnerable to it? Is there a genetic predisposition? Why the face? Will any metabolic boost result in fat accumulation? In order to answer any of these questions, we need systems theory.
+Just as social systems show surprising behaviors like the Jevons paradox, so too happens with ecological, physiological and biochemical systems. Medical treatments and their side effects are a good example of paradoxical  unintended consequences. Cortisol is a common treatment used to prevent strong inflammatory or immune responses, and patients undergoing such treatment exhibit a symptom commonly known as ``moon face''. The face of the patient acquires a rounder than usual form due to the accumulation of fat on the cheeks and around the throat. The cause for this effect is, surprisingly, that cortisol boosts metabolism and burns calories. The sudden consumption of energy in the form of carbohydrates triggers a response to store more energy in the form of fat-tissue. What are the factors that favor this side effect? Is everybody equally vulnerable to it? Will any metabolic boost result in fat accumulation? Maybe a similar drug that burns less calories will not trigger fat accumulation, or maybe a drug that burns more, will also burn the fat \dots  and why the face?  In order to answer any of these questions, we have to see how all these interconnected mechanisms act on one another forming a network and how those actions propagate through it. In other words, we need systems theory.
 
 
-\subsection{Systems biology}
+\section{Systems biology}
 
 There is no question that complicated networks of interacting components have to be carefully studied in order to understand how they work. Any biologist has spent a significant amount of time studying such intricate networks and memorizing carefully drawn diagrams of metabolic fluxes, regulatory interactions, gene expression, hormone effects, immunologic responses or food-webs. Even though this memorization effort is clearly necessary, we have just seen why it is not sufficient. So as long as we limit our approach to elucidate, draw and memorize these complex networks, we are just deluding ourselves into  believing we know something that we do not.
 
-But biologists are lucky for there is another group of specialists that has already faced similar difficulties and has been reasonably successful dealing with them. Engineers have developed precise tools for drawing diagrams, making calculations on how signal propagate and making quantitative predictions based on them. Many of these tools have already been translated to biological systems and this has resulted in the creation of new fields such as bioinformatics, computational neuro-science or systems biology. The emergence of these new fields has resulted in a much better understanding of complex biological problems such as biochemical and genetic regulation, cognitive processes and mental illness, but it has also resulted in productive exchanges for other sciences such as artificial neural networks, which are at the center of recent developments in artificial intelligence.
+Instead of going into full denial, biologists can take advantage of the tools developed in other fields. Engineers have developed precise tools for drawing diagrams, making calculations and following signal propagation through complex networks. Many such tools have already been translated to biological systems, creating new fields such as bioinformatics, computational neuro-science or systems biology. The emergence of these new fields has resulted in a much better understanding of complex biological problems such as biochemical and genetic regulation, cognitive processes and mental illness, but it has also resulted in productive exchanges for other sciences such as artificial neural networks, which are at the center of recent developments in artificial intelligence.
 
-So if we want to dive into the field of systems biology, we will have to start assimilating some important concepts: 
+If we want to dive into the field of systems biology, we will have to start assimilating some important concepts: 
 \begin{itemize}
 	\item A \textbf{system} is a set of parts that work together and can be defined within a \textbf{boundary}. If a system can exchange material, energy or information with the outside through the boundary, it is said to be open. If the boundary does not let matter pass through it, the system is said to be closed. When the boundary is so tight that neither matter nor energy may pass through it, we say the system is isolated.
 	\item In order to predict the behavior of a system, we often need mathematics. In order to do so, we define a \textbf{mathematical model} as any mathematical representation of our system. A model does not need to be perfect. Some models only capture part of the system behavior and some models give only  approximate results.
@@ -43,7 +187,7 @@ So if we want to dive into the field of systems biology, we will have to start a
 \end{itemize}
 
 % diagrams I/O example
-\subsection{The mathematics of growth, evolution and change}
+\section{The mathematics of growth, evolution and change}
 Growth is one of the main characteristics of biological systems. All living beings grow at least during a part of their life cycle with most keeping sustained growth through it all. During biological growth, some property of the system -- size, number of individuals, biomass, radius of a tumor \dots - increases with time. Lets call this property, $x$. We can indicate that x changes with time by writing it as a function $x(t)$ or as a series $x_t = x_1, x_2, x_3,\dots$ with $x_i$ being the value of x after i time units.
 
 The simplest problems to analyze mathematically are those that happen at discrete intervals in time. For instance, if a population of microbes duplicates every hour, then the population at time $t+1$ will be twice the population at time $t$.
@@ -81,7 +225,7 @@ Once we made a simulation, it is often helpful to show a visual representation. 
 
  We could just plot the results as the state of our system, $x$, against time, we would call that a time course. For more complex systems, we may prefer to show the state of the system as point in space. For instance, our first mathematical model has a single variable so any  state can be represented as a point on the real line.
 
-\section{Discrete dynamical systems}
+\chapter{Discrete dynamical systems}
 
 The simple model we saw in the previous section is an example of discrete dynamical systems. Now we move on to a slightly more complicated case. The radius of a tumor increases at a rate of  15 \% every hour, what is the doubling time of the tumor? The general form of equation \ref{geomgrowth_example} for a growth rate $r$ is:
 
@@ -116,7 +260,7 @@ t_d = \frac{\log 2}{\log (1 + r) }
 
 So our doubling time for $r=0.15$ is 1.74 hours, about an hour and 45 min.
 
-\subsection{Dealing with many things at once: vectors and matrices}
+\section{Dealing with many things at once: vectors and matrices}
 
 The  individuals in a population are not always identical. Most of the time, biological populations have many different types of individuals. Cells differentiate into types, animals grow in different stages, microbes can form spores \dots Fortunately, we have the mathematical tools to reflect that diversity. Consider a population of parasites that reproduce through eggs. Every week, some eggs hatch and produce new parasites that in time will produce more eggs. We can easily capture the idea of our population having two different individuals: eggs, $x_1$ and animals, $x_2$. When we want to refer to all individuals of the species, regardless of their type, we will use vector $\mathbf{x}$.
 
@@ -130,13 +274,13 @@ A vector of dimension $n$ is just a collection of $n$ ``ordinary'' numbers which
 When we study the dynamics of this population, we will see why it was so important to keep the two types separate. The number of eggs produced each generation does not depend on the number of eggs present in it. Eggs are laid by the animals, so the more animals there are, the more eggs are produced:
 
 \begin{equation}
-x_1 = f_{1} \\  x_2 
+x_1 = f_{1} \,  x_2 
 \end{equation}
 
 where $f_1$ is the fecundity of the animals ($x_2$). The production of new animals is also dependent of the fraction of eggs that survive the incubation period so for a survival ratio $s_1$:
 
 \begin{equation}
-	x_2 = s_{1} \\  x_1 
+	x_2 = s_{1} \,  x_1 
 \end{equation}
 
 In this simple case, we can just work with the two equations, but as the complexity of the population increases, we have to find a more efficient method to handle the complex interactions between all the groups. Lets assume we are studying a population of mice with three different age groups: young  mice up to one year old, $n_1$, can reproduce at very low rates, mice between 1 and 1.5 years old, $n_2$, are adults in their prime and old mice up to two years old, $n_3$, have more fragile health, which leads to lower fecundity. We can summarize this information making a drawing, as shown in figure \ref{fig:mice}. Each age group is represented by a circle, and each process changing the population, by an arrow. The starting point of an arrow shows which group determines the speed of the process while the  destination of the arrow shows which group is affected by it.
@@ -219,7 +363,7 @@ where $\mathbf{L}^k$ mans we multiply the matrix by itself $k$ times.
 Equation \ref{fig:matequationL} shows a very useful fact.  By multiplying a vector times a matrix, we \emph{transform} this vector into another. For this reason, we often talk about a matrix as a \textbf{transformation}.  Here we use matrix $\mathbf{L}$ it to transform the current population into the population of the next generation. When we represent anything by a vector -- e.g the direction and intensity of a ray of light -- we can represent changes in ts state by a matrix multiplication --e.g. the direction and intensity of the light after passing through liquid medium. This capacity of abstraction is what makes mathematics so powerful in science and engineering. Solving a problem once in a field like physics means solving hundreds of problems in other fields. In our case of a population of animals, for instance, we may wonder how it is going to change in the future.  Is the age distribution of the population going to stabilize in the long run or will it keep changing forever? This kind of questions are also very relevant for economists and social scientists. Will the population of developed countries continue to get older? Or will the aging stop at some point? The solution to this question is important since all our pensions depend on it. Surprisingly enough, the answer was already found in the 18$^th$ century by Leonard Euler, while he was wor
 king on a completely different problem: the rotation of rigid bodies.
 
-\subsection{Eigenvalues and eigenvectors}
+\section{Eigenvalues and eigenvectors}
 
 Back to our mice example, look at the behavior of our population along several generations in figure \ref{fig:Lpop}.
 
@@ -291,9 +435,9 @@ Figure \ref{fig:transform} shows what happen if we transform any other vector, l
 \end{equation}
 
 Knowing this, we can already predict that multiplying vector $\begin{pmatrix}  2\\ 4 \end{pmatrix}$ will result in vector  $\begin{pmatrix}  1\\ 8 \end{pmatrix}$, so knowing the eigenvectors and the eigenvalues is  knowing how the matrix works.
-\subsection{The eigenvalues of the Leslie matrix}
+\section{The eigenvalues of the Leslie matrix}
 
-\subsubsection{Real eigenvalues}
+\subsection{Real eigenvalues}
 Leslie matrices tend to have very special eigenvalues. In most cases there is one dominant eigenvalue, larger than one, while every other eigenvalue is less than one. As a result of this, any starting population evolves towards the age structure dictated by the dominant eigenvector after a few generations. Figure \ref{fig:leslie_phase} plots the amount of adult vs senior mice along several generations. We can clearly see how, after only three generations, the numbers move along a straight line, which is the direction of the dominant eigenvector.
 
 \begin{figure}
@@ -306,7 +450,7 @@ Leslie matrices tend to have very special eigenvalues. In most cases there is on
 
 It is easy to prove that if a given vector $\mathbf{v}$ is an eigenvector of a matrix, so is any multiple $k \cdot\mathbf{v}$. This demonstration is left as an exercise. For those who feel ready for a bigger challenge, it is also possible to show why the dominant eigenvalue determines the final age structure. \textbf{Hint:} any vector can be written as a linear combination of the eigenvalues.
 
-\subsubsection{Complex eigenvalues}
+\subsection{Complex eigenvalues}
 
 In some cases, a Leslie matrix does not behave as stated before. Lets see the following model describing the dynamics of a locust population. Locusts have three stages in their life cycle, just as the example before. The first stage, $n_1$, are the eggs, second stage individuals, $n_2$, are called hoppers since they are not yet able to fly. Finally, when an individual develops proper wings and the ability to fly, it is considered an adult, $n_3$.
 
@@ -369,7 +513,7 @@ Complex eigenvalues always result in oscillatory dynamics, but these oscillation
 \FloatBarrier
 
 
-\section{Continuous dynamical systems}
+\chapter{Continuous dynamical systems}
 
 A differential equation is an equality involving one or more unknowns ($x$, $y$, $z$,\dots) and their derivatives. Since our unknowns have derivatives, they are not just numbers like in regular -- a.k.a. algebraic -- equations. Our unknowns are functions or, more accurately, families of functions. We can make this explicit by writing our unknowns as $x(t)$, $y(t)$, $z(t)$,\dots thus sacrificing brevity for the sake of clarity. In the text that follows, very little effort will be made to maintain consistency between these two notations and we will wantonly switch between both. Live with it.
 
@@ -402,11 +546,11 @@ Keep in mind that the linearity requirement only applies to the unknowns and not
 
 In these equations, the coefficients that multiply our unknowns just happen to be functions of time. A linear equation can have coefficients that depend on time and also have time-dependent independent terms. In general, we will not concern ourselves with such systems.
 
-\subsection{Linear equations}
+\section{Linear equations}
 
 Solving differential equations is very challenging, that's why we will try to avoid it whenever possible. In fact, we are only going to solve one differential equation during the whole course. We will solve it in two versions: with one variable and with several variables.
 
-\subsubsection{Solving the linear equation with one variable}
+\subsection{Solving the linear equation with one variable}
 
 Lets start with the simplest possible case, which also happens to describe a fundamental biological process: exponential growth.
 
@@ -452,7 +596,7 @@ exponentiating both sides and rearranging
 
 This is the \emph{general solution} of the differential equation. It is a family of functions because we can generate infinite functions assigning different values to k. For every possible value of $k$ there is a \emph{particular solution} of the equation.
 
-We are not normally interested in general solutions. General solutions are for mathematicians. We want the particular solution that fits some \emph{initial condition}, $x(0)$, often written $x_0$. For instance, we have a bacterial culture that starts with an optical density of 0.01. How do we find the right value for k?
+We are not normally interested in general solutions. General solutions are for mathematicians. We want the particular solution that fits some \emph{initial condition} when $t=0$,  often written $x(0)$ or $x_0$. For instance, we have a bacterial culture that starts with an optical density of 0.01. How do we find the right value for k?
 
 
 \begin{equation}
@@ -465,7 +609,7 @@ In general, we use the solution to the exponential equation as:
 	x   = x_0 \, e^{\mu \, t} \nonumber
 \end{equation}
 
-\subsubsection{Solving the linear equation with several variables}
+\subsection{Solving the linear equation with several variables}
 
 
 Our simple linear equation can also have more that one variable:
@@ -521,7 +665,7 @@ canceling out the exponentials:
 \mathbf{A} \, \mathbf{v}  = \lambda  \,	\mathbf{v}   
 \end{equation}
  
-So $\mathbf{x}=\mathbf{v} \, e^{\lambda \, t}$ will be a solution of the equation as long as $\lambda$ and $\mathbf{v}$ satisfy the equation above, which we had already seen as (\ref{eigendefinition}).
+So $\mathbf{x}=\mathbf{v} \, e^{\lambda \, t}$ will be a solution of the equation as long as $\lambda$ and $\mathbf{v}$ satisfy the equation above, which we had already seen before in equation (\ref{eigendefinition}). In other works, the solution will only be correct if the chosen vector $\mathbf{v}$ is an eigenvector of $\mathbf{A}$ and the exponent $\lambda$ is the corresponding eigenvalue.
 
 We can solve the equation and find all possible values of $\lambda$ by rearranging terms.
 
@@ -549,9 +693,9 @@ The expansion of this determinant results in a $n-th$ degree equation in terms o
 c_n \, \lambda^n +c_{n-1} \, \lambda^{n-1}  + \dots  + c_1 \, \lambda + c_0 = 0 \nonumber
 \end{equation}
 
-\subsection{The eigenvalues of a differential equation} 
+\section{The eigenvalues of a differential equation} 
 
-\subsubsection{Real eigenvalues}
+\subsection{Real eigenvalues}
 A matrix $\mathbf{A}$ with size $n \times n$ has n vectors $\mathbf{v_i}$ for $i = 1 \dots n$ called eigenvectors, and each eigenvector has an eigenvalue ($\lambda_i$) such that every pair of eigenvector and eigenvalue satisfy equation (\ref{eigendefinition}).
 	
 In order to understand the meaning of this and why eigenvector and eigenvalues are extremely important in applied mathematics, we have to think of the matrix product as an operation that transforms one vector into another. For instance, lets take the matrix
@@ -627,7 +771,7 @@ This is actually the same equation twice. It is easy to see that whenever $v_x=v
 
 \paragraph{Exercise:} Can you use equation (\ref{eigendefinition}) to show that given an eigenvector $\mathbf{v}$ and a constant $k$, any vector $k \, \mathbf{v}$ will also be an eigenvector?
 
-\subsubsection{Complex eigenvalues}
+\subsection{Complex eigenvalues}
 
 Now lets analyze another matrix 
 
@@ -749,11 +893,11 @@ The particular solutions of a differential equation can be plotted as each varia
 	\label{fig:phase_plane}
 \end{figure}
 
-\subsection{Non-linear systems}
+\section{Non-linear systems}
 
 Unlike linear equations, non-linear equations rarely have analytic solutions. fortunately, we can extract a lot of information from a differential equation without solving it. This is so because we are often not interested in every detail about its dynamics but rather on its long term behavior.
 
-\subsubsection{Steady states}
+\subsection{Steady states}
 
 The first step to analyze non-linear systems is to find out its steady states. for a given non-linear system:
 
@@ -801,13 +945,13 @@ which can happen in two different ways. Either $x=0$, just like happened for exp
 	\label{fig:logisticall}
 \end{figure}
 
-\subsubsection{Stability}
+\subsection{Stability}
 
 Figure \ref{fig:logisticall} shows how the behavior of the logistic equation is dictated by its two steady states. The system tends to move away from $x=0$, which is therefore called an \emph{unstable steady state} or \emph{repulsor} and towards $x=K$, which is a \emph{stable steady state} or \emph{attractor}. But how do we know whether a steady state is stable?
 
 A steady state is said to be stable when the system tends to return to it after being moved away from it. In other words, lets assume a system has a steady state at $x=x_0$ and we move the system to another, nearby state $x_0+\delta x$. $\delta x$ is a small number and we call it a perturbation. if we define our variable as a composition of the steady state and a time varying perturbation: $x(t) = x_0 + \delta x(t)$, the system can be said to be stable if $\delta x \rightarrow 0$ as $t \rightarrow \infty$. Conversely, we say the system is unstable if $\delta x \rightarrow \infty$ as $t \rightarrow \infty$.  But how can we predict the behavior of $\delta x$? since we can only solve linear systems, we will have to turn this into a linear equation \dots
 
-\subsubsection{Linearization}
+\subsection{Linearization}
 
 Making the change of variable $x(t) = x_0 + \delta x(t)$ in equation \ref{odegeneral},
 
