@@ -246,7 +246,7 @@ this is called \textbf{geometric growth} with $r=0.15$ for our tumor.
 
 
 
-Biologists often describe growth using its doubling time, $t_d$,  which is the time needed for the system to duplicate its size:
+Biologists often describe growth using its doubling time, $t_d$,  which is the time needed for the system to duplicate its size. So if our tumor starts with size $x_0$, it will become double after a time $t_d$:
 
 \begin{equation}
 2\, x_{0} = (1 + r)^{t_d} \, x_0
@@ -285,17 +285,17 @@ where $f_1$ is the fecundity of the animals ($x_2$). The production of new anima
 
 In this simple case, we can just work with the two equations, but as the complexity of the population increases, we have to find a more efficient method to handle the complex interactions between all the groups. Lets assume we are studying a population of mice with three different age groups: young  mice up to one year old, $n_1$, can reproduce at very low rates, mice between 1 and 1.5 years old, $n_2$, are adults in their prime and old mice up to two years old, $n_3$, have more fragile health, which leads to lower fecundity. We can summarize this information making a drawing, as shown in figure \ref{fig:mice}. Each age group is represented by a circle, and each process changing the population, by an arrow. The starting point of an arrow shows which group determines the speed of the process while the  destination of the arrow shows which group is affected by it.
 
-\begin{figure}
+\begin{marginfigure}
 	\begin{center}
-		\includegraphics[width=0.5\textwidth]{Mouse_pop_graph}
+		\includegraphics[width=0.9\textwidth]{Mouse_pop_graph}
 	\end{center}
 	\caption{Dynamics of a population of mice. Circles contain the three age groups that are connected by arrows showing how one population affects the growth of another. Symbols on top of each arrow show the coefficient that governs the interaction. For instance, $f_3$ is the fecundity of old mice, $n_3$, while $s_1$ is the fraction of young mice that survive to adulthood.}
 	\label{fig:mice}
-\end{figure}
+\end{marginfigure}
  
 The figures show clearly that the increase in young mice, $n_1$, for each generation will depend on the fecundities of all three age groups, while the growth of old mice $n_3$, only depends on the survival of adult mice $n_2$. The arrows clearly show which population affects which but, how do we write our equations? Fortunately, mathematics has a simple tool to transform drawings into numbers: matrices.
 
-A matrix is just a square of numbers that connects elements represented in its columns to elements represented in its rows. Since our drawing connects the three elements $n_1$, $n_2$, $n_2$ to one another, we will have a row and a column for each. Lets start making such a square and fill it with zeroes:
+A matrix is just a square of numbers that connects elements represented in its columns to elements represented in its rows. Since our drawing connects the three elements $n_1$, $n_2$, $n_2$ to one another, we will have a row and a column for each. Lets start making such a square and fill it with zeros:
 
 \begin{center}
 \begin{tabular}{c|ccc}
@@ -360,21 +360,25 @@ and for $k$ generations:
 
 where $\mathbf{L}^k$ mans we multiply the matrix by itself $k$ times.
 
-Equation \ref{fig:matequationL} shows a very useful fact.  By multiplying a vector times a matrix, we \emph{transform} this vector into another. For this reason, we often talk about a matrix as a \textbf{transformation}.  Here we use matrix $\mathbf{L}$ it to transform the current population into the population of the next generation. When we represent anything by a vector -- e.g the direction and intensity of a ray of light -- we can represent changes in ts state by a matrix multiplication --e.g. the direction and intensity of the light after passing through liquid medium. This capacity of abstraction is what makes mathematics so powerful in science and engineering. Solving a problem once in a field like physics means solving hundreds of problems in other fields. In our case of a population of animals, for instance, we may wonder how it is going to change in the future.  Is the age distribution of the population going to stabilize in the long run or will it keep changing forever? This kind of questions are also very relevant for economists and social scientists. Will the population of developed countries continue to get older? Or will the aging stop at some point? The solution to this question is important since all our pensions depend on it. Surprisingly enough, the answer was already found in the 18$^th$ century by Leonard Euler, while he was wor
-king on a completely different problem: the rotation of rigid bodies.
+Equation \ref{fig:matequationL} shows a very useful fact.  By multiplying a vector times a matrix, we \emph{transform} this vector into another. For this reason, we often talk about a matrix as a \textbf{transformation}.  Here we use matrix $\mathbf{L}$ it to transform the current population into the population of the next generation. When we represent anything by a vector -- e.g the direction and intensity of a ray of light -- we can represent changes in ts state by a matrix multiplication --e.g. the direction and intensity of the light after passing through liquid medium. This capacity of abstraction is what makes mathematics so powerful in science and engineering. Solving a problem once in a field like physics means solving hundreds of problems in other fields.
+
+Back to our population of animals, we may wonder how it is going to change in the future.  Is the age distribution of the population going to stabilize in the long run or will it keep changing forever? This kind of questions are also very relevant for economists and social scientists. Will the population of developed countries continue to get older? Or will the aging stop at some point? The solution to this question is important since all our pensions depend on it. Surprisingly enough, the answer was already found in the 18$^{th}$ century by Leonard Euler while he was working on a completely different problem: the rotation of rigid bodies.
 
 \section{Eigenvalues and eigenvectors}
 
-Back to our mice example, look at the behavior of our population along several generations in figure \ref{fig:Lpop}.
+Back to our mice example, look at the behavior of our population along several generations in figure~\ref{fig:Lpop}.
 
-\begin{figure}
-	\begin{center}
-		\includegraphics[width=\textwidth]{pop_evol}
-		\includegraphics[width=\textwidth]{tot_pop_evol}		
-	\end{center}
-	\caption{The upper graph shows the population structure as a bar graph for nine generations. The figure below shows the total population for each generation (the sum of all three age groups). As the total population increases, it is obvious that the vector is different each generation, but the proportion of the three age groups, seems to be very similar for each generation.}
-	\label{fig:Lpop}
-\end{figure}
+\begin{figure*}
+\begin{center}
+\includegraphics[width=\linewidth]{pop_evol}
+\includegraphics[width=\linewidth]{tot_pop_evol}		
+\end{center}
+\caption{The upper graph shows the population structure as a bar graph for nine generations. The figure below shows the total population for each generation (the sum of all three age groups). As the total population increases, it is obvious that the vector is different each generation, but the proportion of the three age groups, seems to be very similar for each generation.}
+\label{fig:Lpop}
+\end{figure*}
+
+
+
 
 The population keeps growing, so the vectors keep changing, but looking at their shape, it looks like it is well preserved from one generation to the next. There are always more young mice than adults and more adults than seniors. Does this mean the population will reach a stable age structure?
 
@@ -386,7 +390,7 @@ Imagine that the vectors of the population for several consecutive generations a
 	n_2 = \begin{pmatrix} 12\\ 8 \\ 4\end{pmatrix}
 \end{equation}
 
-It is easy to see that $n_1 = 2 \cdot n_0$  and $n_2 = 2 \cdot n_1$. In other words, the matrix preserves the ``shape'' of the vector and just increases its size.
+It is easy to see that $\mathbf{n_1} = 2 \cdot \mathbf{n_0}$  and $\mathbf{n_2} = 2 \cdot \mathbf{n_1}$. In other words, the matrix preserves the ``shape'' of the vector and just increases its size.
 
 \begin{equation}
  \begin{pmatrix} 6\\ 4 \\ 2\end{pmatrix} =  2 \cdot\begin{pmatrix} 3\\ 2 \\ 1\end{pmatrix} 
@@ -420,13 +424,13 @@ The same happens with the second eigenvector $\mathbf{v_2}=\begin{pmatrix}  1\\ 
 	\begin{pmatrix} 0.5 & 0\\ 0 &  2 \end{pmatrix} \cdot \begin{pmatrix}  1\\ 0 \end{pmatrix} = \begin{pmatrix}  0.5\\ 0 \end{pmatrix}= 0.5 \, \begin{pmatrix}  1\\ 0 \end{pmatrix}
 \end{equation}
 
-\begin{figure}
+\begin{marginfigure}
 	\begin{center}
-		\includegraphics[width=0.4\textwidth]{transform}	
+		\includegraphics[width=0.9\textwidth]{transform}	
 	\end{center}
 	\caption{Role of eigenvalues in a matrix transformation. The black eigenvector $\mathbf{v_1} = (0,1)$ has eigenvalue 2 while the red eigenvector $\mathbf{v2}=(1,0)$ has eigenvalue 0.5. When a vector like $\mathbf{u_1}$ -- in blue -- is transformed, it just gets stretched twice in the vertical axis along $v_1$ and compressed to half along the horizontal axis $\mathbf{v_2}$. the result of the transformation $\mathbf{u_2} = \mathbf{A} \, \mathbf{u_1}$ is shown in green}
 	\label{fig:transform}
-\end{figure}
+\end{marginfigure}
 
 Figure \ref{fig:transform} shows what happen if we transform any other vector, like $\mathbf{u_1}=\begin{pmatrix}  1\\ 1 \end{pmatrix}$ it will be stretched along the y-axis to be twice as long and shrunk along the x-axis to be half as long:
 
@@ -466,14 +470,14 @@ L=\begin{pmatrix}
 
 Inspection of the Leslie matrix already tells us a few things about the biology of locusts. First of all, the zero in the first row and first column tells us that hoppers are not yet sexually mature $f_2=0$ but adult locusts are extremely prolific with an average production of 1,000 eggs per individual. The survival rate of eggs is extremely low, with the survival rate of hopper being more that twice as high but still very low, with only 5\% of hoppers surviving until the adult stage.
 
-\begin{figure}
+\begin{figure*}
 	\begin{center}
 		\includegraphics[width=\textwidth]{locusts_evol}
 		\includegraphics[width=\textwidth]{tot_locusts_evol}		
 	\end{center}
 	\caption{The upper graph shows the population structure as a bar graph for nine generations (y axis in log-coordinates). The figure below shows the total population for each generation (the sum of all three age groups). Unlike the previous case, we can clearly see an oscillating population.}
 	\label{fig:Llocusts}
-\end{figure}
+\end{figure*}
 
 Simulating nine generations with this matrix, as can be seen in figure \ref{fig:Llocusts} shows a very different behavior. This population does not grow as before, but keeps oscillating instead. Moreover, the age structure does not remain fixed, it keeps switching between three different shapes.
 
@@ -488,17 +492,18 @@ Simulating nine generations with this matrix, as can be seen in figure \ref{fig:
 
 We can also view a projection of the amount of eggs and hoppers as we did with mice in figure \ref{fig:leslie_phase}. The result is a completely different behavior shown in figure \ref{fig:leslie_locust_phase}. It is noteworthy that periodic behaviors -- oscillations -- result in closed orbits in the phase space. 
 
-Complex eigenvalues always result in oscillatory dynamics, but these oscillations are not always sustained. When the oscillations decrease in amplitude, the oscillation is said to be dampened and the system is said to be stable, because it is going towards a certain point where it will stay as time goes to infinity. If the oscillations have increased amplitude, the system will not be able to sustain the oscillation, and it is said to be stable.
 
-\begin{figure}
+
+\begin{figure*}
 	\begin{center}
 		\includegraphics[width=\textwidth]{tot_locusts_evol_dec}
 		\includegraphics[width=\textwidth]{tot_locusts_evol_inc}
 	\end{center}
 	\caption{Evolution of the total number of locusts for different values of adult fecundity. At lower fecundities ($f_3 = 500$) the population exhibits damped oscillations until it eventually reaches extinction $N=0$. For higher fecundities $f_3 = 1,500$, the size of the population increases towards infinity. Obviously, the population will eventually collapse due to lack of resources.}
 	\label{fig:Llocusts_stability}
-\end{figure}
+\end{figure*}
 
+Complex eigenvalues always result in oscillatory dynamics, but these oscillations are not always sustained. When the oscillations decrease in amplitude, the oscillation is said to be dampened and the system is said to be stable, because it is going towards a certain point where it will stay as time goes to infinity. If the oscillations have increased amplitude, the system will not be able to sustain the oscillation, and it is said to be stable.
 
 \begin{figure}
 	\begin{center}
