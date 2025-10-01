@@ -503,7 +503,7 @@ We can also view a projection of the amount of eggs and hoppers as we did with m
 	\label{fig:Llocusts_stability}
 \end{figure*}
 
-Complex eigenvalues always result in oscillatory dynamics, but these oscillations are not always sustained. When the oscillations decrease in amplitude, the oscillation is said to be dampened and the system is said to be stable, because it is going towards a certain point where it will stay as time goes to infinity. If the oscillations have increased amplitude, the system will not be able to sustain the oscillation, and it is said to be stable.
+Complex eigenvalues always result in oscillatory dynamics, but these oscillations are not always sustained. When the oscillations decrease in amplitude, the oscillation is said to be dampened and the system is said to be stable, because it is going towards a certain point where it will stay as time goes to infinity. If the oscillations have increased amplitude, the system will not be able to sustain the oscillation, and it is said to be unstable.
 
 \begin{figure}
 	\begin{center}
@@ -519,6 +519,9 @@ Complex eigenvalues always result in oscillatory dynamics, but these oscillation
 
 
 \chapter{Continuous dynamical systems}
+
+Not every system can be studied in discrete time jumps. When time becomes a continuous variable, dynamical systems have to be represented using equations that work for any possible time interval. The mathematical tool of choice in these cases are differential equations.
+
 
 A differential equation is an equality involving one or more unknowns ($x$, $y$, $z$,\dots) and their derivatives. Since our unknowns have derivatives, they are not just numbers like in regular -- a.k.a. algebraic -- equations. Our unknowns are functions or, more accurately, families of functions. We can make this explicit by writing our unknowns as $x(t)$, $y(t)$, $z(t)$,\dots thus sacrificing brevity for the sake of clarity. In the text that follows, very little effort will be made to maintain consistency between these two notations and we will wantonly switch between both. Live with it.
 
@@ -698,6 +701,8 @@ The expansion of this determinant results in a $n-th$ degree equation in terms o
 c_n \, \lambda^n +c_{n-1} \, \lambda^{n-1}  + \dots  + c_1 \, \lambda + c_0 = 0 \nonumber
 \end{equation}
 
+Solving this equation provides the values of all the eigenvalues of the matrix. By substituting each eigenvalue in equation \ref{solve4eigenvec}, we can obtain the corresponding eigenvectors.
+
 \section{The eigenvalues of a differential equation} 
 
 \subsection{Real eigenvalues}
@@ -792,10 +797,10 @@ Characteristic polynomial
 
 The solutions to this equation are imaginary $\lambda_1 = i$ and $\lambda_1 = -i$.
 
-Complex eigenvalues always come in conjugate pairs: $\lambda_1 = a + b\, i$,  $\lambda_2 = a - b\, i$. In the context of ODEs, The real parts of a complex eigenvalue determine the stability, just as real eigenvalues do, while the existence of imaginary parts involves the existence of oscillations. Note that imaginary eigenvalues can only appear for systems with two or more variables. This means that for a system to oscillate, it must have at least two variables.
+Complex eigenvalues always come in conjugate pairs: $\lambda_1 = a + b\, i$,  $\lambda_2 = a - b\, i$. As we will see in the next section, the real parts of a complex eigenvalue determine the stability, while the existence of imaginary parts involves the existence of oscillations. Note that imaginary eigenvalues can only appear for systems with two or more variables. This means that for a system to oscillate, it must have at least two variables.
 
 
-\subsection{General solutions for linear equations}
+\section{General solutions for linear equations}
 
 So putting together all the eigenvectors of the system and the corresponding eigenvalues, we get the general solution for our equation with n variables:
 
@@ -806,9 +811,28 @@ So putting together all the eigenvectors of the system and the corresponding eig
 \end{equation}
 
 Where $c_1 \dots c_n$  are arbitrary constants, the ones that can be used to adjust initial values. Each vector $\mathbf{v_i}$ and its corresponding constant $\lambda_i$ are called eigenvector and eigenvalue respectively.
+\paragraph{Example:} lets assume our system has eigenvectors $\mathbf{v_1}=\begin{pmatrix} 1 \\ 1 \end{pmatrix}$ and
+	$\mathbf{v_2}=\begin{pmatrix} 1 \\ -1 \end{pmatrix}$. If the eigenvalues are $\lambda_1=2$ and $\lambda_2=1$, the general solution will be:
+\begin{equation}
+	\mathbf{x}= c_1 \, \begin{pmatrix} 1 \\ 1 \end{pmatrix} \, e^{2 \, t} + c_2 \, \begin{pmatrix} 1 \\ -1 \end{pmatrix} \, e^{ t} 
+\end{equation}
+
+To get the particular solution for a system with initial value $\mathbf{x_0}=\begin{pmatrix} 0 \\ 2 \end{pmatrix}$, we have to find the values of the arbitrary constants such that for $t=0$:
+
+\begin{equation}
+	\begin{pmatrix} 0 \\ 2 \end{pmatrix}= c_1 \, \begin{pmatrix} 1 \\ 1 \end{pmatrix} \, e^{0} + c_2 \, \begin{pmatrix} 1 \\ -1 \end{pmatrix} \, e^{0} 
+\end{equation}
+
+which means $c_1=1$,$c_2=-1$. And our particular solution will be:
+
+\begin{equation}
+	\mathbf{x(t)}=   \begin{pmatrix} 1 \\ 1 \end{pmatrix} \, e^{2 \, t} +  \begin{pmatrix} -1 \\ 1 \end{pmatrix} \, e^{t} 
+\end{equation}
+
+Note that any positive eigenvalue will result in a positive exponential that will keep increasing with time. For this reason, any system with one or more positive eigenvalues, will have some variables increasing to infinity, and will be said to be unstable. On the other hand, in a system where all eigenvalues are negative, all variables will tend to zero, so they will be considered stable.
 
 
-When the eigenvalues (and eigenvectors) are complex, the solutions described above will be complex. But we are not interested in complex solutions, since all our models have real variables. To see how complex eigenvalues cause oscillations in real solutions, lets see a combination of complex exponentials:
+When the eigenvalues (and eigenvectors) are complex, the solutions described above will be complex. But we are not interested in complex solutions, since all our models have real variables. In fact, as happened with Leslie matrices, complex eigenvalues cause oscillations in the real solutions of the system, lets see a combination of complex exponentials:
 
 \begin{equation}
 	x_1= c_1 e^{\left(  a + b\, i\right) \, t} + c_2 \,  e^{\left(  a + b\, i\right)\, t} = 
@@ -864,7 +888,7 @@ So the real part of our solutions will be the product of an exponential and an o
 	\begin{center}
 		\includegraphics[width=\textwidth]{complex_eigen}
 	\end{center}
-	\caption{Overal behavior of solutions when eigenvalues are complex. The sign of $\operatorname{Re}(\lambda)$ determines stability and $\operatorname{Re}(\lambda)$ governs oscillations}
+	\caption{Overal behavior of solutions when eigenvalues are complex. The sign of $\operatorname{Re}(\lambda)$ determines stability and $\operatorname{Im}(\lambda)$ governs oscillations}
 	\label{fig:cmplxeigen}
 \end{figure}
 
@@ -886,6 +910,7 @@ is called a second order differential equation because it contains a second deri
 	\frac{dy}{dt} =& \: \frac{k}{m} \, x - g \nonumber
 \end{align}
 
+So any differential equation of order $n$ can be considered a first order differential equation with $n$ variables.
 
 \subsection{Plotting solutions}
 
@@ -900,7 +925,7 @@ The particular solutions of a differential equation can be plotted as each varia
 
 \section{Non-linear systems}
 
-Unlike linear equations, non-linear equations rarely have analytic solutions. fortunately, we can extract a lot of information from a differential equation without solving it. This is so because we are often not interested in every detail about its dynamics but rather on its long term behavior.
+Unlike linear equations, non-linear equations rarely have analytic solutions. Fortunately, we can extract a lot of information from a differential equation without solving it. This is so because we are often not interested in every detail about its dynamics but rather on its long term behavior.
 
 \subsection{Steady states}
 
