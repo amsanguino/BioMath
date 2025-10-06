@@ -183,6 +183,7 @@ If we want to dive into the field of systems biology, we will have to start assi
 	\item A \textbf{system} is a set of parts that work together and can be defined within a \textbf{boundary}. If a system can exchange material, energy or information with the outside through the boundary, it is said to be open. If the boundary does not let matter pass through it, the system is said to be closed. When the boundary is so tight that neither matter nor energy may pass through it, we say the system is isolated.
 	\item The state of the system is defined by the value of one or more measurable quantities known as \textbf{state variables} or \textbf{dependent variables}. Often, the system under study depends also on some constant quantities, like the volume of a reactor. These quantities that do not change within a system, so they are not state variables, are called \textbf{parameters}.
 	\item We often define the environment of the system through \textbf{inputs}. these are quantities that afect the state variables but are determined from outside the system. In other words, the state variables of the system respond to changes in one another or the inputs, but the inputs themselves are independent of the system. Because of this, inputs are sometimes called  \textbf{independent variables}.
+	\item Sometimes we are not equally interested in all state variables or we are particularly interested in quantity that depends on several of them -- e.g. heat production of a metabolic pathway. In those cases, we can define an \textbf{output} of the system as a consequence of its state. The output of a system is a consequence of the dynamics of the system itself and inputs imposed on it.
 	\item In order to predict the behavior of a system, we often need mathematics. In order to do so, we define a \textbf{mathematical model} as any mathematical representation of our system. A model does not need to be perfect. Some models only capture part of the system behavior and some models give only  approximate results.
 	% Add variables, maybe inputs and outputs too ...
 	\item When we use a model to make predictions about the behavior of a system, we are making a \textbf{simulation}. Simulations can be done with paper and pencil for very simple models, but they often must be done using a computer.
@@ -227,6 +228,7 @@ Once we made a simulation, it is often helpful to show a visual representation. 
 \end{figure}
 
  We could just plot the results as the state of our system, $x$, against time, we would call that a time course. For more complex systems, we may prefer to show the state of the system as point in space. For instance, our first mathematical model has a single variable so any  state can be represented as a point on the real line.
+\chapter{Engineering and design}
 
 \chapter{Discrete dynamical systems}
 
@@ -659,6 +661,8 @@ In general, we use the solution to the exponential equation as:
 \begin{equation}
 	x   = x_0 \, e^{\mu \, t} \nonumber
 \end{equation}
+
+\paragraph{Exercise:} Can you find an expression for the duplication time in exponential growth?
 
 \subsection{Solving the linear equation with several variables}
 
@@ -1166,10 +1170,40 @@ The characteristic polynomial for this case is:
 
 Resulting in the eigenvalues $\lambda_1 = -2 D$ and $\lambda_2 = 2\,(\mu(s_0) - D)$. Remember that the condition for a steady state to be stable is that all their eigenvalues are negative. So the steady state $x=0$,$s=s_0$ is only stable if $D > \mu(s_0)$. In other words, $\mu(s_0)$ is the highest growth rate the cells can achieve in the chemostat because $s_0$ if the highest concentration of substrate. If the dilution rate is higher than such growth rate, the cells will be washed out until $x=0$, and with no cells to consume it, the substrate concentration in the tank will be the same as in the feed.
 
+\chapter{Cell signal processing}
+
+That cells communicate with one another is an obvious necessity for multicellular organisms to exists but it is also a well established fact for microbes. Cell types within an animal have to grow following a carefully defined choreography or risk spiraling into chaos, which is the ultimate consequence of cancer. Cells within an organism subordinate their cell cycle and most of their biochemical  processes to the dictates of messenger signals such as hormones. Only thus, can every cell type position itself where it is needed and perform their functions. This precise synchronization is not easy to achieve, as we have learned after more than a century of developing complex machines. Just as micro-electronics has developed a wide variety of integrated circuits, sensors and component in general, cells must have equally sophisticated circuits that process complex signals. If electronic circuits must include switches, timers, motion detectors and relays, biological circuits must be abole to switch genes on and off, detect infection, respond to the proximity of other cells and carry a signal from one point of the body to another. In both cases, electronics and cell biology, these elements must be re-usable. Electronic components are mass produced and then combined in different forms to produce machines. biological components, are also re-used by evolution and we find the same combination of genes or proteins performing different functions within the same cell or in different ones. Once a group of proteins proves to be able to fulfill a function, it is often duplicated and co-opted to play a different role. such is the case of two component systems, with a sensor kinase that detects a stimulus and a response protein that transmit the signal. A single bacteria can have more that a dozen variants of this system to detect and respond to different stimuli.
+
+Many critical functions within a cell depend on such circuits and many diseases are the result of failures in their functioning so any attempt at building synthetic biological components or healing these diseases are conditioned by our ability to understand the dynamics of their associated components.
+
+\section{Biological circuits}
+
+With biological circuit, we mean a group of biological components (proteins, DNA, RNA, \dots ) that work together to perform a function. To define its behavior, we can say that our circuit is a system that, when confronted with a certain input, will produce a certain output. In biology we often replace the concepts input and output with \textbf{stimulus} and \textbf{response}, respectively.
+
+We are used to talk about electronic circuits by describing their input output response. A doorbell, for instance, is a button that makes a sound when it is pressed and stops making any sound whenever it is released. The technical name of these buttons is interrupter but they are often called \emph{buzzers}. A switch is also a button, but once we press it, it changes its state and stays in the new state. for instance, we enter a room, press the light switch and the light goes on. After releasing the switch, the light stays on and will only turn off if we press the switch again. From these simple examples we can move on to more complex circuits. A  timer is a circuit that sends a signal after a certain amount of time has passed, a relay is like a switch but it reacts to an electric current instead of physical pressure. We can use relays to open a garage door remotely. We can even combine several simple elements in a single machine. We can use an infra-red sensor to detect the garage remote, the sensor can then send a signal to a relay that opens the garage door and forwards the signal to a timer that after ninety seconds, sends a signal back to the relay to shut the door. Can we imagine the biological counterparts to these components?
+
+\paragraph{Sensors} Cells have many different sensors and some cell types within a body are sensors themselves. We have already mentiones two-component systems in bacteria, which contain sensors able to detect signals out of the cell -- e.g. hormones, food, poisons, \dots -- or in the cell -- levels of acetyl-CoA, osmotic pressure in the membrane, \dots. But there are many more molecules within a cell that can detect signals. Practically every variable that is relevant to cell biology is tracked by one sensor or another: alternative carbon sources can be detected by repressors or activators of the relevant operon, neurotransmitters are detected or imported into post-synaptic neurons  and converted in action potentials, peptidic hormons like insulin are detected by receptors in the surface of the cell while many steroid hormones are imported in the cell where they attach to some protein that binds to DNA \dots 
+
+\paragraph{Signal transduction} The many different signals perceived by the sensors has to be translated to some standard signal. Unlike electronic components, which convert everything to electricity, cellular signals have a wider diversity. A typical mean to transmit signals within the cell is the phosphorylation state of a protein, but other alternatives exist such as methylation states, ion concentrations -- e.g. $K^+$, $Ca^{2+}$, \dots -- or second messengers such as cyclic AMP.
+\paragraph{Signal processing} The same signal can trigger different responses in different organisms or even in different cells within the same organism. Liver cells, for instance, respond to insulin by releasing glucose into the bloodstream, while most other cells respond by increasing their glucose uptake. One way of achieving this, is having different components able to respond to a certain signal. Some circuits may show a proportional response to a certain stimulus, others may have an all or nothing response -- e.g. triggering fever when inflammation indicators exceed a certain threshold -- and some systems may behave as a switch, changing their state when a signal is received and staying in this new state. An example of the latter would be cell differentiation, when a signal during embryonic development permanently changes the type of a cell and the genes it expresses.
+
+\paragraph{Other behaviors} The wide diversity of cell behaviors found in nature is proof of the unlimited creativity with which natural selection has been able tweak biological circuits. Molecular clocks keep track of time within the cells and periodic systems, such as those underlying circadian rythms synchronize practically every aspect of our metabolism to the dictates of the  external clock that is sunlight. Some circuits can modify the behavior of sensors. Temperature sensors in the skin of mammals, for instance, do not respond to temperature itself, but rather to changes in it. In other words, the intensity of the signal of a temperature receptor is proportional to the derivative of temperature with respect to time and the same behavior is observed by food receptors governing chemotaxis in bacteria. This type of behavior is called adaptation. 
 
 
-\clearpage
+In this chapter we will see and study several examples of how to build different types of circuits with just a few components. we will build linear transducers, interrupters, switches, oscillators -- clocks-- and circuits able to show adaptation.
+
+\subsection{Linear response}
+\subsection{Buzzer (interrupter)}
+\subsection{Switch}
+\subsection{Oscillators (clocks)}
+\subsection{Adaptation}
+\subsection{Quorum sensing}
+
+\chapter{Metabolism: statics}
+\chapter{Metabolism: dynamics}
+
 \appendix
+\chapter{Appendices}
 \section{Taylor Polynomial}
 A polynomial can adopt practically any shape. That's why many functions can be approximated by polynomials, at least, within a certain region.
 
