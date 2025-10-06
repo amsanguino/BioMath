@@ -756,32 +756,19 @@ Solving this provides the values of all the eigenvalues of the matrix. By substi
 \section{The eigenvalues of a differential equation} 
 
 \subsection{Real eigenvalues}
-A matrix $\mathbf{A}$ with size $n \times n$ has n vectors $\mathbf{v_i}$ for $i = 1 \dots n$ called eigenvectors, and each eigenvector has an eigenvalue ($\lambda_i$) such that every pair of eigenvector and eigenvalue satisfy equation (\ref{eigendefinition}).
-	
-In order to understand the meaning of this and why eigenvector and eigenvalues are extremely important in applied mathematics, we have to think of the matrix product as an operation that transforms one vector into another. For instance, lets take the matrix
+
+Lets take the matrix
 \begin{equation}
 	\mathbf{A}  = \begin{pmatrix} -1 & -4\\ -3 & -2\end{pmatrix} \nonumber
 \end{equation}
 
-If we multiply $(1,2)$ times the matrix we obtain another vector:
-
-\begin{equation}
-	 \begin{pmatrix} -1 & -4\\ -3 & -2\end{pmatrix} \,  \begin{pmatrix} 1\\ 2\end{pmatrix}=\begin{pmatrix} -9 \\ -7\end{pmatrix}\nonumber
-\end{equation}
-
-So matrix $\mathbf{A}$ transforms  (1,2) into  (-9,-7). Now if  we transform another vector:
+If we transform  vector (4,-3)
 
 \begin{equation}
 	\begin{pmatrix} -1 & -4\\ -3 & -2\end{pmatrix} \,  \begin{pmatrix} 4\\ -3\end{pmatrix}=\begin{pmatrix} 8 \\ -6\end{pmatrix}\nonumber
 \end{equation}
 
-In the previous case, the transformation changed the direction of our vector but now, vector (4,-3) was transformed into a stretched version of itself with double length. If we now transformed $(8,-6)$ using the matrix, we would obtain $(16,-12)$, which is again the same vector multiplied by two. So (4,-3) is an eigenvector of $\mathbf{A}$ and the corresponding eigenvalue is $\lambda=2$. Note that negative eigenvalues will change the sense of the vector but not its direction, as is the case with the second eigenvector of this matrix $(1,1)$.
-
-\begin{equation}
-	\begin{pmatrix} -1 & -4\\ -3 & -2\end{pmatrix} \,  \begin{pmatrix} 1\\ 1\end{pmatrix}=- \begin{pmatrix} 5 \\ 5\end{pmatrix}\nonumber
-\end{equation}
-
-Obviously, the corresponding eigenvalue is $\lambda=-5$.
+we obtain a stretched version of itself with double length. If we now transformed $(8,-6)$ using the matrix, we would obtain $(16,-12)$, which is again the same vector multiplied by two. So (4,-3) is an eigenvector of $\mathbf{A}$ and the corresponding eigenvalue is $\lambda=2$. 
 
 But how can we find out the eigenvectors and eigenvalues of a matrix other than by trial and error? First we get the eigenvalues using equation \ref{solve4eigenval}:
 
@@ -801,35 +788,25 @@ A primary school problem we can solve:
 	\lambda= \frac{-3 \pm \sqrt{9+40}}{2} \nonumber
 \end{equation}
 
-with two solutions $\lambda_1=-5$ and $\lambda_2=2$. We have already seen that the eigenvector $\mathbf{v_1}$ for $\lambda_1$ is . Can we find the other one? We can go back to equation (\ref{eigendefinition}) or use the already factored out version in equation  (\ref{solve4eigenvec})
+with two solutions $\lambda_1=-5$ and $\lambda_2=2$. We have already seen that the eigenvector $\mathbf{v_2}$ for $\lambda_2$ is (4,-3). Can we find the other one? We can go back to equation (\ref{eigendefinition}) or use the already factored out version in equation  (\ref{solve4eigenvec})
 
 \begin{equation}
 \begin{pmatrix} -1-\lambda & -4\\ -3 & -2-\lambda\end{pmatrix} \, \begin{pmatrix} v_x \\  v_y\end{pmatrix} = 0 \nonumber
 \end{equation}
 
-For the case $\lambda = 2$:
+For the case $\lambda = -5$:
 
 \begin{equation}
-	\begin{pmatrix} -3 & -4\\ -3 & -4\end{pmatrix} \, \begin{pmatrix} v_x \\  v_y\end{pmatrix} = 0 \nonumber
+	\begin{pmatrix} 4 & -4\\ -3 & 3\end{pmatrix} \, \begin{pmatrix} v_x \\  v_y\end{pmatrix} = 0 \nonumber
 \end{equation}
 
 \begin{align*}
-	-3 \, v_x - 4 \, v_y =& 0 \nonumber\\
-	-3 \, v_x - 4 \, v_y =& 0 \nonumber
-\end{align*}
-
-Which is the same equation twice, so there is no unique solution. This shows a very important property of eigenvectors: they are never unique. It is easy to see that v=(4,-3) cancels out the equation. If we had just chosen $v_x=1$, then our eigenvector would have been $\mathbf{v}=\left( 1,\frac{-3}{4} \right)$.
-
-Now we can do the same for  $\lambda = -5$:
-
-\begin{align*}
 	4 \, v_x - 4 \, v_y =& 0 \nonumber\\
-	- 3 \, v_x  + 3 \, v_y =& 0 \nonumber
+	-3 \, v_x + 3 \, v_y =& 0 \nonumber
 \end{align*}
 
-This is actually the same equation twice. It is easy to see that whenever $v_x=v_y$, both equations will be satisfied, so we can choose $\mathbf{v} = (1, 1)$.
+Which is the same equation twice, so there is no unique solution. This shows a very important property of eigenvectors: they are never unique. It is easy to see that whenever  $v_x=v_y$ both equations cancel out. If choose $v_x=1$, then our eigenvector will be $\mathbf{v}=\left( 1,1 \right)$. We could just as well have chosen a different $v_x$ and obtain vectors $\left( 2,2 \right)$, $\left( 3,3 \right)$ , etc.
 
-\paragraph{Exercise:} Can you use equation (\ref{eigendefinition}) to show that given an eigenvector $\mathbf{v}$ and a constant $k$, any vector $k \, \mathbf{v}$ will also be an eigenvector?
 
 \subsection{Complex eigenvalues}
 
@@ -979,7 +956,7 @@ Unlike linear equations, non-linear equations rarely have analytic solutions. Fo
 
 \subsection{Steady states}
 
-The first step to analyze non-linear systems is to find out its steady states. for a given non-linear system:
+The first step to analyze non-linear systems is to find out their steady states. for a given non-linear system:
 
 \begin{equation}
 	\label{odegeneral}
@@ -1002,7 +979,7 @@ Steady states are important because once the system reaches it, it will remain i
 	\frac{dx}{dt} = \mu(x) \, x 
 \end{equation}
 
-Unlike exponential growth, where $\mu$ is constant, his more general form makes the growth rate dependent on the size of the population. This makes the model more realistic as resources are expected to become scarce once the population density becomes too high. A particular case is that of logistic growth, where $\mu(x) = \mu_{m} (1 - x / K)$. Our equation becomes
+Unlike exponential growth, where $\mu$ is constant, this more general form makes the growth rate dependent on the size of the population. This model is more realistic as resources are expected to become scarce once the population density becomes too high. A particular case is that of logistic growth, where $\mu(x) = \mu_{m} (1 - x / K)$. Our equation becomes
 
 \begin{equation}
 	\label{logistic}
@@ -1015,7 +992,7 @@ The steady state condition will be:
  \mu_{m} \left(1 - \frac{x}{K} \right) \, x = 0
 \end{equation}
 
-which can happen in two different ways. Either $x=0$, just like happened for exponential growth, or $x=K$.
+This can happen in two different ways. Either $x=0$, just like happened for exponential growth, or $x=K$.
 
 \begin{figure}
 	\begin{center}
@@ -1029,7 +1006,7 @@ which can happen in two different ways. Either $x=0$, just like happened for exp
 
 Figure \ref{fig:logisticall} shows how the behavior of the logistic equation is dictated by its two steady states. The system tends to move away from $x=0$, which is therefore called an \emph{unstable steady state} or \emph{repulsor} and towards $x=K$, which is a \emph{stable steady state} or \emph{attractor}. But how do we know whether a steady state is stable?
 
-A steady state is said to be stable when the system tends to return to it after being moved away from it. In other words, lets assume a system has a steady state at $x=x_0$ and we move the system to another, nearby state $x_0+\delta x$. $\delta x$ is a small number and we call it a perturbation. if we define our variable as a composition of the steady state and a time varying perturbation: $x(t) = x_0 + \delta x(t)$, the system can be said to be stable if $\delta x \rightarrow 0$ as $t \rightarrow \infty$. Conversely, we say the system is unstable if $\delta x \rightarrow \infty$ as $t \rightarrow \infty$.  But how can we predict the behavior of $\delta x$? since we can only solve linear systems, we will have to turn this into a linear equation \dots
+A steady state is said to be stable when the system tends to return to it after being moved away from it. In other words, lets assume a system has a steady state at $x=x_0$ and we move the system to another, nearby state $x_0+\delta x$. $\delta x$ is a small number and we call it a perturbation. if we define our variable as a composition of the steady state and a time varying perturbation: $x(t) = x_0 + \delta x(t)$, the system can be said to be stable if $\delta x \rightarrow 0$ as $t \rightarrow \infty$. Conversely, we say the system is unstable if $\delta x \rightarrow \infty$ as $t \rightarrow \infty$.  But how can we predict the behavior of $\delta x$? since we can only solve linear systems, we will have to turn equation \ref{odegeneral} into a linear equation \dots
 
 \subsection{Linearization}
 
@@ -1039,7 +1016,7 @@ Making the change of variable $x(t) = x_0 + \delta x(t)$ in equation \ref{odegen
 	\frac{d}{dt} \left( x_0 + \delta x(t) \right) = f(x_0 + \delta x(t)) \nonumber
 \end{equation}
 
-The left hand side is the  derivative of a sum and can be rewritten as the sum of derivatives. Moreover, since $\delta x$ is small by definition, we can approximate this as a linear system as shown in equation \ref{TaylorLin}.
+The left hand side is the  derivative of a sum and can be rewritten as the sum of derivatives. Moreover, since $\delta x$ is small by definition, we can approximate this as a linear system as shown in equation \ref{TaylorLin} in the appendix.
 
 \begin{equation}
 	 \frac{dx_0}{dt} + \frac{d}{dt}\delta x(t)  = f(x_0) +\left|\frac{df}{dx}\right|_0 \, \delta x(t)) \nonumber
@@ -1060,14 +1037,14 @@ Equation \ref{svl} is called variational linearized system and it is easily to s
 \frac{df}{dx} = \mu_{m} \left( 1-\frac{2 x}{K}\right) \nonumber
 \end{equation}
 
- So for the steady state $x=0$, the l.v.s. is:
+ So for the steady state $x=0$, $\left|\frac{df}{dx}\right|_0 = \mu_m$ and the l.v.s. is:
  
  \begin{equation}
  	\frac{d}{dt}\delta x(t)  = \mu_m \,  \delta x(t))  \nonumber
  \end{equation}
 The solution to this equation is a positive exponential so the perturbation $\delta x(t)$ will be amplified with time. This means the steady state is unstable.
 
-and for the steady state $x=K$:
+and for the steady state $x=K$,  $\left|\frac{df}{dx}\right|_0 = - \mu_m$:
 
  \begin{equation}
 	\frac{d}{dt}\delta x(t)  = -  \mu_m \,  \delta x(t))  \nonumber
@@ -1143,7 +1120,7 @@ The solutions are $\lambda_1 = -k_4$ and $\lambda_2=-\frac{k_2 k_3}{k_4}S$. Sinc
 \end{align}
 where $D$ is the dilution rate, $\mu_M$ the maximum growth rate and $Y$ the yield in grams of biomass produced per gram of substrate consumed.
 
-This system has two steady states: $x=0$, $s=s_0$ and when the growth rate is equal to the dilution rate:
+This system has two steady states: one where  $x=0$, $s=s_0$ and another when the growth rate is equal to the dilution rate:
 
  \begin{equation}
 	D = \mu_M \frac{s}{s+K_s} = \mu(s) \nonumber
@@ -1165,7 +1142,7 @@ The partial derivatives for the Jacobian matrix are:
 	\frac{\partial f_s}{\partial s }=&\: - D -   \frac{\mu_M}{Y} \frac{K_s}{(s+K_s)^2} \, x  \nonumber
 \end{align}
 
-to analyze the stability of the first steady state, we substitute the values $x=0$, $s=s_0$ in the parrtial derivatives:
+to analyze the stability of the first steady state, we substitute the values $x=0$, $s=s_0$ in the partial derivatives:
 
 \begin{align}
 	\frac{\partial f_x}{\partial x }=&\:    \mu(s_0) - D  \nonumber\\
