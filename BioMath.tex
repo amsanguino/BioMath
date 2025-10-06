@@ -181,11 +181,14 @@ Instead of going into full denial, biologists can take advantage of the tools de
 If we want to dive into the field of systems biology, we will have to start assimilating some important concepts: 
 \begin{itemize}
 	\item A \textbf{system} is a set of parts that work together and can be defined within a \textbf{boundary}. If a system can exchange material, energy or information with the outside through the boundary, it is said to be open. If the boundary does not let matter pass through it, the system is said to be closed. When the boundary is so tight that neither matter nor energy may pass through it, we say the system is isolated.
+	\item The state of the system is defined by the value of one or more measurable quantities known as \textbf{state variables} or \textbf{dependent variables}. Often, the system under study depends also on some constant quantities, like the volume of a reactor. These quantities that do not change within a system, so they are not state variables, are called \textbf{parameters}.
+	\item We often define the environment of the system through \textbf{inputs}. these are quantities that afect the state variables but are determined from outside the system. In other words, the state variables of the system respond to changes in one another or the inputs, but the inputs themselves are independent of the system. Because of this, inputs are sometimes called  \textbf{independent variables}.
 	\item In order to predict the behavior of a system, we often need mathematics. In order to do so, we define a \textbf{mathematical model} as any mathematical representation of our system. A model does not need to be perfect. Some models only capture part of the system behavior and some models give only  approximate results.
 	% Add variables, maybe inputs and outputs too ...
 	\item When we use a model to make predictions about the behavior of a system, we are making a \textbf{simulation}. Simulations can be done with paper and pencil for very simple models, but they often must be done using a computer.
 \end{itemize}
 
+\paragraph{Example:} Most laboratories have water baths to keep reactants and media at a constant temperature. These baths are basically a recipient full of water that can be heated by a resistor. The action of the resistor is controlled through a thermostat to ensure that the water keeps a constant temperature that can be set by the user. In this system, the state variable is clearly the \emph{water temperature}. The system has two inputs that cannot be controlled by it but affect the state variable. On the one hand, the \emph{set temperature} specified by the user will guide the action of the thermostat. On the other hand, the \emph{room temperature} will determine the heat exchange between the water and its environment. Finally, the behavior of the system -- defined by the state variable -- will also depend on parameters such as: the \emph{resistance} of the heating element, the \emph{volume} of the recipient and the \emph{heat conductivity} of the recipient. These parameters define the system but do not reflect its state.
 % diagrams I/O example
 \section{The mathematics of growth, evolution and change}
 Growth is one of the main characteristics of biological systems. All living beings grow at least during a part of their life cycle with most keeping sustained growth through it all. During biological growth, some property of the system -- size, number of individuals, biomass, radius of a tumor \dots - increases with time. Lets call this property, $x$. We can indicate that x changes with time by writing it as a function $x(t)$ or as a series $x_t = x_1, x_2, x_3,\dots$ with $x_i$ being the value of x after i time units.
@@ -242,7 +245,7 @@ x_{t} = (1 + r)^{t} \, x_0
 \end{equation}
 
 
-this is called \textbf{geometric growth} with $r=0.15$ for our tumor. 
+this is called \textbf{geometric growth} with growth rate $r=0.15$ for our tumor. 
 
 
 
@@ -432,13 +435,14 @@ The same happens with the second eigenvector $\mathbf{v_2}=\begin{pmatrix}  1\\ 
 	\label{fig:transform}
 \end{marginfigure}
 
-Figure \ref{fig:transform} shows what happen if we transform any other vector, like $\mathbf{u_1}=\begin{pmatrix}  1\\ 1 \end{pmatrix}$ it will be stretched along the y-axis to be twice as long and shrunk along the x-axis to be half as long:
+Figure \ref{fig:transform} shows what happens if we transform any other vector, like $\mathbf{u_1}=\begin{pmatrix}  1\\ 1 \end{pmatrix}$ it will be stretched along the y-axis to be twice as long and shrunk along the x-axis to be half as long:
 
 \begin{equation}
 	\begin{pmatrix} 0.5 & 0\\ 0 &  2 \end{pmatrix} \cdot \begin{pmatrix}  1\\ 1 \end{pmatrix} = \begin{pmatrix}  0.5\\ 2 \end{pmatrix}
 \end{equation}
 
-Knowing this, we can already predict that multiplying vector $\begin{pmatrix}  2\\ 4 \end{pmatrix}$ will result in vector  $\begin{pmatrix}  1\\ 8 \end{pmatrix}$, so knowing the eigenvectors and the eigenvalues is  knowing how the matrix works.
+Knowing this, we can already predict that multiplying vector $\begin{pmatrix}  2\\ 4 \end{pmatrix}$ will result in vector  $\begin{pmatrix}  1\\ 8 \end{pmatrix}$, so knowing the eigenvectors and the eigenvalues means  knowing how the matrix works.
+
 \section{The eigenvalues of the Leslie matrix}
 
 \subsection{Real eigenvalues}
@@ -468,7 +472,7 @@ L=\begin{pmatrix}
 \end{pmatrix}
 \end{equation}
 
-Inspection of the Leslie matrix already tells us a few things about the biology of locusts. First of all, the zero in the first row and first column tells us that hoppers are not yet sexually mature $f_2=0$ but adult locusts are extremely prolific with an average production of 1,000 eggs per individual. The survival rate of eggs is extremely low, with the survival rate of hopper being more that twice as high but still very low, with only 5\% of hoppers surviving until the adult stage.
+Inspection of the Leslie matrix already tells us a few things about the biology of locusts. First of all, the zero in the first row and second column tells us that hoppers are not yet sexually mature $f_2=0$ but adult locusts are extremely prolific with an average production of 1,000 eggs per individual. The survival rate of eggs is extremely low, with the survival rate of hopper being more that twice as high but still very low, with only 5\% of hoppers surviving until the adult stage.
 
 \begin{figure*}
 	\begin{center}
@@ -523,9 +527,50 @@ Complex eigenvalues always result in oscillatory dynamics, but these oscillation
 Not every system can be studied in discrete time jumps. When time becomes a continuous variable, dynamical systems have to be represented using equations that work for any possible time interval. The mathematical tool of choice in these cases are differential equations.
 
 
-A differential equation is an equality involving one or more unknowns ($x$, $y$, $z$,\dots) and their derivatives. Since our unknowns have derivatives, they are not just numbers like in regular -- a.k.a. algebraic -- equations. Our unknowns are functions or, more accurately, families of functions. We can make this explicit by writing our unknowns as $x(t)$, $y(t)$, $z(t)$,\dots thus sacrificing brevity for the sake of clarity. In the text that follows, very little effort will be made to maintain consistency between these two notations and we will wantonly switch between both. Live with it.
+A differential equation is an equality involving one or more unknowns ($x$, $y$, $z$,\dots) and their derivatives ($x'$, $y'$, $z'$,\dots). Since our unknowns have derivatives, they are not just numbers like in regular -- a.k.a. algebraic -- equations. Our unknowns are functions or, more accurately, families of functions. In the case of dynamic systems, all our state variables will be functions of time, we can make this explicit by writing them as $x(t)$, $y(t)$, $z(t)$,\dots thus sacrificing brevity for the sake of clarity. This time dependency is not always made explicit since it is known from the context so we will often define a variable as $x$ instead of $x(t)$ just to keep the notation simple.
+Now that we introduce time $t$ as a continuous variable, we cannot think of the evolution of our variables as jumps from one generation to another. Whenever we observe a change, we have to keep in mind that it happens within a time interval $(t_0, t_f)$. The amount of time along the interval will be denoted as the increment $\Delta t = t_f - t_0$, and the corresponding increment in other variables will follow the same notation $\Delta x, \Delta y, \Delta z, \dots$.
 
-Among all differential equations, we will be interested in the simpler type. Ordinary differential equations (ODEs) are those that do not involve partial derivatives. Our functions will only have one independent variable that almost always will be time. Moreover, we will start with linear equations.
+\section{Derivatives}
+
+We will concern ourselves with differential equations involving functions of time, so given a dependent variable $x(t)$, we will refer to its derivative with respect to time using any of the three notations: 
+
+\begin{equation*}
+	x' = \dot{x} = \frac{dx}{dt}  
+\end{equation*}
+
+As a reminder from high school mathematics, $dx$ and $dt$ represent very small increments of $x$ and $t$ respectively, so for very short time intervals:
+
+\begin{equation*}
+\frac{\Delta x}{\Delta t}   \approxeq \frac{dx}{dt}  
+\end{equation*}
+
+So when we write the differential equation:
+
+\begin{equation}
+	\frac{dx}{dt}  = 3
+\label{simplestode}
+\end{equation}
+
+What we are saying is that for every time unit that passes, our variable $x$ increases by 3 units. Obviously, derivatives have units. For instance, if the equation above was describing infected individuals in a population surveyed every year, the equation would be saying: there will be an increase of 3 individuals per year. In general, the units of $\frac{dx}{dt}$ are units of $x$ divided by units of $t$.
+
+Even when we cannot solve a differential equation, we can still test possible solutions. For instance, we may propose  that $x(t) = 3\, t + 7$ is a solution for equation \ref{simplestode}. To test that hypothesis we can apply the usual derivation rules and find that, indeed, $x' = 3$, so we have found a solution to our equation. If we keep trying solutions like this, we will soon find that replacing $7$ with any other number will still result in new solutions. that is why we can write: 
+
+\begin{equation}
+	x(t) = 3\, t + C
+	\label{simplestode_sol}
+\end{equation}
+
+As the \textbf{general solution} of the equation. for every possible numerical value of $C$, we will obtain a \textbf{particular solution}. The general solution of a differential equation represents a family of functions and it is normally of interest to mathematicians. Scientists and engineers are normally interested in making predictions for real life situations, which normally means finding a specific particular solution. In the case of equation \ref{simplestode}, our question may be: ``How many infected individuals will we have in thrree years if we start with $25$ infected?'' we can find our solution by substituting the  initial value $x(0)=25$ in equation \ref{simplestode_sol} when $t=0$
+
+\begin{equation*}
+	3\, 0 + C = 25
+\end{equation*}
+
+So our particular solution is  $x(t) = 3\, t + 25$. Particular solutions can also be calculated by computer simulations, even in cases when no general solution can be found. In fact, finding general solutions for a differential equation is a very challenging problem and most equations have no known general solution that can be expressed by a mathematical formula.
+
+Among all differential equations, we will be interested in the simpler type. Ordinary differential equations (ODEs) are those that do not involve partial derivatives. Moreover, we will start with linear equations.
+
+\section{Linear equations}
 
 Linear equations are those where different unknowns and their derivatives are only combined linearly. Some examples of linear equations are:
 
@@ -543,7 +588,7 @@ while the following equations are not linear:
 	\frac{dx}{dt} \: = \: &  \sin x \nonumber
 \end{align}
 
-Keep in mind that the linearity requirement only applies to the unknowns and not to the independent variable. The following equations are all linear
+Keep in mind that the linearity requirement only applies to the unknowns and not to the independent variable, time. The following equations are all linear
 
 
 \begin{align}
@@ -554,7 +599,7 @@ Keep in mind that the linearity requirement only applies to the unknowns and not
 
 In these equations, the coefficients that multiply our unknowns just happen to be functions of time. A linear equation can have coefficients that depend on time and also have time-dependent independent terms. In general, we will not concern ourselves with such systems.
 
-\section{Linear equations}
+
 
 Solving differential equations is very challenging, that's why we will try to avoid it whenever possible. In fact, we are only going to solve one differential equation during the whole course. We will solve it in two versions: with one variable and with several variables.
 
@@ -567,7 +612,7 @@ Lets start with the simplest possible case, which also happens to describe a fun
 	\frac{dx}{dt} = \mu \, x 
 \end{equation}
 
-Which can be read as: ``the rate of increase of a population $x$ is proportional to its own size.'' This equation is easy to solve because we can separate the variables:
+This can be read as: ``the rate of increase of a population $x$ is directly proportional to its own size.'' This equation is easy to solve because we can separate the variables:
 
 
 \begin{equation}
@@ -602,9 +647,7 @@ exponentiating both sides and rearranging
 	x   = k \, e^{\mu \, t} \nonumber
 \end{equation}
 
-This is the \emph{general solution} of the differential equation. It is a family of functions because we can generate infinite functions assigning different values to k. For every possible value of $k$ there is a \emph{particular solution} of the equation.
-
-We are not normally interested in general solutions. General solutions are for mathematicians. We want the particular solution that fits some \emph{initial condition} when $t=0$,  often written $x(0)$ or $x_0$. For instance, we have a bacterial culture that starts with an optical density of 0.01. How do we find the right value for k?
+This is the \emph{general solution} of the differential equation but, as stated before, we are not normally interested in general solutions. General solutions are for mathematicians. We want the particular solution that fits some \emph{initial condition} when $t=0$,  often written $x(0)$ or $x_0$. For instance, we have a bacterial culture that starts with an optical density of 0.01. How do we find the right value for k?
 
 
 \begin{equation}
@@ -628,7 +671,7 @@ Our simple linear equation can also have more that one variable:
 	\frac{dx_2}{dt} =& a_{2,1} \, x_1 + a_{2,2} \, x_2
 \end{align}
 
-when dealing with several variables, it helps a lot to use vectors and matrices.
+As seen in the previous chapter, vectors and matrices are extremely useful when dealing with several variables.
 
 \begin{equation}
 	\frac{d}{dt} \begin{pmatrix} x_1\\ x_2 \end{pmatrix} = \begin{pmatrix} a_{1,1} & a_{1,2}\\ a_{2,1} & a_{2,2} \end{pmatrix} \begin{pmatrix} x_1\\ x_2 \end{pmatrix} \nonumber
@@ -641,15 +684,13 @@ Thus, we can write any equation with n variables as:
 	\frac{d\mathbf{x}}{dt}  = \mathbf{A} \, \mathbf{x}
 \end{equation}
 
-Note that vectors and matrices are written in boldface.
-
 Since the solution of the equation for one variable was an exponential, lets make the hypothesis that an exponential can also be a solution for this case. We assume
 
 \begin{equation}
 	\mathbf{x}= \mathbf{v} \, e^{\lambda \, t} \nonumber
 \end{equation}
 
-Since $\mathbf{x}$ is a vector now, we multiply our exponential times a  vector of constants $\mathbf{v}$. We can test if this is a valid solution by substituting it into the equation, which gives:
+But $\mathbf{x}$ is a vector now, so we multiply our exponential times a  vector of constants $\mathbf{v}$ to be sure that the result is a vector as well. We can test if this is a valid solution by substituting it into the equation, which gives:
 
 \begin{equation}
 	\frac{d}{dt} \left( \mathbf{v} \, e^{\lambda \, t} \right)  = \mathbf{A} \, \mathbf{v} \, e^{\lambda \, t}  \nonumber
@@ -661,7 +702,7 @@ On the left hand side, the vector of  constants can be taken out of the derivati
 	\mathbf{v} \, \frac{d}{dt} \left(  e^{\lambda \, t} \right)  = \mathbf{A} \, \mathbf{v} \, e^{\lambda \, t}  \nonumber
 \end{equation}
  
- and
+ and on the right hand side
  
  \begin{equation}
  	\mathbf{v}   \lambda \, e^{\lambda \, t}   = \mathbf{A} \, \mathbf{v} \, e^{\lambda \, t} \nonumber
@@ -675,17 +716,26 @@ canceling out the exponentials:
  
 So $\mathbf{x}=\mathbf{v} \, e^{\lambda \, t}$ will be a solution of the equation as long as $\lambda$ and $\mathbf{v}$ satisfy the equation above, which we had already seen before in equation (\ref{eigendefinition}). In other works, the solution will only be correct if the chosen vector $\mathbf{v}$ is an eigenvector of $\mathbf{A}$ and the exponent $\lambda$ is the corresponding eigenvalue.
 
-We can solve the equation and find all possible values of $\lambda$ by rearranging terms.
+So to find the solution of any linear equation of this type, regardless of the number of variables, we just have to calculate the eigenvalues and eigenvectors of matrix $\mathbf{A}$.
+
+\section{Calculating eigenvectors and eigenvalues}
+If we rearrange terms in the definition of eigenvectors and eigenvalues:
 
 \begin{equation}
 	\mathbf{A} \, \mathbf{v}  - \mathbf{I} \, \lambda  \,	\mathbf{v}   = 0 \nonumber
 \end{equation}
 
-note we have multiplied lambda by the identity matrix $\mathbf{I}$. This is a matrix of zeros everywhere except its main diagonal, which is occupied by ones. The identity matrix plays the same role as number one among scalars, it does not alter the matrices or vectors it multiplies. Now we can factor $\mathbf{v}$ out 
+note we have multiplied lambda by the identity matrix $\mathbf{I}$. This is a matrix of zeros everywhere except its main diagonal, which is occupied by ones. The identity matrix plays the same role as number one among scalars, it does not alter the matrices or vectors it multiplies.Introducing the identity matrix keeps the equation unchanged because  $\mathbf{I} \, \lambda  \,	\mathbf{v}  =\lambda  \,	\mathbf{v} $.  The reason why we need it, is that now we can factor $\mathbf{v}$ out 
 
 \begin{equation}
 	\label{solve4eigenvec}
 	\left( \mathbf{A}   - \mathbf{I} \, \lambda     \right) \, \mathbf{v} =  0  
+\end{equation}
+
+Without the identity matrix, the parenthesis will have a scalar subtracted from a matrix, which cannot be done. In a two-variable system, equation \ref{solve4eigenvec} would look like this:
+
+\begin{equation}
+\begin{pmatrix} a_{1,1} - \lambda & a_{1,2}\\ a_{2,1} & a_{2,2}  - \lambda \end{pmatrix} \begin{pmatrix} v_1\\ v_2 \end{pmatrix} =  \begin{pmatrix} 0\\ 0 \end{pmatrix}\nonumber
 \end{equation}
 
 This is an homogeneous system of equations with the components of $\mathbf{v}$ as unknowns. For the system to have a solution other than the trivial, $\mathbf{v}=\mathbf{0}$, the determinant of the parenthesis must satisfy:
@@ -695,13 +745,13 @@ This is an homogeneous system of equations with the components of $\mathbf{v}$ a
 	\left| \mathbf{A}   - \mathbf{I} \, \lambda     \right|  =  0  
 \end{equation}
 
-The expansion of this determinant results in a $n-th$ degree equation in terms of lambda known as the characteristic equation of the system.
+The eigenvector is no longer part of the equation, so we can now solve for lambda. The expansion of this determinant results in a $n-th$ degree equation in terms of lambda known as the characteristic polynomial of the system.
 
 \begin{equation}
 c_n \, \lambda^n +c_{n-1} \, \lambda^{n-1}  + \dots  + c_1 \, \lambda + c_0 = 0 \nonumber
 \end{equation}
 
-Solving this equation provides the values of all the eigenvalues of the matrix. By substituting each eigenvalue in equation \ref{solve4eigenvec}, we can obtain the corresponding eigenvectors.
+Solving this provides the values of all the eigenvalues of the matrix. By substituting each eigenvalue in equation \ref{solve4eigenvec}, we can obtain the corresponding eigenvectors.
 
 \section{The eigenvalues of a differential equation} 
 
