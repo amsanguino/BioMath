@@ -118,20 +118,70 @@ A very simple system with this behavior can be built with a single state variabl
 equations:
 
 \begin{equation}
-	R_p = \beta + \alpha \frac{R^n}{R^n  + K_R^n} - k_d \, R
+	\frac{dR}{dt} = \beta + \alpha \frac{R^n}{R^n  + K_R^n} - k_d \, R
 \end{equation}
 
 With the first two terms being constitutive and inducible synthesis respectively and the negative term accounting for degradation and possibly dillution.
 
-The presence of the three steady states can be easily seen graphically by plotting overall synthesis and degradation as functions of $R$.
+The presence of the three steady states can be easily seen graphically by plotting overall synthesis and degradation as functions of $R$. Figure \ref{fig:bistabkin} shows how this system may have three different steady states.
 
 \begin{figure}
 	\begin{center}
-		\includegraphics[width=0.9\textwidth]{bistabkinetics}
+		\includegraphics[width=0.7
+		\textwidth]{bistabkinetics}
 	\end{center}
 	\caption{ ... }
 	\label{fig:bistabkin}
 \end{figure}
+
+The steady states could be calculated from the equation:
+
+\begin{equation}
+	 \beta + \alpha \frac{R^n}{R^n  + K_R^n} - k_d \, R = 0
+\end{equation}
+
+Instead of calculating all three steady states exactly, we will take advantage of this situation to work with approximations. Lets calculate the low steady state assuming $| R |_1 << K_R$, then the inducible term will be negligible and the system will behave as
+
+\begin{equation}
+	\frac{dR}{dt} \approx \beta - k_d \, R
+\end{equation}
+
+with the steady state
+
+\begin{equation}
+	|R|_1 \approx \frac{\beta}{k_d }
+\end{equation}
+
+and the linearized system will be:
+
+\begin{equation}
+	\frac{d}{dt} \delta R =  - k_d \, \delta R
+\end{equation}
+
+with solution $\delta R = k \, e^{- k_d\, t}$, so it will be stable.
+
+For the high value $| R |_3 >> K_R$,
+
+
+\begin{equation}
+	\frac{R^n}{R^n  + K_R^n}  \approx 1
+\end{equation}
+
+\begin{equation}
+	\frac{dR}{dt} \approx \beta + \alpha - k_d \, R
+	\label{stab_st_autoinduce}
+\end{equation}
+
+
+\begin{equation}
+	|R|_3 \approx \frac{\alpha + \beta}{k_d }
+\end{equation}
+
+And the linearized system will also be equation  \ref{stab_st_autoinduce}, so it is stable as well.
+
+Now for the middle state we know $|R|_1 \leq |R|_2 \leq |R|_3$ and we can make the dubious assumption $|R|_2 \approx K_R$. Tempted as we may be to just assume that the inducible term will be $\alpha/2$, we cannot neglect the dependency of this term on $R$ itself \dots
+
+% a ver como salgo de este jardin
 
 \subsection{Oscillators (clocks)}
 \subsection{Adaptation}
